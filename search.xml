@@ -1,0 +1,953 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Jupyter配置</title>
+    <url>/post/1554c53f.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Jupyter"><a href="#Jupyter" class="headerlink" title="Jupyter"></a>Jupyter</h1><p>写一篇博客记录一下jupyter的配置过程吧，毕竟好多开源的视觉项目都使用这个玩意。</p>
+<p>jupyter其实就是一种Web代码编辑器，支持很多种语言，目前我了解到的使用最多的就是python语言，和普通的编辑器不同，jupyter使用代码块的形式，可以分块运行，并且能够支持输出中间图像，开始为了配置faceswap-gan，感觉挺好玩的，后来还是pycharm香，上jupyter效果图，使用jupyter打开以’.ipynb’为后缀名的文件，emm，下图是我安装了一个jupyter主题，正常应该是白色。</p>
+<img src="/images/Jupyter配置/202105121455.jpg" width="80%" height="80%">
+
+<img src="/images/Jupyter配置/202105121501.jpg" width="80%" height="80%">
+
+<p>以上两张图是jupyter notebook，一次打开一个ipynb文件，此外还有jupyter Lab，如下图</p>
+<img src="/images/Jupyter配置/202105121505.jpg" width="80%" height="80%">
+
+<h1 id="Jupyter服务配置"><a href="#Jupyter服务配置" class="headerlink" title="Jupyter服务配置"></a>Jupyter服务配置</h1><p>为什么要写这篇博客呢，组里要配置faceswap-gan项目，但是主程序使用ipynb写的，而且视觉的开源项目一般都是需要使用GPU的，这就有问题了，我手里有GPU服务器，但是没安装图形界面，还需要在服务器执行ipynb程序，所以就想到在服务器中配置jupyter，本地进行访问，话不多说，开始配置。</p>
+<p>首先在服务器conda环境中安装jupyter，jupyter捆绑的工具比较多，如果遇到版本问题，建议remove环境，新环境重新搞吧，执行命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install jupyter</span><br><span class="line">pip install jupyter lab</span><br><span class="line">pip install jupyter notebook</span><br></pre></td></tr></table></figure>
+
+<p>然后配置jupyter的一些服务信息，执行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br></pre></td></tr></table></figure>
+
+<p>会在目录”/home/xxx/.jupyter/“下生成”jupyter_notebook_config.py”文件，使用文本文档打开，就会看到全都是配置信息，但是被注释掉了。</p>
+<p>首先在终端执行python命令，就是执行python单行程序的哪个，然后一行一行的执行</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> notebook.auth <span class="keyword">import</span> passwd</span><br><span class="line">passwd()</span><br></pre></td></tr></table></figure>
+
+<p>然后提示输入密码，两次输入密码即可，这是登录jupyter的密码，记住啊</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Enter password:</span><br><span class="line">Verify password:</span><br></pre></td></tr></table></figure>
+
+<p>然后终端提示生成密码sha加密后的一段代码，复制出来。</p>
+<p>修改jupyter_notebook_config.py文件，如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">c.NotebookApp.password = <span class="string">u&#x27;复制加密密文在这里&#x27;</span> <span class="comment"># 登录密码</span></span><br><span class="line">c.NotebookApp.open_browser = <span class="literal">False</span> <span class="comment"># 是否在本机浏览器启动jupyter web</span></span><br><span class="line">c.NotebookApp.ip=<span class="string">&#x27;*&#x27;</span> <span class="comment"># 允许访问的ip地址，*表示所有IP均有权访问</span></span><br><span class="line">c.NotebookApp.port = <span class="number">9999</span> <span class="comment"># 访问需要访问的端口号</span></span><br><span class="line">c.NotebookApp.notebook_dir = <span class="string">&#x27;/ssd1/ljc/dvid/&#x27;</span> <span class="comment"># 默认打开服务器中的哪个目录</span></span><br><span class="line">c.NotebookApp.allow_root = <span class="literal">True</span> <span class="comment"># 是否以root权限启动</span></span><br></pre></td></tr></table></figure>
+
+<p>保存设置，然后在服务器终端中执行命令打开jupyter Lab或者jupyter notebook。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jupyter lab --config <span class="string">&quot;/home/xxx/.jupyter/jupyter_notebook_config.py&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>控制台打印信息中就有应该访问的地址，本地使用浏览器打开地址就好了，踩过一个坑，在域名访问不到的时候，替换掉”IP地址:端口号”的形式访问，输入密码就可以看到开头的界面啦。</p>
+]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>jupyter</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo配置</title>
+    <url>/post/aed3dd41.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Hexo是一款基于Node.js的静态博客框架，可以托管在github上面，不用购买虚拟服务器，趁着五一小长假搞了一个，感觉还不错，下面记录一下搭建过程，我只是个编程小白，望各位大佬轻喷🤔。</p>
+<h1 id="hexo博客本地搭建"><a href="#hexo博客本地搭建" class="headerlink" title="hexo博客本地搭建"></a>hexo博客本地搭建</h1><p>文章头说到hexo是基于node.js的框架，需要在本地安装node.js，去官网下载node.js安装包，按照自己的系统环境选择下载，不详细展开了，然后使用npm下载hexo，命令如下，这一步是将hexo下载到本地以支持hexo各种命令【这里可能需要科学上网😎，你懂的】：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+
+<p>然后指定一个存放博客的目录，有两种方法可以初始化hexo，一种是新建一个目录，在该目录下执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
+<p>或者在某个目录下执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure>
+
+<p>其中“blog”是创建的目录名称，以上两种初始化方法没区别，原理就是直接clone现成的git项目到本地，需要持续的科学上网😎。</p>
+<p>下面这张图是创建的目录结构，不同版本的hexo可能不一样，但不会变化很大的。</p>
+<img src="/images/hexo配置/1620217716.jpg" width="30%" height="30%">
+
+<p>其中需要配置的有两个目录，source目录和theme目录，配置文件_config.yml，其他的目录还没研究，mode_modules会存放一些组件，可以直接拿来用。</p>
+<p>将终端工作目录cd到该目录，在该目录下执行以下命令：</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">npm <span class="keyword">install</span></span><br></pre></td></tr></table></figure>
+
+<p>就是将基本hexo启动所需要的组件安装到本地node_modules中，持续的科学上网中….，然后就遇到了很恶心的东西，第一天就给这东西耗上了，上图</p>
+<img src="/images/hexo配置/1620218502.jpg" width="70%" height="70%">
+
+<p>什么意思呢，就是箭头所指的包是安装在macOS系统里的，windows安装不上，一顿google也没解决，发现这玩意可以直接跳过的…😡。</p>
+<p>执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s（或者 hexo server）</span><br></pre></td></tr></table></figure>
+
+<p>控制台打印图是这个：</p>
+<img src="/images/hexo配置/1620218920.jpg" width="70%" height="70%">
+
+<p>hexo默认端口是4000，浏览器输入“localhost:4000”，可以看到</p>
+<img src="/images/hexo配置/1620219069.jpg" width="80%" height="80%">
+
+<p>hexo博客页面默认就这样子，然后还需要美化一下博客，添加自己的信息，还需要部署到公网上面去，美化博客需要安装自己喜欢的主题，部署则需要上传到github托管一下web服务。</p>
+<h1 id="hexo博客站部署"><a href="#hexo博客站部署" class="headerlink" title="hexo博客站部署"></a>hexo博客站部署</h1><p>前文提到hexo可以依托github部署，为什么能够实现呢，github允许个人repository创建github page，repository名称为“xxx.github.io”，并可以直接在github page主题库中选择一种主题搭建主页，访问域名是“xxx.github.io”，xxx是git用户名，打开repository中的setting选项，左侧有page配置选项，如下图</p>
+<img src="/images/hexo配置/0RUGLB7ZEC6L.png" width="80%" height="80%">
+
+<p>详细了解访问<a href="https://sspai.com/post/54608">GitHub Pages 搭建教程</a>，hexo其实就是将github page替换我们的自定义页面，只用托管发布功能。</p>
+<p>hexo是什么角色呢，按照我的理解【大佬轻喷哈】，hexo可以将markdown渲染为静态HTML，并且提供了一套前端框架，我们只需要写md就好。</p>
+<p>说了点废话，赶紧上操作！</p>
+<p>登录注册github，然后创建repository名称为“xxx.github.io”，为了使用hexo部署，将前端代码推到“xxx.github.io”中，需要<a href="https://blog.csdn.net/jx950915/article/details/80444969">配置ssh</a>，不多说，配置如下图。</p>
+<img src="/images/hexo配置/202105071025.png" width="80%" height="80%">
+
+<p>配置好git仓库，还需要让本地知道该向哪推送代码，配置本地博客目录下的“_config.yml”文件，有deploy选项，一般在最后，配置如下</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">&#x27;git&#x27;</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/xxx/xxx.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+
+<p>type指推送方式，repo值仓库，xxx是你的github账户名称，branch指要推送到仓库中哪个分支。</p>
+<p>在本地控制台中博客根目录下执行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+
+<p>将helloword渲染为HTML，生成public目录，该目录下存放HTML渲染结果。然后将页面推送到.github.io，执行下面命令。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>如果需要重新渲染的话，先清除当前生成的目录，执行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+
+<p>重新执行推送就好啦，浏览器打开xxx.github.io，就可以看到自己的页面啦。</p>
+<p>当前页面支持http，如果需要https，勾选仓库setting-&gt;page下面的https就好了。</p>
+<img src="/images/hexo配置/202105071048.png" width="80%" height="80%">
+
+<h1 id="hexo定制主题"><a href="#hexo定制主题" class="headerlink" title="hexo定制主题"></a>hexo定制主题</h1><p>hexo默认主题没见有用过的，不好看，所以要换成自己喜欢的主题，我用的是next主题，也可以挑选自己喜欢的主题，github搜索“hexo theme”或者翻翻hexo官网挑一下就好啦。</p>
+<p>在博客根目录执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://github.com/theme-next/hexo-theme-next">https://github.com/theme-next/hexo-theme-next</a> 是主题的git链接，将其下载到theme主题目录下，并修改为next，需要科学上网，themes/next 目录下就是主题相关文件，启动主题需要在“_config.yml”文件中将theme字段的值改成next。</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure>
+
+<p>重新启动本地服务，就可以看到主题了。</p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>next主题设置</title>
+    <url>/post/59a8517b.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>上篇介绍了hexo的基本搭建过程，next主题需要进行个性定制，记录一下各种工具的设置方法吧，我只是个编程小白，望各位大佬轻喷🤔。</p>
+<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><p>hexo安装主题过后，存在两个配置文件，一个存放在博客根目录下，命名“_config.yml”，另一个存放在“./theme/next/”目录下，命名“_config.yml”，需要修改这两个配置文件，某些bug还需要修改源码，下面按照组件一个一个讲。</p>
+<h1 id="next四种风格"><a href="#next四种风格" class="headerlink" title="next四种风格"></a>next四种风格</h1><p>next主题提供了四种组件排版风格，配置文件在next目录下的config.yml文件，把引号“#”去掉就表示选择该Scheme。</p>
+<figure class="highlight vala"><table><tr><td class="code"><pre><span class="line"><span class="meta"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="meta"># Scheme Settings</span></span><br><span class="line"><span class="meta"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="meta"># Schemes</span></span><br><span class="line"><span class="meta"># scheme: Muse</span></span><br><span class="line"><span class="meta"># scheme: Mist</span></span><br><span class="line">scheme: Pisces</span><br><span class="line"><span class="meta">#scheme: Gemini</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="next个人信息"><a href="#next个人信息" class="headerlink" title="next个人信息"></a>next个人信息</h1><p>在根目录下config.yml文件中配置，比如我的配置如下：</p>
+<figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="meta"># Site</span></span><br><span class="line"><span class="symbol">title:</span> 李金川 <span class="meta"># 标题</span></span><br><span class="line"><span class="symbol">subtitle:</span> 留下脚印，证明曾走过 <span class="meta"># 装逼短句</span></span><br><span class="line"><span class="symbol">description:</span> [技术，博文] </span><br><span class="line"><span class="symbol">keywords:</span></span><br><span class="line"><span class="symbol">author:</span> <span class="number">1129</span>ljc </span><br><span class="line"><span class="symbol">language:</span> <span class="built_in">zh</span>-Hans <span class="meta"># 设置中文</span></span><br><span class="line"><span class="symbol">timezone:</span> Asia/Shanghai <span class="meta"># 时间同步</span></span><br></pre></td></tr></table></figure>
+
+<p>注意，主题默认使用英文，将language改成zh-Hans可设置为中文。</p>
+<h1 id="next菜单设置"><a href="#next菜单设置" class="headerlink" title="next菜单设置"></a>next菜单设置</h1><p>next目录下的config.yml文件，举例：key: /value|| icon</p>
+<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">menu:</span></span><br><span class="line"><span class="symbol">  home:</span> /|| home <span class="meta">#主页</span></span><br><span class="line"><span class="symbol">  tags:</span> /tags|| tags <span class="meta"># 文章标签</span></span><br><span class="line"><span class="symbol">  categories:</span> /categories|| th <span class="meta"># 文章分类</span></span><br><span class="line"><span class="symbol">  archives:</span> /archives|| archive <span class="meta"># 归档</span></span><br><span class="line">  <span class="meta"># schedule: /schedule/ || calendar</span></span><br><span class="line">  <span class="meta"># sitemap: /sitemap.xml || sitemap</span></span><br><span class="line">  <span class="meta"># commonweal: /404/ || heartbeat</span></span><br><span class="line"><span class="symbol">  about:</span> /about|| user <span class="meta"># 关于</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="next站内搜索"><a href="#next站内搜索" class="headerlink" title="next站内搜索"></a>next站内搜索</h1><p>安装搜索插件：</p>
+<figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
+
+<p>next目录下的config.yml文件，将local_search的选项设置为True，举例：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"># <span class="keyword">Local</span> <span class="keyword">search</span></span><br><span class="line"># Dependencies: https:<span class="operator">/</span><span class="operator">/</span>github.com<span class="operator">/</span>flashlab<span class="operator">/</span>hexo<span class="operator">-</span>generator<span class="operator">-</span><span class="keyword">search</span></span><br><span class="line">local_search:</span><br><span class="line">  # enable: <span class="literal">false</span></span><br><span class="line">  enable: <span class="literal">true</span></span><br><span class="line">  # if auto, <span class="keyword">trigger</span> <span class="keyword">search</span> <span class="keyword">by</span> changing input</span><br><span class="line">  # if manual, <span class="keyword">trigger</span> <span class="keyword">search</span> <span class="keyword">by</span> pressing enter key <span class="keyword">or</span> <span class="keyword">search</span> button</span><br><span class="line">  <span class="keyword">trigger</span>: auto</span><br><span class="line">  # <span class="keyword">show</span> top n results <span class="keyword">per</span> article, <span class="keyword">show</span> <span class="keyword">all</span> results <span class="keyword">by</span> setting <span class="keyword">to</span> <span class="number">-1</span></span><br><span class="line">  top_n_per_article: <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>根目录下config文件添加：</p>
+<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">search:</span></span><br><span class="line"><span class="symbol">  path:</span> search.xml</span><br><span class="line"><span class="symbol">  field:</span> post</span><br><span class="line"><span class="symbol">  format:</span> html</span><br><span class="line"><span class="symbol">  limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="next社交链接"><a href="#next社交链接" class="headerlink" title="next社交链接"></a>next社交链接</h1><p>next目录下的config.yml文件，修改下面字段，可以支持很多平台，Github、邮箱、StackOverflow、YouTube等等，也可以设置图标。</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">socia<span class="variable">l:</span></span><br><span class="line">  GitHu<span class="variable">b:</span> http<span class="variable">s:</span>//github.<span class="keyword">com</span>/<span class="number">1129</span>ljc?<span class="keyword">tab</span>=repositories || github</span><br><span class="line">  E-Mai<span class="variable">l:</span> mailto:lijinchuan@iie.ac.<span class="keyword">cn</span> || envelope</span><br><span class="line">  #Google: http<span class="variable">s:</span>//plus.google.<span class="keyword">com</span>/yourname || google</span><br><span class="line">  #Twitter: http<span class="variable">s:</span>//twitter.<span class="keyword">com</span>/yourname || twitter</span><br><span class="line">  #FB Page: http<span class="variable">s:</span>//www.facebook.<span class="keyword">com</span>/yourname || facebook</span><br><span class="line">  #VK Group: http<span class="variable">s:</span>//vk.<span class="keyword">com</span>/yourname || vk</span><br><span class="line">  #StackOverflo<span class="variable">w:</span> http<span class="variable">s:</span>//stackoverflow.<span class="keyword">com</span>/yourname || stack-overflow</span><br><span class="line">  #YouTube: http<span class="variable">s:</span>//youtube.<span class="keyword">com</span>/yourname || youtube</span><br><span class="line">  #Instagram: http<span class="variable">s:</span>//instagram.<span class="keyword">com</span>/yourname || instagram</span><br><span class="line">  #Skype: skype:yourname?<span class="keyword">call</span>|chat || skype</span><br><span class="line"></span><br><span class="line">social_icon<span class="variable">s:</span></span><br><span class="line">  enable: true</span><br><span class="line">  icons_only: false</span><br><span class="line">  transition: false</span><br></pre></td></tr></table></figure>
+
+<h1 id="next打赏功能"><a href="#next打赏功能" class="headerlink" title="next打赏功能"></a>next打赏功能</h1><p>打赏功能就是贴支付宝和微信，在next目录下的config.yml文件中，修改为</p>
+<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="meta"># Reward</span></span><br><span class="line"><span class="symbol">reward_comment:</span> 您的钱钱支持将鼓励我继续创作!</span><br><span class="line"><span class="symbol">wechatpay:</span> <span class="meta-keyword">/images/</span>wechatpay.jpg</span><br><span class="line"><span class="symbol">alipay:</span> <span class="meta-keyword">/images/</span>alipay.jpg</span><br><span class="line"><span class="meta"># bitcoin: /images/bitcoin.png</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="next原创声明"><a href="#next原创声明" class="headerlink" title="next原创声明"></a>next原创声明</h1><p>next目录下config.yml文件，修改为</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Declare license on posts</span></span><br><span class="line">post_copyright:</span><br><span class="line">  enable: true</span><br><span class="line">  license: CC BY-NC-SA <span class="number">3.0</span></span><br><span class="line">  license_url: https:<span class="regexp">//</span>creativecommons.org<span class="regexp">/licenses/</span>by-nc-sa<span class="regexp">/3.0/</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="next文章链接"><a href="#next文章链接" class="headerlink" title="next文章链接"></a>next文章链接</h1><p>如果文章标题为中文，next默认的编码会使得文章链接中有很多乱七八糟看不懂的字符，为了简化链接，使用next中的abbrlink工具，首先安装一下</p>
+<figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">npm install hexo-abbrlink <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
+
+<p>在hexo根目录下config.yml文件下加入下面代码</p>
+<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">permalink:</span> posts/:abbrlink.html  <span class="meta"># 此处可以自己设置，也可以直接使用 :/abbrlink</span></span><br><span class="line"><span class="symbol">abbrlink:</span></span><br><span class="line"><span class="symbol">    alg:</span> crc32   <span class="meta">#算法： crc16(default) and crc32</span></span><br><span class="line"><span class="symbol">    rep:</span> hex     <span class="meta">#进制： dec(default) and hex</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="next访问统计"><a href="#next访问统计" class="headerlink" title="next访问统计"></a>next访问统计</h1><p>next目录下config.yml文件，修改为</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">busuanzi_count:</span></span><br><span class="line">  <span class="comment"># count values only if the other configs are false</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># custom uv span for the whole site</span></span><br><span class="line">  <span class="attr">site_uv:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">site_uv_header:</span> <span class="string">&lt;i</span> <span class="string">class=&quot;fa</span> <span class="string">fa-user&quot;&gt;&lt;/i&gt;</span> <span class="string">访问人数</span></span><br><span class="line">  <span class="attr">site_uv_footer:</span></span><br><span class="line">  <span class="comment"># custom pv span for the whole site</span></span><br><span class="line">  <span class="attr">site_pv:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">site_pv_header:</span> <span class="string">&lt;i</span> <span class="string">class=&quot;fa</span> <span class="string">fa-eye&quot;&gt;&lt;/i&gt;</span> <span class="string">总访问量</span></span><br><span class="line">  <span class="attr">site_pv_footer:</span> <span class="string">次</span></span><br><span class="line">  <span class="comment"># custom pv span for one page only</span></span><br><span class="line">  <span class="attr">page_pv:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">page_pv_header:</span> <span class="string">&lt;i</span> <span class="string">class=&quot;fa</span> <span class="string">fa-file-o&quot;&gt;&lt;/i&gt;</span> <span class="string">浏览</span></span><br><span class="line">  <span class="attr">page_pv_footer:</span> <span class="string">次</span></span><br></pre></td></tr></table></figure>
+
+<p>效果嘛，请把我的博客拉到最底。</p>
+<h1 id="next右上角github链接"><a href="#next右上角github链接" class="headerlink" title="next右上角github链接"></a>next右上角github链接</h1><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">github_banner:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">permalink:</span> <span class="string">https://github.com/1129ljc</span></span><br><span class="line">  <span class="attr">title:</span> <span class="string">Follow</span> <span class="string">me</span> <span class="string">on</span> <span class="string">GitHub</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="next中文锚链"><a href="#next中文锚链" class="headerlink" title="next中文锚链"></a>next中文锚链</h1><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">toc:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Automatically add list number to toc.</span></span><br><span class="line">  <span class="attr">number:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># If true, all words will placed on next lines </span></span><br><span class="line">  <span class="comment"># if header width longer then sidebar width.</span></span><br><span class="line">  <span class="attr">wrap:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># If true, all level of TOC in a post will be displayed</span></span><br><span class="line">  <span class="comment"># rather than the activated part of it.</span></span><br><span class="line">  <span class="attr">expand_all:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Maximum heading depth of generated toc.</span></span><br><span class="line">  <span class="attr">max_depth:</span> <span class="number">6</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="next头像"><a href="#next头像" class="headerlink" title="next头像"></a>next头像</h1><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">avatar:</span></span><br><span class="line">  <span class="comment"># Replace the default image and set the url here.</span></span><br><span class="line">  <span class="attr">url:</span> <span class="string">/images/touxiang.jpg</span></span><br><span class="line">  <span class="comment"># If true, the avatar will be dispalyed in circle.</span></span><br><span class="line">  <span class="attr">rounded:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># If true, the avatar will be rotated with the cursor.</span></span><br><span class="line">  <span class="attr">rotated:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>做个deepfake数据集！</title>
+    <url>/post/df86cf79.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="视频数据集说明"><a href="#视频数据集说明" class="headerlink" title="视频数据集说明"></a>视频数据集说明</h1><p><strong>本文档针对FMFCC视频取证挑战赛公开数据集进行说明，编写日期：2021年5月10日</strong></p>
+<p><strong>制作单位：</strong>中国科学院信息工程研究所信息安全国家重点实验室IIE多媒体安全与智能分析团队</p>
+<h1 id="人像视频收集"><a href="#人像视频收集" class="headerlink" title="人像视频收集"></a>人像视频收集</h1><p>本次比赛人像视频样本均为亚洲人脸，采取公开有偿招募形式，经过几轮样本筛选，最终确定83段人像视频为视频数据集制作的原素材，83位视频提供者均签署人像视频使用授权书。</p>
+<h1 id="伪造视频制作"><a href="#伪造视频制作" class="headerlink" title="伪造视频制作"></a>伪造视频制作</h1><p>收集人像素材，并根据人物人脸特征进行换脸视频制备，使用DeepFaceLab、Faceswap、Faceswap-GAN、Recycle-GAN、ALAE四种人脸视频进行人脸交换，采用一系列视频增强方法进行随机数据增强，包括多分辨率、不同CRF压缩参数、模糊或锐化、噪声、翻转、色度亮度调整等等。</p>
+<h1 id="公开数据集说明"><a href="#公开数据集说明" class="headerlink" title="公开数据集说明"></a>公开数据集说明</h1><p>视频时长10s/段，帧率25~30，均使用x264编码器编码，MP4视频格式。</p>
+<p><strong>训练集信息：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">数量</th>
+<th align="left">真假比例</th>
+<th align="left">是否增强</th>
+<th align="left">真假标识</th>
+<th align="left">命名设置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">10000段</td>
+<td align="left">真:假=6:4</td>
+<td align="left">否</td>
+<td align="left">1标识真；0标识假</td>
+<td align="left">10000001~10010000.mp4</td>
+</tr>
+</tbody></table>
+<p><strong>验证集信息：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">数量</th>
+<th align="left">真假比例</th>
+<th align="left">是否增强</th>
+<th align="left">真假标识</th>
+<th align="left">命名设置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">20000段</td>
+<td align="left">真:假=11:9</td>
+<td align="left">是</td>
+<td align="left">1标识真；0标识假</td>
+<td align="left">10010001~10030000.mp4</td>
+</tr>
+</tbody></table>
+<p>训练集与验证集标签分别存储为json格式，例如：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">&quot;10009608.mp4&quot;</span>: <span class="string">&quot;0&quot;</span>,</span><br><span class="line">	<span class="attr">&quot;10009609.mp4&quot;</span>: <span class="string">&quot;1&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>表示名为”10009608.mp4“的视频，是经过换脸处理的伪造视频，名为“”10009609.mp4”的视频，是未经过换脸处理的真实视频。</p>
+<h1 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h1><p>本数据集仅供学术研究使用，禁止商用。</p>
+<p>比赛开始啦：<a href="http://fmfcc.net/">fmfcc.net</a></p>
+<h1 id="制作工具链接"><a href="#制作工具链接" class="headerlink" title="制作工具链接"></a>制作工具链接</h1><p><a href="https://github.com/iperov/DeepFaceLab">DeepFaceLab</a>，<a href="https://github.com/deepfakes/faceswap">FaceSwap</a>，<a href="https://github.com/shaoanlu/faceswap-GAN">FaceSwap-GAN</a>，<a href="https://github.com/aayushbansal/Recycle-GAN">Recycle-GAN</a>，<a href="https://github.com/podgorskiy/ALAE">ALAE</a></p>
+]]></content>
+      <categories>
+        <category>Deepfake</category>
+      </categories>
+      <tags>
+        <tag>Deepfake</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>挂载远程存储服务</title>
+    <url>/post/a539326e.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>感谢师兄上次帮助挂载存储服务，在这里记录一下，以后肯定还得用~</strong></p>
+<h1 id="挂载远程存储服务"><a href="#挂载远程存储服务" class="headerlink" title="挂载远程存储服务"></a>挂载远程存储服务</h1><p>就是内网里面有一个存储服务器，需要将服务器中的一个目录挂载到本地，本地可以直接访问，上效果图。</p>
+<img src="/images/挂载远程存储服务/20210511.png" width="80%" height="80%">
+
+<p>打码部分的格式为【目录名称(IP地址)(虚拟盘名称)】</p>
+<p>计算机-&gt;右键-&gt;映射网络驱动器</p>
+<img src="/images/挂载远程存储服务/202105111858.png" width="80%" height="80%">
+
+<p>效果就是这样子啦</p>
+<img src="/images/挂载远程存储服务/202105111902.png" width="80%" height="80%">
+
+<p>然后指定一个驱动器字母，在空白区域填写\server\share，其中server表示内网服务器的地址，share表示该服务器根目录下的目录名字，点击完成就好啦。</p>
+<p>效果就是出现了两个</p>
+<img src="/images/挂载远程存储服务/202105111909.png" width="80%" height="80%">
+
+<p>不是特别了解windows系统内网里面的一些设置，积少成多，大佬轻喷~</p>
+]]></content>
+      <categories>
+        <category>小工具</category>
+      </categories>
+      <tags>
+        <tag>小工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于密文图像可逆水印和区块链的版权保护系统</title>
+    <url>/post/33add856.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>随着互联网技术及云计算技术的快速发展,人们将更多的资料和数据上传到远程服务器或者云端进行存储。用户可随时随地通过联网下载已上传的资料、利用网络中的其他资源以及享受第三方提供的数据处理等服务。这些技术在方便人们生活的同时,也引发了数据安全和隐私保护的问题。上传的数据可能涉及用户的隐私内容,如个人照片、企业的用户资料、电子票据等,用户应先对数据进行加密后再上传,以降低内容泄露的风险。然而,数据在加密后失去了许多的特性。另外,由于存在安全漏洞或内部人员的非法操作,密文被非法访问后会受到篡改、替换等攻击,用户加密数据的完整性、可靠性保护尤为重要。加密域中的可逆信息隐藏技术是在不知道明文内容的情况下,直接将额外信息嵌入到密文载体中,并在解密及信息提取后能够百分之百地恢复出原始载体的技术。该技术有着很好的应用前景，比如可以应用于数字图像的版权保护。我们通过研究同态加密，可逆数字水印，区块链与云计算技术，使作品可以借助云计算的计算资源，利用同态加密域上的可逆水印技术，实现对图像的版权保护；利用区块链技术，实现对图像的版权溯源。本作品将国内外一些可用于同态加密域上的可逆水印算法与同态加密算法进行改进，将理论转化为实际应用，实现了云端图像的可逆水印嵌入，本地明文图像可逆水印提取与图像恢复，实现了对图像的版权保护；同时借助区块链技术，实现了对图像的版权溯源。本作品的图像嵌入信息后的PSNR（峰值信噪比）较高，肉眼极难识别原图像与嵌入后图像的差别。加密算法加密强度较高，能较好保护用户云端信息的安全性。嵌入算法效率较高，嵌入信息不易被破坏，可以较好实现版权保护。同时通过引入区块链技术，用户对图像操作的记录被完整记录，实现版权溯源的功能。</p>
+<p><strong>关键词：</strong>可逆数字水印，同态加密，区块链，云计算。</p>
+<h1 id="作品概述"><a href="#作品概述" class="headerlink" title="作品概述"></a>作品概述</h1><h2 id="技术介绍"><a href="#技术介绍" class="headerlink" title="技术介绍"></a>技术介绍</h2><p>所谓数字水印技术就是将数字、序列号、文字、图像标志等版权信息嵌入到多媒体数据中，以起到版权保护、秘密通信、数据文件的真伪鉴别和产品标志等作用。可逆水印技术是一种能够在提取水印信息后无失真地恢复出原始载体内容的信息隐藏技术，这保证了作品可被无损恢复。广义来讲，区块链技术是利用块链式数据结构来验证与存储数据、利用分布式节点共识算法来生成和更新数据、利用密码学的方式保证数据传输和访问的安全、利用由自动化脚本代码组成的智能合约来编程和操作数据的一种全新的分布式基础架构与计算范式。区块链技术由于其具有分布式去中心化、不可篡改和加密安全性、数据透明和审查便利的特点。可有效实现对图像版权的溯源，追查出图像的每一次操作。云计算是一种按使用量付费的模式，这种模式提供可用的、便捷的、按需的网络访问，进入可配置的计算资源共享池（资源包括网络，服务器，存储，应用软件，服务），这些资源能够被快速提供，只需投入很少的管理工作，或与服务供应商进行很少的交互。借助云计算的计算资源，可有效地处理大批量的图像版权保护操作。由于图像的处理在云端实现，为了保证用户的隐私，我们通过同态加密来实现。同态加密可以做到当数据被上传到云端时，数据信息不被云服务商知道的基础上帮助用户处理数据。相当于加密算法实现了一种从明文到密文的映射，使云端对密文的一些操作可以直接映射到对明文的相应操作，使云端可以对用户的数据进行有效操作。当用户把处理好的加密数据下载到本地并且解密时，就可以得到已经处理好的数据。</p>
+<h2 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h2><p>目前国内外有一些对于同态加密域可逆水印的研究，但大多停留在研究阶段，没有真正实现的应用。我们对同态加密域可逆水印算法研究后，发现以下几个问题：①加密后的密文数据扩展大；②有些算法的PSNR（峰值信噪比）过低，[1]文献中的算法的嵌入容量虽然很高但嵌入后明文图像完全无法识别，图像失真严重；③嵌入操作的运算复杂度较高。我们经过总结和研究，对经典的DE（差值扩展）算法进行改进，结合Paillier加密算法的同态特性，实现了密文域的信息嵌入和明文域的信息提取。对于区块链技术，我们在参考大量资料后，决定主要利用区块链的不可篡改性，实现对用户操作的记录，使用户对图像的每一步操作都有据可查。区块链就像是一个“账本”，每个区块相当是账本的一页，前后页之间都相互联系，一旦对前一页作出修改，后面的信息就需要全部改变，而这在实际中几乎不可行。也就保证了区块链无法被篡改，记录的信息是真实可信的。我们将用户的操作记录于这个“账本”中，当用户查找时可以完整地找出该图像的每一次操作，且都是可信的，这就实现了对图像的版权溯源。为了解决大批量图像操作的运算负担较大，我们采用在云端为用户计算的策略；同时为了更好地实现区块链技术，使区块可信度较高，我们打算在以后作品的改进中使用更契合本应用的雾计算技术，使计算资源分布式配置，能够更好契合区块链的应用特点。</p>
+<h2 id="特色描述"><a href="#特色描述" class="headerlink" title="特色描述"></a>特色描述</h2><p>本作品通过同态加密算法，实现了图像在云端的安全操作，云端始终接触不到明文，也就大大减小了明文图像被泄露或窃取的可能性。对于嵌入的信息，我们可以选择生成一张含有用户信息的二值图，将二值图嵌入图像，而不是直接嵌入用户信息，这样图像即使经过一定的破坏，也可以提取出可以辨认的二值图，从而提高了水印的鲁棒性。在图像的操作过程中，用户持有图像的私钥和嵌入密钥，云端只有在嵌入操作时才需要用户提交嵌入密钥，云端并不保存用户的嵌入密钥。同时客户端与云端完全通过SSL加密信道交互信息，降低了信息在传输过程中被泄露的风险。通过以上做法，保证了只有用户才可以将加密的图像解密，只有用户才能从嵌入信息的图像中提取出水印，从而完成图像的版权认证。为了加强版权保护的强度，我们还引入区块链技术，通过在云端记录用户对图像的操作，将其加入区块链中，利用区块链的不可篡改性，达到对图像的版权溯源功能。</p>
+<h2 id="应用前景"><a href="#应用前景" class="headerlink" title="应用前景"></a>应用前景</h2><p>面对当下数字作品版权保护的现状，盗版与未经授权的非法复制盛行，又很难追责；常规保护方式耗时长、费用高，很多数字图像作品并未采取有效的保护措施。导致著作权人难以拿出有力的证据证明作品的归属。本作品实现了密文域的可逆水印技术，能够很好地迎合当前云计算越来越盛行的趋势，既利用了云计算的计算资源，又实现了用户图像的保密性，实现对图像的版权保护。且区块链技术的结合使本作品的功能更丰富，版权保护的功能更强大。</p>
+<h1 id="作品设计与实现"><a href="#作品设计与实现" class="headerlink" title="作品设计与实现"></a>作品设计与实现</h1><h2 id="系统设计"><a href="#系统设计" class="headerlink" title="系统设计"></a>系统设计</h2><p>我们的软件是为了实现在云端的图像版权保护功能。图像版权保护主要通过区块链和密文域可逆水印两种方式实现。可逆水印从图像自身入手，在图像中嵌入可逆的数字水印，这样既可以解决版权保护的问题，又可以不破坏图像自身；区块链则是在服务器记录图片信息并链接成链，然后广播到每个节点，云端上有大量节点，如果篡改则要对半数以上的节点进行修改，而且区块链自身修改难度很大，从而保证节点记录信息的可靠性。这两种版权保护相结合，可以从多方面解决图像的版权保护问题。并且用户上传的是图像密文，服务端无法获得图像过多信息，从而解决了云计算的安全性问题。水印嵌入步骤：图像加密，水印嵌入，图像解密，水印提取；区块链版权保护步骤：图像hash上传，生成区块。</p>
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/69aaa12819b70cf76b95dfbabbeace7d.png">
+
+<h2 id="同态加密与解密"><a href="#同态加密与解密" class="headerlink" title="同态加密与解密"></a>同态加密与解密</h2><h3 id="密钥生成"><a href="#密钥生成" class="headerlink" title="密钥生成"></a>密钥生成</h3><p>随机和独立地选择两个大素数$p$和$q$，使得$gcd(pq,(p−1)(q−1))=1$，要求两个素数的长度相等。计算$n=pq$和$λ=lcm(p−1,q−1)$。选择随机整数$g$满足$Z \in {Z^*}_{n^2}$，确保模块逆元的存在$gcd(L(g^{λ} \bmod n^2),n)=1$。公式$L(x)=\frac{x−1}{n}$，公钥$(n,g)$私钥$(λ)$。<strong>加密：</strong>$c=g^m×r^n \bmod n^2$，$0≤m&lt;n$，随机数$r:0≤r&lt;n$。<strong>解密：</strong>$m=\frac{L(c^λ \bmod n^2)}{L(g^λ \bmod n^2)} \bmod n$。</p>
+<h3 id="Paillier同态性质"><a href="#Paillier同态性质" class="headerlink" title="Paillier同态性质"></a>Paillier同态性质</h3><p>加同态:<br>$$<br>D(E(m_1,r_1)×E(m_2,r_2) \bmod n^2) \bmod n = m_1 + m_2 \bmod n<br>$$</p>
+<p>减同态:<br>$$<br>D(E(m_1,r_1)×((E(m_2,r_2))^{−1} \bmod n^2) \bmod n^2) \bmod n =m_1 −m_2 \bmod n<br>$$</p>
+<p>乘同态:<br>$$<br>D(E(m_1,r_1)^k \bmod n^2)=km_1 \bmod n<br>$$</p>
+<p>除同态(当能整除成立):<br>$$<br>D((E(m_1)×E(m_1))^{k^{−1} \bmod n} \bmod n^2)= \frac{m_1+m_2}{k}<br>$$<br>注：除法同态当不能整除时右式为$(m_1+m_2+d×n)/k$，$d$取刚好被整除时的最小值。</p>
+<h3 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h3><p>因为直接对每个像素进行加密，密文会扩充很大，从每个像素8bit(256)扩充到256bit(选取n为128bit)，扩大了32倍，如果n选取过小，会导致加密安全性减低。因此我们把8个像素首位相连进行加密，这样每组64bit(8*8bit)，扩充到256bit，仅仅扩大了4倍，这样既保证了加密的安全性，又对密文扩充进行了有效的限制。</p>
+<h2 id="密文域可逆水印嵌入"><a href="#密文域可逆水印嵌入" class="headerlink" title="密文域可逆水印嵌入"></a>密文域可逆水印嵌入</h2><h3 id="传统DE算法"><a href="#传统DE算法" class="headerlink" title="传统DE算法"></a>传统DE算法</h3><p>x、y是图像中任意相邻两个像素值，$x、y \in [0,255]$，像素的平均值$I$，差值$d$为:<br>$$<br> l=(x+y)/2<br>$$</p>
+<p>$$<br>h=x−y<br>$$</p>
+<p>相应的逆变换公式为：<br>$$<br>x=l+\lfloor\frac{h+l}{2}\rfloor,y=l−\lfloor\frac{h}{2}\rfloor,h&gt;0<br>$$</p>
+<p>$$<br>x=l+\lfloor\frac{h}{2}\rfloor,y=l−\lfloor\frac{h-l}{2}\rfloor,h&lt;0<br>$$<br>假设待嵌入的隐秘信息为$i \in [0,1]$，对差值进行扩展嵌入一位信息，$h^\prime =2h + i$。</p>
+<h3 id="改进DE算法"><a href="#改进DE算法" class="headerlink" title="改进DE算法"></a>改进DE算法</h3><p>可逆水印一般鲁棒性较差，因此嵌入信息是一张二值图，如果图像一些像素被破坏，仍然可以提取图像进行辨识；要把明文域上DE算法改进为密文域上可逆水印算法，需要进行一些额外的操作。不仅需要利用同态性质把密文域上操作映射到明文域上，而且每个密文值是8个像素连接后加密得到的，因此不能对单个像素进行嵌入，需要每组同时嵌入，假设某组需要嵌入01011010(8bit)信息，原公式的ii即为01011010；密文状态下无法获知x、y大小，无法知道使用哪个公式，而且一组中不能同时用2个嵌入公式，因此我们把$x&lt;y$的像素颠倒，保证每组像素都是$x&gt;y$，因此需要辅助信息记录颠倒的位置以便恢复。</p>
+<h2 id="水印嵌入提取及验证"><a href="#水印嵌入提取及验证" class="headerlink" title="水印嵌入提取及验证"></a>水印嵌入提取及验证</h2><h3 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h3><p>对图像进行预处理，相邻一组像素如果$x&lt;y$，则x、y颠倒（x、y均为像素值），并且得到三张表map1、map2、map3。map1记录了像素是否可嵌入（越界问题）,map2记录像素是否颠倒，map3记录$x+y$的奇偶性（paillier同态除法需要）。</p>
+<h3 id="嵌入密钥生成"><a href="#嵌入密钥生成" class="headerlink" title="嵌入密钥生成"></a>嵌入密钥生成</h3><p>利用随机数得到一组不重复的数组，数组里的元素即代表在哪个像素嵌入信息，这样即可做到把嵌入信息随机分散地嵌入到图像中。嵌入密钥即为用户给定的随机数种子。</p>
+<h3 id="嵌入"><a href="#嵌入" class="headerlink" title="嵌入"></a>嵌入</h3><p>利用paillier同态的性质，计算密文域上的$h$和$l$，计算$I$时，要利用map3把$x+y$变成偶数（奇数则减一），才能使用同态除法。<br>$$<br>E(l)=(E(x)×E(y))^{2^{−1} \bmod n} \bmod n^2 → l=(x+y)/2<br>$$</p>
+<p>$$<br>E(h)=(E(x)×(E(y)^{−1} \bmod n^2) \bmod n^2→h=x-y<br>$$</p>
+<p>然后利用密钥把分散好的嵌入信息$I$嵌入到密文中。此密文域嵌入容量和原始DE嵌入容量几乎一致。<br>$$<br>E(2h+i)=(E(h)×E(h)×E(i)) \bmod n^2→h^\prime=2h+i<br>$$<br>因为当$x&gt;y$时$x^\prime=l+\lfloor \frac{h^\prime+l}{2}\rfloor=l+h+i$，$y^\prime=l−\lfloor\frac{h^\prime}{2}\rfloor=l−h$，所以<br>$$<br>E(x^\prime)=(E(l)×E(h)×E(i)) \bmod n^2→x^\prime=l+h+i<br>$$</p>
+<p>$$<br>E(y^\prime)=(E(l)×(E(h)^{−1} \bmod n^2) \bmod n^2→y^\prime=l−h<br>$$</p>
+<p>注：解密后要利用map2把颠倒的像素还原。</p>
+<h3 id="提取"><a href="#提取" class="headerlink" title="提取"></a>提取</h3><p>同DE算法，利用map1和嵌入密钥（随机数种子）得到嵌入顺序，然后计算h的奇偶性得到ii，从而得到嵌入信息。</p>
+<h3 id="还原"><a href="#还原" class="headerlink" title="还原"></a>还原</h3><p>$h_{初始}=h/2$，$l_{初始}=l$，然后利用逆变换公式得到初始像素值，从而还原。</p>
+<h2 id="区块链"><a href="#区块链" class="headerlink" title="区块链"></a>区块链</h2><h3 id="区块链介绍"><a href="#区块链介绍" class="headerlink" title="区块链介绍"></a>区块链介绍</h3><p>为了达到版权保护和版权溯源的目的，我们采用了区块链这一技术，我们首先解释一下传统区块链技术为何具有不易篡改的性质。由于区块头里面包含“父区块哈希值”字段，所以当前区块的哈希值也受到该字段的影响。如果父区块的身份标识发生变化，子区块的身份标识也会跟着变化。当父区块有任何改动时，父区块的哈希值也发生变化。一旦一个区块有很多代以后，这种瀑布效应将保证该区块不会被改变，除非强制重新计算该区块所有后续的区块。正是因为这样的重新计算需要耗费巨大的计算量，所以一个长区块链的存在可以让区块链的历史不可改变，这也是区块链安全性的一个关键特征。传统的区块链技术主要用于比特币交易，而我们的应用场景略有不同，因此我们针对我们的需求对区块链技术进行了合理取舍并添加了一些我们自己的想法。</p>
+<h3 id="实现的区块链结构"><a href="#实现的区块链结构" class="headerlink" title="实现的区块链结构"></a>实现的区块链结构</h3><h4 id="区块"><a href="#区块" class="headerlink" title="区块"></a>区块</h4><table>
+<thead>
+<tr>
+<th align="left">大小</th>
+<th align="left">字段</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">4字节</td>
+<td align="left">区块高度</td>
+<td align="left">用字节表示的该区块所在高度</td>
+</tr>
+<tr>
+<td align="left">72字节</td>
+<td align="left">区块头</td>
+<td align="left">组成区块头的几个字段</td>
+</tr>
+<tr>
+<td align="left">1-9(可变整数)(字节)</td>
+<td align="left">计数器</td>
+<td align="left">图像变动的数量</td>
+</tr>
+<tr>
+<td align="left">可变</td>
+<td align="left">图像变动信息</td>
+<td align="left">记录在区块里的图像变动信息</td>
+</tr>
+</tbody></table>
+<h4 id="区块头"><a href="#区块头" class="headerlink" title="区块头"></a>区块头</h4><p>区块头由三组区块元数据组成。首先是一组引用父区块头哈希值的数据，这组元数据用于将该区块与区块链中前一区块相连接。第二组元数据是Merkle树根（一种用来有效地总结区块中所有变动信息的数据结构）。第三组元数据，即时间戳。下表描述了区块头的数据结构。</p>
+<table>
+<thead>
+<tr>
+<th align="left">大小</th>
+<th align="left">字段</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">4字节</td>
+<td align="left">版本</td>
+<td align="left">版本号，用于跟踪软件/协议的更新</td>
+</tr>
+<tr>
+<td align="left">32字节</td>
+<td align="left">父区块哈希值</td>
+<td align="left">引用区块链中父区块的哈希值</td>
+</tr>
+<tr>
+<td align="left">32字节</td>
+<td align="left">Merkle根</td>
+<td align="left">该区块中变动的Merkle树根的哈希值</td>
+</tr>
+<tr>
+<td align="left">4字节</td>
+<td align="left">时间戳</td>
+<td align="left">该区块产生的近似时间（精确到秒的时间戳）</td>
+</tr>
+</tbody></table>
+<p>当节点接收来自其他节点的区块时，会动态地识别该区块在区块链里的位置（区块高度）。我们把区块高度作为元数据存储在一个索引数据库表中以便快速检索。每个节点保存了区块链从创世区块起的一个本地副本。随着新的区块的产生，该区块链的本地副本会不断地更新用于扩展这个链。当一个节点从网络接收传入的区块时，它会验证这些区块，然后链接到现有的区块链上。为建立一个连接，一个节点将检查传入的区块头并寻找该区块的“父区块哈希值”。</p>
+<h4 id="Merkle树"><a href="#Merkle树" class="headerlink" title="Merkle树"></a>Merkle树</h4><p>区块链中的每个区块都包含了产生于该区块的所有图像变动信息，包括图像，且以Merkle树表示。Merkle树是一种哈希二叉树，它是一种用作快速归纳和校验大规模数据完整性的数据结构。这种二叉树包含加密哈希值。</p>
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/51bb25a09d2d0ccf5bd5eb6a199be90b.png" width="70%" height="70%">
+
+<p>因为Merkle树是二叉树，所以它需要偶数个叶子节点。如果仅有奇数个图像变动需要归纳，那最后的变动就会被复制一份以构成偶数个叶子节点。为了证明区块中存在某个特定的图像变动信息，一个节点只需要计算个32字节的哈希值，形成一条从特定交易到树根的认证路径或者Merkle路径即可。随着图像变动数量的急剧增加，这样的计算量就显得异常重要，因为相对于图像变动数量的增长，以基底为2的交易数量的对数的增长会缓慢许多。</p>
+<h3 id="应用结构"><a href="#应用结构" class="headerlink" title="应用结构"></a>应用结构</h3><p>图像变动信息包括图像版权保护的记录，被版权保护图像被自己（或其他用户）上传与下载的记录。当用户进行和图像变动有关的操作时，被服务器记录，服务器把一段时间内记录的信息构成Merkle树，然后构成一个新区块，与区块链相连。区块的Merkle树通过计算得出Merkle根，区块头部中记录Merkle根的值。所以Merkle根的值直接影响了区块头的hash值，也就决定了子区块头部的“父区块hash值”，这一设定赋予了区块链的不可篡改的特性。形成新区块链后，广播到其他节点，其他节点接收到新区块后验证区块链的正确性（区块链hash特性），然后更新自身的区块链。当发现区块链分叉时，服从多数原则，说明少数一方区块链被篡改（区块链节点很多并且篡改难度大，篡改半数以上节点几乎不可能）。</p>
+<p>当用户需要证明一张图像是自己的，只需提交图像的hash值，就能从区块链中找到这个图像版权保护的区块，从中可以得到自身信息（如用户名，时间等）。这里图像的hash值不是简单地将图像hash而是利用DE嵌入算法的特性，即嵌入前后处理区块的均值不变，将此均值通过普通hash算法得到一个摘要。这样，保证了图像嵌入前后的摘要相同。如果要版权溯源，也只需图像的摘要，从索引表中找到这个图像最新一次所在高度，从区块中的图像变动信息可以知道操作的用户、方式（上传或下载）、时间，还有上一次操作的高度，然后可以得到上一次操作的信息，如此反复，可得到最初始版权保护相关的信息。</p>
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/8b4a4fa645e61b3ef1a7a293843f902b.png" width="70%" height="70%">
+
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>各个模块间的联结关系如下：paillier加密算法为云计算提供安全保障，而paillier的同态性质为可逆水印的嵌入提供了基础。云计算的多节点特性保证了区块链的不可篡改性，区块链又为图像的版权溯源提供支持。</p>
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/99ee7dce922952b47cfd15ffdded2ad5.png" width="50%" height="50%">
+
+<h1 id="软件操作"><a href="#软件操作" class="headerlink" title="软件操作"></a>软件操作</h1><h2 id="软件流程"><a href="#软件流程" class="headerlink" title="软件流程"></a>软件流程</h2><p>介绍下本软件的工作流程：打开软件，进入登陆界面，在这里可以登陆账号，也可以选择注册，我们采用的是邮箱注册，一个邮箱只能注册一个账号。登陆后在主界面中，选择、上传图像，后台会自动加密图像，上传。然后，在列表里选择要操作的图像，可以选择嵌入、下载、删除。选择嵌入会打开一个界面，输入嵌入密钥，即可选择嵌入类型进行嵌入，嵌入类型有两类，一类是版权保护：嵌入含用户信息的二值图，同时把图像相关添加入区块链中；第二类是自定义：嵌入用户自己输入的字符。下载、删除是操作用户选择的密文。下载完即可进行解密操作，选择图像密文，输入密钥、解密图像存放位置，即可进行解密操作。用户可以点击版权溯源按钮，并选择一张上传过云端的图像，云端会给出该图像在云端经历过的所有操作的信息。本地端还可以进行提取水印和恢复水印的操作。只要用户选择含水印的图片，输入嵌入密钥，辅助信息，即可进行水印的提取和图像的复原。</p>
+<h2 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h2><p>客户端环境为 Windows7 系统，开发语言为Java，服务端环境为 Ubuntu系统，数据库为MySQL。</p>
+<h2 id="操作界面演示"><a href="#操作界面演示" class="headerlink" title="操作界面演示"></a>操作界面演示</h2><img src="/images/基于密文图像可逆水印和区块链的版权保护系统/e1471d7397cb1ae99e502547f3f3b643.png" width="30%" height="30%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/2644955045be82f27130c8657fa96633.png" width="30%" height="30%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/3bb82b6690b52148dcd677b6e5d8ecf2.png" width="30%" height="30%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/111.jpeg" width="70%" height="70%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/f4679f324566f06e0b2452944bf9957b.png" width="20%" height="20%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/5a74454ca4f244f50122adbe12544c29.png" width="70%" height="70%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/8ed7882fe745c35e84eb7372b0704ad0.jpeg" width="70%" height="70%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/e483d01b21fbb72dda40752087c22783.png" width="30%" height="30%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/b59d1bf93b5b81af9437a08f07f749a1.png" width="20%" height="20%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/d61cc68dd8411ca6896909511f4c3caf.png" width="30%" height="30%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/602340dc7af92bd879cd2a02bd60af91.png" width="30%" height="30%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/735b0255c98f1b50c837f85a967094df.png" width="30%" height="30%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/7fd158d91b1d370d32f8d8d6f61e34f5.png" width="30%" height="30%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/e90620f8bde0dbc74a6ccfca9448d807.png" width="30%" height="30%">
+
+<h1 id="作品测评"><a href="#作品测评" class="headerlink" title="作品测评"></a>作品测评</h1><h2 id="测试图像信息"><a href="#测试图像信息" class="headerlink" title="测试图像信息"></a>测试图像信息</h2><table>
+<thead>
+<tr>
+<th align="left">序号</th>
+<th align="left">名称</th>
+<th align="left">样式</th>
+<th align="left">大小</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">000.bmp</td>
+<td align="left"><img src="/images/基于密文图像可逆水印和区块链的版权保护系统/c7061c7dd731067ea792f7ce4d0932e5.png" width="30%" height="30%"></td>
+<td align="left">2.28MB 1000*800</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">ASTRO2.bmp</td>
+<td align="left"><img src="/images/基于密文图像可逆水印和区块链的版权保护系统/889b1235a46d29102653e8319d085c33.png" width="30%" height="30%"></td>
+<td align="left">384KB 1024*768</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">lena24.bmp</td>
+<td align="left"><img src="/images/基于密文图像可逆水印和区块链的版权保护系统/a761f80e3cd6e97d32988655a73c980f.png" width="30%" height="30%"></td>
+<td align="left">768KB 512*512</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">Cameraman.bmp</td>
+<td align="left"><img src="/images/基于密文图像可逆水印和区块链的版权保护系统/c381a39c7c4e9ea186b03e94f963238e.png" width="30%" height="30%"></td>
+<td align="left">65KB 256*256</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">Baboon.bmp</td>
+<td align="left"><img src="/images/基于密文图像可逆水印和区块链的版权保护系统/63b4bfb8ef58b227a380433aa45743a5.png" width="30%" height="30%"></td>
+<td align="left">257KB 512*512</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">Couple.bmp</td>
+<td align="left"><img src="/images/基于密文图像可逆水印和区块链的版权保护系统/e01c546203c698b96484be75ae4e6b41.png" width="30%" height="30%"></td>
+<td align="left">257KB 512*512</td>
+</tr>
+<tr>
+<td align="left">7</td>
+<td align="left">Man.bmp</td>
+<td align="left"><img src="/images/基于密文图像可逆水印和区块链的版权保护系统/17e357f7b6ed054749a34e6e0551caad.png" width="30%" height="30%"></td>
+<td align="left">1MB 1024*1024</td>
+</tr>
+<tr>
+<td align="left">8</td>
+<td align="left">Lena.bmp</td>
+<td align="left"><img src="/images/基于密文图像可逆水印和区块链的版权保护系统/46c57589a81c2ad26bce6732a04f4d91.png" width="30%" height="30%"></td>
+<td align="left">257KB 512*512</td>
+</tr>
+</tbody></table>
+<h2 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h2><p>测试图像嵌入信息之前和嵌入信息之后的对比（数据效果）：峰值信噪比（PNSR）是一个表示信号最大可能功率和影响它的表示精度的破坏性噪声功率的比值，是最广泛使用的评价图像质量的客观标准。PSNR越大表示失真越小。当PSNR大于35时，肉眼很难察觉。SSIM，结构相似性，是一种衡量两幅图像相似度的指标。结构相似性的范围为-1到1，当两张图像一模一样时，SSIM的值等于1。</p>
+<table>
+<thead>
+<tr>
+<th align="left">序号</th>
+<th align="left">PNSR峰值信噪比</th>
+<th align="left">SSIM结构相似性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">55.8477</td>
+<td align="left">0.999707</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">49.7065</td>
+<td align="left">0.996341</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">47.025</td>
+<td align="left">0.997039</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">35.0214</td>
+<td align="left">0.976803</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">33.8448</td>
+<td align="left">0.983162</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">40.7279</td>
+<td align="left">0.990984</td>
+</tr>
+<tr>
+<td align="left">7</td>
+<td align="left">47.4504</td>
+<td align="left">0.997502</td>
+</tr>
+<tr>
+<td align="left">8</td>
+<td align="left">43.7878</td>
+<td align="left">0.993876</td>
+</tr>
+</tbody></table>
+<p>测试图像随嵌入信息量的增加峰值信噪比和结构相似性的变化：</p>
+<p>测试图像为以下三张原图：000.bmp，houses.bmp，lena24.bmp；图像信息：512<em>512像素，768KB；512</em>512像素，257KB；512*512像素，768KB。</p>
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/90938c4128e6f70aa67bc3a3e039ee6c.png" width="30%" height="30%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/c70e1847c7abbeaff6a22fd21209d1ab.png" width="30%" height="30%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/4b02af938bd7330f77ae088b392ea170.png" width="30%" height="30%">
+
+<table>
+<thead>
+<tr>
+<th align="left">嵌入信息量（字节）</th>
+<th align="left">000.bmp</th>
+<th align="left"></th>
+<th align="left">houses.bmp</th>
+<th align="left"></th>
+<th align="left">lena24.bmp</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"></td>
+<td align="left">PNSR</td>
+<td align="left">SSIM</td>
+<td align="left">PNSR</td>
+<td align="left">SSIM</td>
+<td align="left">PNSR</td>
+<td align="left">SSIM</td>
+</tr>
+<tr>
+<td align="left">100</td>
+<td align="left">53.8828</td>
+<td align="left">0.999586</td>
+<td align="left">41.3154</td>
+<td align="left">0.99614</td>
+<td align="left">51.5621</td>
+<td align="left">0.999032</td>
+</tr>
+<tr>
+<td align="left">200</td>
+<td align="left">50.5246</td>
+<td align="left">0.999144</td>
+<td align="left">38.4231</td>
+<td align="left">0.992799</td>
+<td align="left">48.5811</td>
+<td align="left">0.99809</td>
+</tr>
+<tr>
+<td align="left">300</td>
+<td align="left">48.6287</td>
+<td align="left">0.998698</td>
+<td align="left">36.774</td>
+<td align="left">0.989756</td>
+<td align="left">46.9138</td>
+<td align="left">0.997173</td>
+</tr>
+<tr>
+<td align="left">400</td>
+<td align="left">47.0636</td>
+<td align="left">0.998245</td>
+<td align="left">35.6291</td>
+<td align="left">0.986809</td>
+<td align="left">45.7424</td>
+<td align="left">0.996291</td>
+</tr>
+<tr>
+<td align="left">500</td>
+<td align="left">46.1354</td>
+<td align="left">0.997812</td>
+<td align="left">34.8528</td>
+<td align="left">0.984361</td>
+<td align="left">44.8672</td>
+<td align="left">0.99545</td>
+</tr>
+<tr>
+<td align="left">600</td>
+<td align="left">45.4045</td>
+<td align="left">0.997409</td>
+<td align="left">34.1305</td>
+<td align="left">0.981667</td>
+<td align="left">44.2069</td>
+<td align="left">0.994633</td>
+</tr>
+<tr>
+<td align="left">700</td>
+<td align="left">44.8971</td>
+<td align="left">0.997051</td>
+<td align="left">33.5283</td>
+<td align="left">0.979248</td>
+<td align="left">43.6333</td>
+<td align="left">0.993804</td>
+</tr>
+<tr>
+<td align="left">800</td>
+<td align="left">44.2466</td>
+<td align="left">0.99664</td>
+<td align="left">33.0508</td>
+<td align="left">0.977073</td>
+<td align="left">43.0274</td>
+<td align="left">0.992978</td>
+</tr>
+<tr>
+<td align="left">900</td>
+<td align="left">43.7272</td>
+<td align="left">0.996238</td>
+<td align="left">32.6421</td>
+<td align="left">0.975097</td>
+<td align="left">42.6076</td>
+<td align="left">0.992194</td>
+</tr>
+<tr>
+<td align="left">1000</td>
+<td align="left">43.3391</td>
+<td align="left">0.995867</td>
+<td align="left">32.2591</td>
+<td align="left">0.973171</td>
+<td align="left">42.2107</td>
+<td align="left">0.991378</td>
+</tr>
+</tbody></table>
+<p>测试总结：本作品的嵌入算法性能较好，被嵌入图像的PSNR较高，结构相似性也很好，能够保证图像在嵌入数据后不影响图像的视觉品质。对于512*512的bmp图像，24位真彩色图像，嵌入信息量达到8000bit,图像质量仍然较好。即使是8位的灰度图像，在嵌入3200bit后PSNR也仍然在35以上。在不改变嵌入后图像的情况下，经比较嵌入水印与提取水印完全一致没有任何出入。</p>
+<h1 id="创新性总结"><a href="#创新性总结" class="headerlink" title="创新性总结"></a>创新性总结</h1><p>将同态加密算法与可逆水印相结合。本项目在多次实验和对比之后采用对经典的DE（差值扩展）算法进行改进，结合Paillier加密算法的同态特性，实现了密文域的信息嵌入和明文域的信息提取。在算法中我们采用将8个像素并行结合处理的方式，在保证性能良好的范围之内将算法中的模N提高到128比特，大大提高了算法的安全性。两者的改进结合即解决了图像的安全存储问题，又能提高图片处理时的稳定性。在图片处理时同态加密算法能确保图片的安全性，而可逆水印嵌入又能带来优秀的信息隐藏效果和版权保护效果。两者的结合为图片的保护与安全带来了可靠结实的基础。</p>
+<p>创新性的将区块链技术引入图片的版权保护中，通过区块链技术的密码学方法来保证已有数据不可能被篡改从而达到版权溯源和版权保护的目的。区块链技术是比特币的底层技术和基础架构，而将区块链技术与图片的版权保护相联系的想法却很少有人能够提出和想到。我们通过比特币的安全性和不可篡改性得到启发将区块链技术引入图片保护中，随后项目的测试也证明了区块链技术在的版权保护和溯源方面具有很好的效果。</p>
+]]></content>
+      <categories>
+        <category>本科项目</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>同态加密</tag>
+        <tag>可逆水印</tag>
+        <tag>区块链</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于区块链的电子病历安全管理系统</title>
+    <url>/post/4098c766.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>在医疗信息化蓬勃发展的今天，“互联网+医疗”盛极一时，但是在其背后仍然有不可忽视的缺陷，医疗机构存在工作效率低下的问题，医疗信息利用率不高，信息冗余问题非常严重，医疗机构之间缺乏医疗信息的交互，部分医疗机构虽然实现了小范围的信息共享，但是人们对于共享信息的安全性问题有着很深的顾虑。区块链作为一种全新的分布式存储方案，成为解决医疗信息的共享和安全问题的最佳方案。该项目主要围绕医疗信息的共享和保护两个方面，同时兼顾备受争议的区块链存储冗余的问题，设计了一个基于区块链的电子病历安全管理平台，该平台采用基于签名的拜占庭协议，提高了共识机制的容错率；采用对称加密方式，对电子病历进行对称加密；将医疗机构分层，可信度较高的医疗机构是用来维护和存储区块链的节点，普通医疗机构作为区块链电子病历管理系统服务代理；将文本信息和访问记录存储于区块链，多媒体数据存储在本地；通过轻量化和分片技术相结合，解决区块链的存储冗余问题。基于该电子病历安全管理系统，医疗机构可以实现医疗信息共享，对患者的病情诊断更加准确，同时提高了医疗机构的工作效率，而患者也可以在保护隐私的前提下对自己的病史进行查阅，对非法访问进行追踪，有利于促进医疗信息服务的智能化和个性化。</p>
+<p><strong>关键词：</strong>电子病历安全管理，区块链，签名拜占庭协议，权限分级，改进分片技术。</p>
+<h1 id="作品概述"><a href="#作品概述" class="headerlink" title="作品概述"></a>作品概述</h1><h2 id="背景分析"><a href="#背景分析" class="headerlink" title="背景分析"></a>背景分析</h2><p>随着互联网企业对传统医疗产业的融合渗透不断加快，在互联网重构医疗行业的过程中，仍然有不少难题需要破解，需要国家相关部门完善行业标准和监管措施，需要在线医疗企业等进一步提升产品技术水平、大数据分析能力和营销管理水平，需要医疗机构积极配合医疗信息化建设。目前互联网医疗面临信息不能共享、国家监管政策缺失、费用报销不能与医保接口、数据挖掘困难、盈利模式不清晰等问题，尚处在摸索阶段。“互联网+医疗”是一个任重而道远的过程，其中信息的共享和安全是发展过程中两个不可回避的问题，在目前的互联网发展状况之中，我们可以很清晰的总结出现代医疗信息化仍然存在的问题。</p>
+<h3 id="医疗信息缺乏整合和共享"><a href="#医疗信息缺乏整合和共享" class="headerlink" title="医疗信息缺乏整合和共享"></a>医疗信息缺乏整合和共享</h3><p>医疗信息缺乏整合和共享，导致医疗资源分布和发展水平极其不均。近年来，大医院“看病难、看病贵、看病烦”问题成为中国社会关注的焦点，大医院与广大群众存在严重的医疗信息不对称，且大医院基本上为独立运作，医疗信息分散，难以互通，求医群众和医护人员均无法通过网络实时了解多家大医院的医疗信息动态和实现医疗信息的共享。大规模医疗数据已经实现数字化，但未能得到共享，原因在于数据共享相关法律众多，且存在诸多风险。</p>
+<h3 id="技术漏洞和篡改风险"><a href="#技术漏洞和篡改风险" class="headerlink" title="技术漏洞和篡改风险"></a>技术漏洞和篡改风险</h3><p>完整的个人健康历史记录对于一个人是非常重要的，每个生命体征得到记录，并且可以高效准确地记录与所用药物、每位医生诊断、患者疾病和手术相关的信息以及其他信息，这些信息一旦泄露，个人安全将受到严重威胁。2017年，暗网黑客组织通过三次非法侵入，盗取并公布了18万份患者病历。在暗网上有超过50万份儿童病历可供人下载，这些病历包含了儿童及其父母的姓名、社会保险号、电话号码以及住址。2016年，国内某部委医疗服务信息系统遭到攻击，7亿条公民隐私信息被泄露，8000余万条公民信息被贩卖。这些事件的发生正是由于技术漏洞和缺乏安全的医疗信息管理体系。</p>
+<h3 id="医疗信息不准确"><a href="#医疗信息不准确" class="headerlink" title="医疗信息不准确"></a>医疗信息不准确</h3><p>不准确，误导性或不完整的信息对决策的正确性和造成负面影响。随着医疗技术的不断发展，医学上的病情分类非常细致，在医生诊断的过程中由于交流不到位，医生对病人以往病情不了解而导致诊断不准确，后续的治疗过程出现医疗事故的事件举不胜举。30多位临床医生对1990年以来国内公开发行的医学期刊进行调查，涉及医学期刊近700种共300多万篇文献，其中检索出误诊文献10万余篇。据统计显示，20年来年度误诊率波动在26%~31%之间。误诊问题有很多负面影响，不仅患者的病症无法得到正确的治疗，而且使医患关系更加紧张。</p>
+<h3 id="医疗信息缺乏标准"><a href="#医疗信息缺乏标准" class="headerlink" title="医疗信息缺乏标准"></a>医疗信息缺乏标准</h3><p>如果没有标准的健康档案，医生对于患者的了解将每次都要从“零”开始，档案的积累让信息得以连接成连续的“健康线”。有关部门对于医疗信息化没有制定一个统一的信息存储标准，共享困难。现有医院信息标准不能满足医改后的医保中心和医院联动的模式，统计指标、医学术语缺乏科学规范的定义，医疗数据的相容性成为数据共享的一大难题。区块链技术的产生，使得上述问题有了解决的希望。首先区块链是一种分布式的存储方案，由参与的所有服务节点共同维护，并且去中心化去信任，可以在无中心化的状态下对数据进行安全存储和查询。数据打包形成区块，前一个区块的哈希值保存在后一个区块之中，攻击者想要篡改其中的数据时必须同时更改超过一半的节点保存的数据，这几乎是不可能完成的。作为一个重大的行业应用场景，各国企业、投资机构、政府部门已经开始迅速布局区块链技术在医疗行业的应用。例如，2017年8月，阿里健康宣布与常州市合作医联体+区块链试点项目。据阿里健康区块链技术负责人刘铁介绍：“常州市医联体区块链试点，是中国第一个基于医疗场景实施的区块链应用。”而就在9月，IBM Watson与美国食品与药物管理局(FDA)签署了一项为期两年的协议，以探索区块链技术在安全共享病人数据方面的应用，这些数据来自医疗记录、临床试验、基因检测和移动设备等资源。作为行业创新与颠覆的先锋，众多创业公司自然不会缺席这一新的蓝海。这些公司聚焦医疗产业链，在电子医疗记录互操作、保险索赔、医疗数据安全、供应链管理等各方面，试图向该行业的老问题、大问题发起冲击，诸如医疗记录的信息不对称、数据共享的安全性、保险索赔的低效、供应链管理的漏洞等，而他们手里的武器正是区块链技术。用区块链建立一个电子病历管理系统，在技术上可以增强防篡改性，对信息进行加密，增强了信息的保密性，解决了技术漏洞和篡改风险，基于区块链制定一个医疗信息存储的标准，使得各个医疗机构的信息相容性大大提高，从而实现医疗信息的共享，可以解决信息不相容、不能共享的问题。通过医疗机构信息共享平台，诊治医生可以了解患者患病经历和对病情的诊治方案，从而更准确的了解患者的患病情况，根据患病情况得到最佳的治疗方案，提高了诊断的准确性和效率，从患者角度，可以避免在不同的医院重复进行检查，减轻了患者的负担。基于上述分析，我们在所有医疗机构上构建区块链平台，关键医疗数据通过加密保存在区块链上，既实现了医疗信息的共享，又能对患者的医疗信息进行有效的保护。</p>
+<h2 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h2><h3 id="电子病历CDA标准"><a href="#电子病历CDA标准" class="headerlink" title="电子病历CDA标准"></a>电子病历CDA标准</h3><p>电子病历作为医院信息化建设的核心，为实现电子病历的安全共享，世界很多国家都投入大量人力、物力研究，并成立相关标准化组织。例如，美国卫生信息传输标准HL7；欧洲标准化委员会的两个技术委员会：TC251(医学信息）和TC224WG12(病人数据卡）；澳大利亚欧洲健康记录项目等。其中最具影响力的是美国的HL7，HL7成立于1987年，基于ISO的OSI标准的第7层，因此故名HL7，HL7上升为真正的国际标准还有一些距离，因为地区文化、编码语言等不同，但该标准已经被很多国家本地化改造，比如我国2006年5月成立的ChinaHL7，HL7某种程度上已经成为事实上的国际标准。我国的电子病历发展比较缓慢，1994年在第六届医药信息大会上，卫生部才首次提出了电子病历系统的建设目标和要求。随后受信息技术的制约和没有相关标准，电子病历系统一直依附于医院信息管理系统（HIS)，在以“管理”为中心的医院信息管理系统中，电子病历的格式，书写规范等一直未得到业内的统一，也就是说没有一个工业统一的电子病历系统。直到2009年12月，卫生部颁布《电子病历基本架构与数据标准（试行)》，该标准中规定了电子病历的基本概念、系统架构基本内容、信息来源、电子病历数据结构、电子病历临床文档信息模型、电子病历临床文档数据组与数据元标准和电子病历临床文档基础模板与数据集标准。2011年3月卫生部又颁布《基于电子病历的医院信息平台建设技术解决方案》。这些国家标准中对电子病历和电子病历系统的建设给出了相关规范，其中规定电子病历文档格式遵循HL7标准中临床文档结构（Clinical Document Architecture，CDA), CDA 文档格式是XML(Extensible Markup Language)，但是对XML中的元素的定义有相关规定，例如CDA—共有27个根节点，但其中只有9个为必填，其余可根据情况填写数据。根据CDA的规则，根节点拥有下级子节点等，这些规定限制了XML语言的一定灵活性，为了医学相关系统处理。可以理解为电子病历CDA文档是一种特殊的XML格式，CDA文档是XML文档子集。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620209276.jpg" width="30%" height="30%">
+
+<p>CDA文档包括文档头(Header)和文档体(Body)。CDA文档头共有四个部分构成：文档信息、服务提供者、服务对象和受访数据，如图1.1所示。文档信息包括文档ID、文档标题、有效时间和机密性状态等文档相关信息；服务提供者这部分包括这个文档是谁生成的，是谁录入的，谁审核了这个文档，谁获取这个文档副本和谁是参与健康医疗的提供者等相关人员信息；服务接受者包括患者，其它有意义的参与者(如家人)，和那些可能产生部分内容的设备；资料数据描述了文档受访数据。CDA文档体中所包括详细的临床报告，这些报告可以由结构化体组成，也可以是一个非结构化的大型二进制对象BLOB。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620209830.jpg" width="70%" height="70%">
+
+<h3 id="区块链技术"><a href="#区块链技术" class="headerlink" title="区块链技术"></a>区块链技术</h3><p>通常根据区块链应用的规模将其分为公有链，联盟链和私有链。对于公有链，各个节点可以自由加入和退出网络，其特点是完全去中心化，不受任何机构控制；联盟链则是各个节点通常都有与之对应的实体机构组织，通过授权后才能加入与退出网络；私有链则是各个节点的写入权限收归内部控制，而读取权限可视需求有选择性地对外开放。区块链的基础技术体系包括四个部分，分别是通信基础、存储部分、安全机制、共识机制，在这四个部分的基础上可搭建一个区块链应用平台，以下将在P2P网络，数据结构，共识机制三个方面阐述区块链的基础技术，并总结区块链技术的特点。</p>
+<p><strong>P2P网络：</strong>对等网络，即对等计算机网络（Peer-to-peer networking）在P2P网络环境中，彼此连接的多台计算机之间都处于对等的地位，各台计算机有相同的功能，无主从之分，一台计算机既可作为服务器，设定共享资源供网络中其他计算机所使用，又可以作为工作站，整个网络一般来说不依赖专用的集中服务器，也没有专用的工作站。网络中的每一台计算机既能充当网络服务的请求者，又对其它计算机的请求做出响应，提供资源、服务和内容。由于P2P网络和区块链都存在一种去中心化的概念，P2P网络作为一种基础的节点通信技术广泛应用于区块链之中。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/839415b4da7afea79f20157180647a0d.jpeg" width="30%" height="30%">
+
+<p><strong>区块链数据结构：</strong>区块链的存储结构如上图所示，数据形成之后，以区块的形式进行存储，每个区块里的数据格式都是相同的，块高度标识区块在区块链的位置，随时间的延长数值增大；父区块哈希值引用的区块链中父区块头的哈希值，通过这个值每个区块才首尾相连组成了区块链，并且这个值对区块链的安全性起到了至关重要的作用，正是前后关联的验证关系，才保证了区块链的不可篡改性；Merkle根，这个值是由区块主体中所有交易的哈希值再逐级两两哈希计算出来的一个数值，主要用于检验一笔交易是否在这个区块中存在；时间戳，记录该区块产生的时间，精确到秒；难度值，该区块相关数学题的难度目标；随机数(Nonce)，记录解密该区块相关数学题的答案的值。在实际应用中我们可以根据实际情况进行取舍，使区块链技术可以应用到医疗领域。</p>
+<p><strong>共识协议：</strong>共识协议是一种无中心化的情况下所有节点进行协商从而达到一致性意见的协议，由于共识协议只应用于无中心化的结构中，而区块链正好也是无中心化服务，所以为了保证所有节点在信息交互的过程中打成一致性意见，区块链才引入了共识协议，以下描述了现有的应用在区块链上的共识协议。</p>
+<p><strong>工作量证明机制（PoW：Proof of Work）：</strong>工作量证明机制即对于工作量的证明，是生成要加入到区块链中的一笔新的交易信息(即新区块)时必须满足的要求。在基于工作量证明机制构建的区块链网络中，节点通过计算随机哈希散列的数值解争夺记账权，求得正确的数值解以生成区块的能力是节点算力的具体表现。</p>
+<p><strong>权益证明机制(PoS：Proof of Stake)：</strong>2012年，化名Sunny King的网友推出了Peer coin，该加密电子货币采用工作量证明机制发行新币，采用权益证明机制，这是权益证明机制在加密电子货币中的首次应用。与要求证明人执行一定量的计算工作不同，权益证明要求证明人提供一定数量加密货币的所有权即可。换句话说，节点通过证明在以往的时间里承担打包的情况来证明在接下来的工作中是否更适合打包。</p>
+<p><strong>股份授权证明机制（DPoS：Delegate Proof of Stake）：</strong>股份授权证明机制与董事会投票类似，该机制拥有一个内置的实时股权人投票系统，就像系统随时都在召开一个永不散场的股东大会，所有股东都在这里投票决定公司决策。有谁来承担打包工作，决定于所有投票节点的投票情况。</p>
+<p><strong>拜占庭容错（BFT ： Byzantine Fault Tolerance）：</strong>BFT的结论是在 N ≥ 3F + 1的情况下一致性是可能解决。其中，N为计算机总数，F为有出现问题计算机总数。信息在计算机间互相交换后，各计算机列出所有得到的信息，以大多数的结果作为解决办法。拜占庭容错从规模上可以分为实用拜占庭容错和授权拜占庭容错，从消息传输上可以分为口头拜占庭容错（消息无签名）和书面拜占庭容错（消息包含签名）。</p>
+<p><strong>区块链技术特点：</strong>区块链技术主要有去中心化、去信任，开放、共识，公开透明，不可篡改可追溯的特点。开放，共识：任何人都可以参与到区块链网络，每一台设备都能作为一个节点，每个节点都允许获得一份完整的数据库拷贝。节点间基于一套共识机制，通过竞争计算共同维护整个区块链。任一节点失效，其余节点仍能正常工作。去中心，去信任：区块链由众多节点共同组成一个端到端的网络，不存在中心化的设备和管理机构。节点之间数据交换通过数字签名技术进行验证，无需互相信任，只要按照系统既定的规则进行，节点之间不能也无法欺骗其它节点。交易透明，双方匿名：区块链的运行规则是公开透明的，所有的数据信息也是公开的，因此每一笔交易都对所有节点可见。由于节点与节点之间是去信任的，因此节点之间无需公开身份，每个参与的节点都是匿名的。不可篡改，可追溯：单个甚至多个节点对数据库的修改无法影响其他节点的数据库，除非能控制整个网络中超过51%的节点同时修改，这几乎不可能发生。区块链中的每一笔交易都通过密码学方法与相邻两个区块串联，因此可以追溯到任何一笔交易的前世今生。</p>
+<h3 id="拜占庭共识协议"><a href="#拜占庭共识协议" class="headerlink" title="拜占庭共识协议"></a>拜占庭共识协议</h3><p>拜占庭将军问题实际上是如何让一个分布式系统的保持一致性和在特定条件下保持正确性的问题。分为口头协议和书面协议两种。</p>
+<p>口头协议：口头协议可抽象为满足以下2个条件的算法：条件1，所有忠诚的将军得出相同的作战指令，并且按指令执行（即一致性）；条件2，如果作战指令是忠诚的将军发出的，所有忠诚的将军会遵循这个将军发出的作战指令（特定条件下的正确性）。注意：如果发出作战指令的是叛军，所有忠诚的将军只能保证执行相同的作战指令，不保证作战指令是正确的。</p>
+<p>结论是，如果有m个叛军，必须至少有3m+1位将军（包括背叛和忠诚的将军）才能保证口头协议算法（以下简称OM算法）能解“拜占庭将军问题”。口头协议算法有下面几个假设：军队中的通讯兵完全可以相信，所有的消息都能被正确的发送；收到消息的人知道消息是谁发出来的；缺少的消息能被察觉出来（消息未收到则使用默认值）。接下来，具体看下算法如何处理：</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620211137.jpg" width="70%" height="70%">
+
+<p>OM算法里面有个$Majority()$函数，用来判断忠诚的将军最终应该是执行什么指令，逻辑为：在输入的一系列$V1,V2,V3,…,Vn$中，找到最多相同数量的值作为输出，如果找不到，用默认值替代。比如：$V1=进攻$，$V2=进攻$，$V3=撤退$，$Majority(V1,V2,V3)=进攻$。由于司令官也有可能是叛军，所以单纯的把司令官的指令当做最终指令肯定是不行的。代表从其他将军那里获得的关于司令官的指令，假设司令官告诉将军B的指令是”进攻”，如果将军B是忠诚的话，将军B会如实通知将军A“司令官告诉我的指令是进攻”，如果将军B是叛军的话，将军B可能会说“司令官告诉我的指令是撤退”或者干脆不发信息。通过$Majority()$函数，在忠诚的将军多于叛军$(n&gt;=3m+1)$的情况下，可以保证忠诚的将军得到相同的结论。</p>
+<p>书面协议：书面协议又称签名协议，这个算法可以在不管有多少叛军的情况下，都能让忠诚的将军们保持一致的行动，没有口头协议算法那个$n&gt;3m+1$的限制。相比较于口头协议，书面协议增加了两条假设：忠诚的将军的签名不能被篡改，签名的内容一旦有人篡改了就能被发现；任何人都能验证将军签名的可靠性。$SM(m)$算法的一个表达特点：比如$X:i$指值x是被将军i签名过的，$V:j:i$意味着值V被将军j签名过，然后将军i再签名一次$V:j$，同时约定$V:0$即来自司令官的命令。算法具体如下$SM(m)$：</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620211496.jpg" width="70%" height="70%">
+
+<p>这个算法要求m+1轮信息互换；在第2步中，如果将军i收到的与已经在集合中的相同，自动忽略；$Choice()$函数即每个忠诚的将军都知道规则的函数，由于$SM(m)$算法完成后每个将军获得的{V}都是相同的，所以每个忠诚的将军都能根据同样的规则计算出函数值。口头协议中的叛军在每一轮共识发送的消息可以任意做假，因为消息并没有添加签名，无法确认消息来源的正确性，与书面协议相比，这是其最大的缺陷。口头协议的缺点是只能保证1/3的容错率，而书面协议的优点是引入了签名机制，作恶节点无法伪造正常节点的消息，相比较于口头协议，容错率大大提高。</p>
+<h3 id="区块链存储技术"><a href="#区块链存储技术" class="headerlink" title="区块链存储技术"></a>区块链存储技术</h3><p>区块链技术显著提高了数据的安全性与可靠性，但是目前区块链技术的储存扩展性较差。以比特币为例，截至2017年5 月8 日，共产生465402 个区块，总容量为107.89GB，链上已认证地址9,892,723个。由于区块链技术要求比特币的网络中每个完全节点都保存着完整的区块链信息，所以目前有近1000万个节点贡献了100GB以上的磁盘空间来储存区块链数据。也就是说，目前的比特币的系统用了近1000PB的存储空间仅保存了100GB左右的数据，这极大地浪费了存储空间。并且，比特币的容量和参与的节点数量会随着时间的推移迅猛增加，区块链技术就会越来越多地占用海量节点的大量存储空间。这也极大地限制了以区块链技术为基础的数据库系统的发展与应用。如果将区块链技术应用到医疗信息化的领域，搭建一个基于区块链的医疗数据共享平台，如果不考虑多媒体信息，只考虑文本信息，同一段时间段产生的医疗数据总量将会比特币产生交易数据总量的几百倍，区块链的数据存储总容量将会达到一个难以想象的数字，为了提高存储效率，同时维护正常的区块链系统的正常的运行，我们必须优化存储方案，节省空间，提高效率。目前区块链的优化存储思想主要有两种，一种是轻量化，另一种是对区块链进行分片，两者都可以达到优化存储的目的，各有优劣。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620211768.jpg" width="70%" height="70%">
+
+<p>区块链的轻量化技术，区块链的轻量化如上图所示，在一个区块链网络中，正常的区块链的存储方案是所有节点的存储数据都是相同的，在上图的轻量化思想中，部署一个中心化节点存储从搭建区块链开始到现在时间存储的所有区块，而其他节点则是存储最近一段时间的区块链新产生的区块，当需要获取生成时间比较长的区块（节点没有存储的区块）中的数据时需要向中心化节点发出获取数据的请求。轻量化优点是让一个节点承担大部分的存储任务，其他节点可以节省存储空间，减轻维护区块链的压力，新区块所有节点都会存储，与分片技术相比，不可篡改性会更高；缺点是中心化的节点概念与区块链的去中心化的思想相违背，而且中心化节点更容易遭受不可预知的攻击。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620211912.jpg" width="70%" height="70%">
+
+<p>区块链的分片技术：区块链的分片技术如上图，基本思想是将新生成的区块随机存储在一定比例的节点中，这样本节点进行数据查询时如果本地区块有保存目标信息，则直接在本地提取，如果本地存储的区块并没有目标信息，则会向其他节点发起查询请求。现阶段的分片技术是将所有节点划分成存储节点，验证节点和用户节点，但是这样做的维护成本将会很高，所以将三者结合，节点同时进行存储，验证和提供服务。分片技术的优点是在保证区块链去中心化的前提下，在完整区块链之中挑选若干区块保存，并且若干节点通过协商可以恢复完整的区块链，存储区块链得到优化，降低了维护的成本；缺点是所有区块中生成时间较长的和新生成的区块的处理方式相同，新生成的区块存放的节点数量不足可能会导致新生成的区块被篡改。</p>
+<h2 id="特色描述"><a href="#特色描述" class="headerlink" title="特色描述"></a>特色描述</h2><p>医疗信息处理具有实时性高，吞吐量大，响应时间短的特点。我们根据该场景设计了一个基于签名拜占庭的区块链电子病历管理平台，采用医疗机构分级的思想，去除了“币”与“挖矿”的概念，并对数据的共识过程进行优化，提高了效率，同时考虑到医疗数据的庞大信息量，提出并实现了将轻量化和分片技术相结合的优化存储方案，以下是该项目的特色。</p>
+<p>采用签名拜占庭协议：在共识协议上，我们采用签名拜占庭共识协议。共识过程中，拜占庭节点接收数据，本节点将数据签名之后再转发给其他节点，同时将本节点收到其的他节点的数据也签名转发，所以共识协议抗攻击的能力大大提高，共识协议运行的结果可靠性会提高。</p>
+<p>优化区块生成过程：在区块生成过程中，我们采用间隔区块的方法根据“老区块”信息提前计算出参与共识的拜占庭节点。通过区块的hash值得出拜占庭节点的好处是使得提前预测拜占庭节点很困难，缺点是必须等待本轮区块形成后才能计算下一轮拜占庭节点，而数据是无时无刻产生的，这样节点在本轮数据接收结束——共识协商完成——区块生成并广播到全网的这段时间内不知道该向谁发送数据。必须等到获取新区块的hash值后才能向新的拜占庭节点发送数据。通过间隔区块提前计算hash值，从区块链角度保证数据随时接收随时处理，提高了实用性和运行效率，同时也保证了对拜占庭节点的不可预测性。</p>
+<p>轻量化和分片存储的优化存储方案：在区块链的存储上我们吸收轻量化和分片技术的优点。由于“老区块”的安全性要比“新区块”的安全性更高，更不易篡改，所以我们建立一个随时间流逝的区块删除机制，保证老区块的存储的节点数量较少，新区块存储的节点数量较多，最“老”的区块的存储节点数量会达到我们设定的最小阈值，并且若干节点进行交互之后可以恢复一条完整的区块链。</p>
+<p>医疗机构分级：设计基于区块链的医疗数据平台，我们将医疗机构划分为上层可信机构可下层不可信的医疗机构，其中上层医疗机构是存储区块链的节点，共识打包过程从上层医疗机构挑选拜占庭节点进行，优化存储也是在上层可信节点上进行，上层机构承担区块链的维护工作，下层机构只有向区块链提交数据和请求数据的权利。</p>
+<p>引入二级密钥作为用户秘钥：每家医疗机构都会有主密钥，由主密钥和用户身份信息生成患者的二级密钥，并将其保存在用户的身份卡或者医保卡中，每次患者每次医院只需要提供医保卡或者身份卡。这样医院和患者都可以独立解密自己拥有的病历，既方便患者解密，又利于医疗机构之间医疗信息的共享。即使患者丢失了自己的密钥，也可以通过医院来恢复，不会造成自己医疗数据的丢失。</p>
+<p>个人医疗信息的访问追踪：由于区块链是一种共享资源，所以保护区块链中存储的内容十分有必要。将患者的医疗数据和对数据的查看记录放在区块链中，患者既可以查阅自己的病史，还可以查看谁在什么时间查看了我的病史，对非法访问做到有据可查。可有效保护患者医疗数据的隐私安全。</p>
+<h2 id="应用前景分析"><a href="#应用前景分析" class="headerlink" title="应用前景分析"></a>应用前景分析</h2><p>通过我们的平台，各个医院之间的医疗数据会统一规范和格式，有利于医疗信息的整合和共享，可以间接达到各医疗机构间共享医疗资源的效果。提升医疗效率。将对患者的加密医疗数据的操作存储在区块链中，可有效保证数据禁止非授权的访问，保护数据的不可篡改性。即使发生了非预期的访问，我们也可以追溯出源头。在维护患者医疗信息隐私的同时也为患者提供了更为便捷和安全的数据存储服务。医疗数据的不可篡改为其真实性做出了保证，这一点在医疗数据的后续利用过程中非常重要。不仅医院可以信任该医疗数据的准确性，从而为患者的诊断提供便利；医疗研究机构也可从这些可信的数据中挖掘出宝贵的资源，促进了医学研究的发展。</p>
+<h1 id="系统设计与实现"><a href="#系统设计与实现" class="headerlink" title="系统设计与实现"></a>系统设计与实现</h1><h2 id="总体架构概述"><a href="#总体架构概述" class="headerlink" title="总体架构概述"></a>总体架构概述</h2><p>基于区块链医疗平台的拓扑网络结构如下图所示，中心圆圈之内代表高层医院，也是可信节点，从中产生拜占庭节点，存储区块链。外部是不可信的底层医院，可以向中心递交数据或提出查阅请求。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620212209.jpg">
+
+<h2 id="功能模块设计"><a href="#功能模块设计" class="headerlink" title="功能模块设计"></a>功能模块设计</h2><h3 id="创建新病历"><a href="#创建新病历" class="headerlink" title="创建新病历"></a>创建新病历</h3><p>患者第一次在医院下进行就诊时，要初始化秘钥信息，身份卡是一种标识患者的方式，在具体的实现上可以将其与个人的医保卡相结合，用户持有身份卡就可以享受区块链医疗服务，患者第一次就诊需要初始化身份卡。首先患者将自己的身份信息提交给医院方，由医院方生成患者的二级密钥，二级密钥用于加密患者的病历信息，这时患者就可以持身份卡进行挂号就诊，在就诊的过程中，会有基本的病情描述和相关检查的多媒体数据，病情描述处理成.xml格式形成文本病历信息经过患者的二级密钥加密之后上传至区块链，区块链经过一段时间的打包之后会向医院返回一个区块高度，该区块高度表示患者最近一次就诊记录所在的区块高度，用于查阅患者的病史，具体的查询过程会在2.4描述，最后将患者的数据量较大的多媒体数据保存在本地医院的多媒体数据存储点。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/cac1ce89fad81afdeab26776a5aea4b6.png" width="70%" height="70%">
+
+<h3 id="查询病历信息"><a href="#查询病历信息" class="headerlink" title="查询病历信息"></a>查询病历信息</h3><p>如果患者已经参与区块链医疗，医院可以向区块链请求患者的医疗信息，患者持身份卡用秘钥对医疗信息进行解密，授权医生读取患者的病史信息。如果医生只查阅文本信息，可能对患者病情认识不够，有时还要查询患者的多媒体信息，对病情有更加清晰的认识。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/f030d7e1fb6ef7360f8c3edaba0795e5.png" width="70%" height="70%">
+
+<h3 id="请求区块链文本信息"><a href="#请求区块链文本信息" class="headerlink" title="请求区块链文本信息"></a>请求区块链文本信息</h3><p>如果患者第二次到院就诊，直接出示身份卡解密从区块链上调取的患者的文本病历信息，医生经过分析之后结合当前病人的身体状况得出目前病人的患病情况得到病历信息并写入区块链。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/de87d014a4b38e07dc00291ce1935eed.png" width="70%" height="70%">
+
+<p>请求区块链文本信息和多媒体信息：当文本信息不能准确细致的描述患者的病情时，可以在文本信息中获取患者的多媒体信息的URL，由URL访问目标医院的多媒体数据存储点，下载之后进行更加仔细的分析诊断。</p>
+<h2 id="区块链"><a href="#区块链" class="headerlink" title="区块链"></a>区块链</h2><p>区块链实现包括五个模块，分别是区块链数据结构、签名拜占庭共识过程、区块的打包过程、区块生成过程和区块添加多方签名。区块数据结构模块对区块的数据组成进行描述；签名拜占庭共识过程是对签名拜占庭共识协议对一系列数据进行共识，从实际角度描述共识的过程，并对共识结果进行分析；区块的打包过程描述了各节点从各自收集数据到完整区块形成并广播的过程；区块的生成过程描述了一系列区块的生成过程，描述了不同区块生成过程中的区块与区块之间的联系。</p>
+<h3 id="区块数据结构"><a href="#区块数据结构" class="headerlink" title="区块数据结构"></a>区块数据结构</h3><p>如下图所示，是区块的数据结构的设计，区块的数据结构包括区块高度、区块头、计数器、病历信息、区块签名五个部分，区块高度是区块的唯一标识，是查询区块的关键字；区块头包含四个部分，版本号代表当前区块链使用的版本，父hash是上一个区块的hash值，Merkle树结构根节点，这个值是由区块主体中所有医疗数据的哈希值再逐级两两哈希计算出来的一个数值，主要用于检验病历信息是否在这个区块中存在，时间戳是本区块生成的时间，精确到秒；计数器是指保存数据的个数，包括病历信息和查询操作信息；打包节点的签名是利用了多方签名机制，所有参与该区块打包的节点都必须在区块中加入自己的签名。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620212586.jpg" width="30%" height="30%">
+
+<h3 id="签名拜占庭共识"><a href="#签名拜占庭共识" class="headerlink" title="签名拜占庭共识"></a>签名拜占庭共识</h3><p>签名拜占庭共识机制是指在拜占庭容错的基础上为共识的每个数据项添加自己的签名，假设，有六个上层节点用来存储区块链，每次打包都在六个节点中挑选三个节点用来充当拜占庭节点，节点标号是1~6号，取2、4、6号节点为当前拜占庭共识节点，2、4、6号节点当前记录的数据分别是ABD、AC、BC，每一个大写字母都是一条记录，取每条数据的hash值作为共识的数据，在数据的hash值后面追加节点的签名，共识过程是相互发送带签名的数据记录的hash值。</p>
+<p>举例分析，假设拜占庭节点有三个标号分别为2、4、6，共识的数据如下表，a、b、c、d分别是A、B、C、D的哈希值。</p>
+<center>表2.1 共识数据</center>
+
+<table>
+<thead>
+<tr>
+<th align="left">2节点</th>
+<th align="left">a、b、d</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">4节点</td>
+<td align="left">a、c</td>
+</tr>
+<tr>
+<td align="left">6节点</td>
+<td align="left">b、c</td>
+</tr>
+</tbody></table>
+<p>三个节点，最多处理一个出现问题节点，一个节点出错，需要两轮拜占庭共识才能解决出错的问题，我们用“a:2”代表“对于a哈希值，2节点对其签名”，“a:2:4”代表“对于a哈希值，2对其一重签名，4对其两重签名，对于a:2;4,持有者可以得出结论：2节点拥有的数据a,传递到4节点，又发送到本节点”，以此类推，下面是拜占庭核心内容：</p>
+<p>第一轮拜占庭：所有拜占庭节点将数据hash结果签名后发送给其他的拜占庭节点，节点发送内容如下图，最后各个拜占庭拥有的数据情况如表2.2所示。</p>
+<center>表2.2 第一轮共识结果</center>
+
+<table>
+<thead>
+<tr>
+<th align="left">发送节点 接收节点</th>
+<th align="left">2节点</th>
+<th align="left">4节点</th>
+<th align="left">6节点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">2节点</td>
+<td align="left">a,b,d</td>
+<td align="left">a:4,c:4</td>
+<td align="left">b:6,c:6</td>
+</tr>
+<tr>
+<td align="left">4节点</td>
+<td align="left">a:2,b:2,d:2</td>
+<td align="left">a,c</td>
+<td align="left">b:6,c:6</td>
+</tr>
+<tr>
+<td align="left">6节点</td>
+<td align="left">a:2,b:2,d:2</td>
+<td align="left">a:4,c:4</td>
+<td align="left">b,c</td>
+</tr>
+</tbody></table>
+<img src="/images/基于区块链的电子病历安全管理系统/1620212990.jpg" width="30%" height="30%">
+
+<p>第二轮拜占庭：每个节点将接收到的数据加上自己的签名发送到每个街拜占庭节点。</p>
+<p>如下图，经过第二轮之后的数据如表2.3。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620213079.jpg" width="30%" height="30%">
+
+<center>表2.3 第二轮共识结果</center>
+
+<table>
+<thead>
+<tr>
+<th align="left">发送节点 接收节点</th>
+<th align="left">2节点</th>
+<th align="left">4节点</th>
+<th align="left">6节点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">2节点</td>
+<td align="left">a,b,d</td>
+<td align="left">b:6:4,c:6:4</td>
+<td align="left">a:4:6,c:4:6</td>
+</tr>
+<tr>
+<td align="left">4节点</td>
+<td align="left">b:6:2,c:6:2</td>
+<td align="left">a,c</td>
+<td align="left">A:2:6,b:2:6,d:2:6</td>
+</tr>
+<tr>
+<td align="left">6节点</td>
+<td align="left">a:4:2,c:4:2</td>
+<td align="left">a:2:4,b:2:4,d:2:4</td>
+<td align="left">b,c</td>
+</tr>
+</tbody></table>
+<center>表2.4 共识完成之后每个节点的数据</center>
+
+<table>
+<thead>
+<tr>
+<th align="left">拜占庭节点 两轮共识</th>
+<th align="left">2节点</th>
+<th align="left">4节点</th>
+<th align="left">6节点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">本节点数据</td>
+<td align="left">a,b,d</td>
+<td align="left">a,c</td>
+<td align="left">b,c</td>
+</tr>
+<tr>
+<td align="left">第一轮共识</td>
+<td align="left">a:4,c:4 b:6,c:6</td>
+<td align="left">a:2,b:2,d:2 b:6,c:6</td>
+<td align="left">a:2,b:2,d:2 a:4,c:4</td>
+</tr>
+<tr>
+<td align="left">第二轮共识</td>
+<td align="left">a:4:6,c:4:6 b:6:4,c:6:4</td>
+<td align="left">a:2:4,b:2:4,d:2:4 b:6:2,c:6:2</td>
+<td align="left">a:2:4,b:2:4,d:2:4 a:4:2,c:4:2</td>
+</tr>
+</tbody></table>
+<p>将数据进行整理之后如表2.4之后，通过第一轮共识，每个拜占庭节点都可以统计其他拜占庭节点所接收的数据，进行整理，统计可知拜占庭节点内接收数据A的有两个，接收数据B的有两个，接收数据C的有两个，而接收数据D的只有一个，一共有三个拜占庭节点，根据少数从多数原则，A,B,C被保留，D被丢弃，最后打包的数据只有A,B,C。第二轮共识主要是由其他节点验证第一轮发送数据的节点发送数据是否是可信的，如果存在一个作恶节点，利用上述的两轮拜占庭共识就可以检测，但是如果存在两个作恶节点，不论拜占庭节点的数量有多少，需要三轮以上的共识才可以找出作恶节点。对于拜占庭节点数量为M时，作恶节点不超过⌈M/2⌉-1时，经过⌈M/2⌉+1轮共识就可以揪出作恶节点，这里的作恶节点是相互通信，干扰共识结果，也可以称之为“共谋”。</p>
+<p>大部分研究表明实用拜占庭容错的容错大小为1/3，实用拜占庭容错并没有在共识中引入签名，对于共谋节点来说是很容易作恶的，但是引入签名之后，共谋难度大大增加，签名无法伪造，只要保证数据源（数据一重签名节点）发送的数据没有问题，共识过程出现错误的概率是极低的。</p>
+<h3 id="区块打包"><a href="#区块打包" class="headerlink" title="区块打包"></a>区块打包</h3><p>当数据收集到一定程度（指定时间长度），应该将数据打包形成区块。所有拜占庭节点将一项项数据共识，去除差异，所有拜占庭的数据都相同，最后区块形成，下面举例分析一个区块的形成过程。</p>
+<h4 id="第一步：挑选拜占庭节点"><a href="#第一步：挑选拜占庭节点" class="headerlink" title="第一步：挑选拜占庭节点"></a>第一步：挑选拜占庭节点</h4><img src="/images/基于区块链的电子病历安全管理系统/1620213254.jpg" width="70%" height="70%">
+
+<center>表2.5 IP列表</center>
+
+<table>
+<thead>
+<tr>
+<th align="left">2节点</th>
+<th align="left">IP地址</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">4节点</td>
+<td align="left">IP地址</td>
+</tr>
+<tr>
+<td align="left">6节点</td>
+<td align="left">IP地址</td>
+</tr>
+</tbody></table>
+<p>产生拜占庭节点之后，如上图，在六个节点中产生了2、4、6三个拜占庭节点，所有节点存储一个关于拜占庭节点的IP地址列表，如表2.5，用来指向发送数据，2、4、6节点被选中接收数据，三个节点执行共识打包操作。</p>
+<p>第二步：所有节点向拜占庭节点发送数据</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620213334.jpg" width="70%" height="70%">
+
+<p>上图为一段时间内产生的A,B,C,D四个数据项各节点的接收情况,每个节点接收的结果是不一样的，原因是由于网络延迟或者时间截止等等原因，真实的网络环境中接收的结果要比上图的结果更具有一致性，完美的结果是三个节点都接收到了四个数据项。</p>
+<p>第三步：拜占庭节点共识</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620213415.jpg" width="70%" height="70%">
+
+<p>所有的拜占庭节点进行共识，发送的共识信息是指数据项的hash值，如图2.10，所有节点计算数据项的hash值进行共识。a,b,c,d分别是数据项A,B,C,D的hash值，a=hash(A),b=hash(B)，c=hash(C),d=hash(D)。</p>
+<p>第四步：数据汇总IP列表第一个拜占庭节点</p>
+<center>表2.6 2节点接收数据</center>
+
+<table>
+<thead>
+<tr>
+<th align="left">本节点拥有</th>
+<th align="left">A,B,D</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">来自4节点</td>
+<td align="left">A,C</td>
+</tr>
+<tr>
+<td align="left">来自6节点</td>
+<td align="left">B,C</td>
+</tr>
+<tr>
+<td align="left">汇总数据</td>
+<td align="left">A,B,C,D</td>
+</tr>
+</tbody></table>
+<img src="/images/基于区块链的电子病历安全管理系统/1620213506.jpg" width="30%" height="30%">
+
+<p>所有拜占庭节点将这一段时间收到的数据发送到IP列表中的第一个IP对应的节点。2节点是IP列表中的第一项，所有拜占庭节点将接收的数据项发送到2节点，如图2节点接收的数据如表2.6所示，2节点经过整理之后，接收的数据为A,B,C,D。</p>
+<p>第五步：首节点打包成区块</p>
+<p>2、4、6节点达成共识意见，将A、B、C保留并打包，D丢弃，由2节点将数据打包形成区块。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620213565.jpg" width="60%" height="60%">
+
+<p>第六步：依次签名并共享</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620213625.jpg" width="60%" height="60%">
+
+<p>拜占庭节点按IP列表顺序依次进行签名，最后签名的拜占庭节点将打包的区块上传到p2p网络。</p>
+<h2 id="区块链生成"><a href="#区块链生成" class="headerlink" title="区块链生成"></a>区块链生成</h2><p>挑选拜占庭节点的基本原则是，在存储区块链的所有节点中挑选拜占庭节点，使用已经打包成功区块数据的哈希值作为随机算法的随机种子，经过随机算法在存储区块链的节点中挑选拜占庭节点，所以最后挑选的结果具有随机性。为了保证数据处理的实时性，我们使用间隔区块提前计算拜占庭节点的方法，下面举例分析。</p>
+<p>将时间设定在12是0分到12时30分，假设10分钟生成一个区块，存储区块链的节点共有六个，分别为1-6号节点，每次挑选拜占庭节点的数量为4，将时间点分别定位在12时5分（A点），12时10分（B点），12时11分（C点），12时20分（D点），A、B、C、D四个时间点的变化过程描述了随时间变化过程中节点存储区块的情况和拜占庭节点的分布情况。</p>
+<p>A.将时间定位在12时5分，表示第五轮打包的数据收集时间，此时所有节点同时拥有区块1到4，第五轮打包的节点是1、4、6，所有节点产生的数据都向1、4、6节点发送。</p>
+<p>B.将时间点定位在上午12时10分，这时第五轮数据收集结束，打包开始，第六轮数据收集开始，第六轮的拜占庭节点1、2、5是由区块4的数据经过计算生成的：<br>$$<br>(1、2、5)&lt;=random(hash(Block4))<br>$$<br>由公式可知，第六轮拜占庭节点是由区块4进行hash操作，hash结果作为随机种子，经过随机算法计算出，这就是我们的提前计算拜占庭节点的方案。可以看到上一轮的拜占庭节点和下一轮的拜占庭节点可能会重合，例如图中1节点被再次选中，所以一个节点可能重复被选中充当拜占庭节点。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620213938.jpg" width="80%" height="80%">
+
+<p>C.将时间点定位在上午12时11分，第五轮数据打包结束，第六轮数据收集正在进行，所有节点保存区块5，第六轮拜占庭节点为1、2、5。</p>
+<p>D.将时间点定位在12时20分，第六轮数据收集结束，开始共识打包，第七轮数据收集开始，2节点是第六轮和第七轮的拜占庭节点，第七轮的拜占庭节点由区块5计算生成：<br>$$<br>(2、3、6)&lt;=random(hash(Block5))<br>$$<br>总结挑选拜占庭节点的方式，第M轮拜占庭节点由第M-2区块数据经过计算得到，计算公式：<br>$$<br>Ф_m=random(hash(λ_{m−2}))(M \in Z,M&gt;1)<br>$$<br>其中$Ф_m$为第M轮拜占庭节点计算结果，$λ_{m-2}$为高度为M-2的区块数据，第一，二号区块采用给定的参数生成指定的拜占庭节点。</p>
+<p>区块多方签名：由区块数据结构和区块的打包过程可知，在区块中添加多方签名的是共识该区块数据的拜占庭节点，区块中添加了多方签名，信息查询时，通过验证区块的hash指和签名结果，确定区块是否可信，与比特币hash链的单hash值的验证相比更加安全，可信，防篡改性增强。</p>
+<h2 id="区块链优化存储"><a href="#区块链优化存储" class="headerlink" title="区块链优化存储"></a>区块链优化存储</h2><p>采用区块链的轻量化和分片技术相结合，以老区块的安全性要比新区块的安全性更高为基础，提出了一个随时间变化的区块删除方案。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620214047.jpg" width="60%" height="60%">
+
+<p>区块生成之后定义三个阶段，经过三个阶段之后，区块定义为老区块，区块分别在阶段一，阶段二，阶段三定义不同的删除方式，以便减轻单节点的存储整个区块链的压力，如上图。</p>
+<p>区块生成：区块生成之后被上传到P2P网络，所有节点都将存储新生成的区块。</p>
+<p>阶段一是区块生成之后的一段时间，由于区块链的新区块遭到篡改的可能性要比老区块大，所以为了保证安全性，我们在阶段一对新生成的区块不足任何删除处理，保持所有节点都存储的状态。</p>
+<p>阶段二是经过一段时间之后的一段时间，在该阶段区块之后已经有一系列区块生成，虽然有新的区块生成，但是也不能删除区块太多，所以，我们制定一种在该阶段删除区块的规则，以删除概率P删除在时间段二的区块。</p>
+<p>对于一个处于时间段二的区块M删除概率P的计算方法：</p>
+<p>其中，γ：当前存储区块M的节点数；α：存储区块链的节点总数；σ:阶段二已逝去的时间长度；β：阶段二总时间长度；μ：对于一个指定高度的区块，存储该区块的节点的数量的最小值。</p>
+<p>当前存储区块M的节点数需要通过请求所有节点是否存储了区块M，并对M区块的数量进行统计，如果区块M的数量大于区块数量阈值μ，表示允许以概率P删除该区块，否则不能删除。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620214147.jpg" width="60%" height="60%">
+
+<p>阶段二已逝去的时间长度是指当前时间点在阶段二所指定的时间段内，并且当前时间点与阶段二开始时间的差值，如图2.16所示，假设阶段二指定为2018年4月12日到2018年6月12日，阶段二的时间长度为60天，假定今天为5月12日，则阶段二已经逝去的时间为30天。</p>
+<p>阶段三的区块时间已经比较长，首先询问其他节点统计区块M存在的节点的数量，并与区块数量阈值进行比较，如果前者大于后者，则进行删除，如果等于，则放弃删除。</p>
+<p>老区块是不再进行删除操作的区块，通过对区块数量阈值的设定，必须保证若干节点协商之后能够用各自的区块与其他节点区块组合恢复出一条完整区块链。</p>
+<h2 id="电子病历安全管理系统"><a href="#电子病历安全管理系统" class="headerlink" title="电子病历安全管理系统"></a>电子病历安全管理系统</h2><h3 id="医疗机构分级"><a href="#医疗机构分级" class="headerlink" title="医疗机构分级"></a>医疗机构分级</h3><p>区块链采用的是联盟链，所以要将参与区块链系统的节点进行分级，而且必须对分级之后的医疗机构赋予不同的权限，以保障联盟链系统的安全性。按医疗技术水平划分，三级医院，主要指全国、省、市直属的市级大医院及医学院校的附属医院；二级医院，主要指一般市、县医院及省辖市的区级医院，以及相当规模的工矿、企事业单位的职工医院；一级医院，主要指农村乡、镇卫生和城市街道医院。将医疗机构进行分级，一共分成两级，上级是医疗机构中的三级甲等医院，下级是非三级甲等医院、二级医院、以及一级医院和其他独立的医疗机构。上级医疗机构服务器是存储区块链的节点，拥有的权限有存储并维护区块链，随机获得参与区块打包的权利，同时为区块链医疗服务代理点提供服务，一方面充当“记账”节点，收集一段时间内所有节点产生的医疗数据，另一方面提供查询接口，可以查询区块链上的医疗数据，此外上级医疗机构是区块链医疗服务代理点，为医护人员和患者提供服务。下级医疗机构是区块链医疗服务的代理点，可以为下级医疗机构的医护人员和患者提供服务，通过上级节点服务器，可以上传患者的病历信息，同时也可以查询患者的病史信息。</p>
+<h3 id="秘钥产生和分配"><a href="#秘钥产生和分配" class="headerlink" title="秘钥产生和分配"></a>秘钥产生和分配</h3><p>首先由医院产生主密钥，不论是上级医疗机构还是下级医疗机构，患者第一次在该医院就诊时需要患者出示身份卡，医院方面根据患者的身份信息由己方主密钥生成患者的二级密钥，将二级密钥写入身份卡，如果患者再次来到该医院就诊，直接出示身份卡就可以加密或解密数据。患者如果经常变更居住地，就诊的医院也会发生变化，所以患者的身份卡里会存储多个二级密钥，每次到医院就诊时使用的加密秘钥是由该医院和患者身份信息生成的二级密钥，患者每次就诊结束之后会更新最新的病历信息存储的区块高度，所以该信息只有一条记录。</p>
+<h3 id="电子病历的格式和存储"><a href="#电子病历的格式和存储" class="headerlink" title="电子病历的格式和存储"></a>电子病历的格式和存储</h3><p>电子病历的格式参照CDA电子病历文档格式，将文本信息和多媒体数据分离，患者在就诊过程中产生病历信息，病历信息包括文本信息和若干多媒体信息，医生按照CDA电子病历文档的格式进行填写，保存为Xml格式，Xml中的结尾保存多媒体信息的URL，最后上传到区块链中，而多媒体数据则保存在本地，提供下载服务。加密时将文本信息和多媒体信息同时加密，这样不仅保护文本信息，更对多媒体信息进行保护。</p>
+<h3 id="患者身份卡"><a href="#患者身份卡" class="headerlink" title="患者身份卡"></a>患者身份卡</h3><p>患者身份卡是一种医疗用户专用卡，身份卡记录了四种信息，包括患者的身份信息，患者在医院就诊的二级密钥，患者下次病历产生的序号和患者最近一次就诊记录所在的区块链高度，身份卡是一种参与区块链医疗的凭证卡。患者的身份信息是患者身份的标识，包括患者的ID和患者的姓名等等，用来标识一个患者的身份。患者在各个医院的秘钥表示对应身份的患者曾经在哪家医疗机构就诊，就保存在对应医疗机构产生的该患者的二级密钥，所以身份卡里保存的二级密钥不止一个，而是若干个二级密钥。患者下次要产生的的病历的序号，该序号表示当患者下次就诊时，新病历在患者所有病历中的编号，该序号减一表示患者在区块链上所保存的病历信息的数量。患者就诊最近一次就诊记录所在的区块高度是一个查询索引，通过该索引可以查询患者保存于区块链上的所有病历。</p>
+<h3 id="病历安全管理"><a href="#病历安全管理" class="headerlink" title="病历安全管理"></a>病历安全管理</h3><p><strong>病历溯源：</strong></p>
+<p>在查询优化上我们采用的是在病历信息之后添加上一次的病历信息位置信息（区块高度），在查询时直接搜索到指定的区块，遍历区块的病历信息就可以直接查询到指定患者的病历，这样由患者的病历信息构成了一条区块编号路径，直接沿该路径查询，每次查询到一条病历信息就确定了上一次的就诊记录所在的区块。我们将最近一次的就诊记录所在的高度记录到患者的身份卡里，这样查询时依次向上跳跃，就可以查询到一个患者的所有就诊记录。患者在对自己的病历信息进行查询时，每次都是在诊治医生和患者都在场的情况下，所以，在身份卡中会写入一个患者最近一次的就诊信息所在的区块高度，并且在一个患者的所有就诊记录（第一条就诊记录除外）的结尾添加一个标识符，该标识符是一个整形，存储一个编号，这个编号代表一个高度，指的是该患者上一次的就诊记录所保存的区块高度。如图所示，在图中可以看到，对于同一个患者的就诊记录，在其后都会保存一个编号，在高度为P的区块里面存储了姓名为“李四”患者的病历信息，在高度为N的区块里存储了“李四”的病历信息，那么在区块P保存的“李四”的一条病历信息的结尾就保存一个编号N，并且在N和P之间的任何一个高度的区块没有保存姓名为“李四”患者的就诊信息，同理，在高度为N的区块中，在就诊记录为患者“李四”的结尾，保存编号M,以此类推。将一个患者的病历形成一条链结构，可以快速查询患者以往的患病情况，以少量的存储空间为代价，利用了区块链的不可篡改性，使得以用户为单位形成一条查链结构，显著提高了查询信息的效率。</p>
+<p><strong>病历监控：</strong></p>
+<p>当患者的病历信息被查询时，系统自动生成一条查询记录，记录这一次查询操作，包括查询主体（信息查询者的身份），查询客体（病历信息所属患者的身份），查询时间，查询病历信息的编号（患者的病例序号）等信息。操作记录信息形成之后会发被送到拜占庭节点，拜占庭节点将其与病历信息打包形成区块。患者可以查询关于自己的病历的日志记录，如果有第三方下载过病历，在区块链中会生成日志信息，患者可以随时查询区块链来监控自己的健康记录。在之后的工作中可以在区块链中引入智能合约，为患者对自己的病历查看权限控制提供接口，这样患者可以在移动终端自由控制自己的病历查看权限。</p>
+<p><strong>病历安全保护机制：</strong></p>
+<p>病历的安全管理分为两个方面，一方面区块链存储的病历信息的密文，另一方面是对区块链数据查询的验证机制。病历密文存储：病历使用AES对称加密方式加密以密文存储在区块链上，如果有恶意查询操作，也只能获取病历的密文，没有秘钥无法获得明文信息，实现了医疗信息的保密性。验证查询内容：在查询时根据本节点存储或P2P网络获取指定高度的区块，验证该区块的hash值和区块中的签名值。在验证区块的hash值时，获取该区块的前后两个区块，验证计算前一个区块的hash值是否与该区块保存的父区块的hash值相等，即验证父区块hash值；计算该区块的hash值是否与下一个区块保存的父hash值相等。即验证该区块在区块链中是否是合法的。在验证区块的签名值时，使用公钥验证打包该区块的拜占庭节点，确认该区块的产生过程是合法的。验证查询内容的目的是确保查询到的区块是未被篡改的区块，如果本节点的区块遭到篡改，则向其他节点发送请求，恢复完整区块链。</p>
+<h1 id="系统测试"><a href="#系统测试" class="headerlink" title="系统测试"></a>系统测试</h1><img src="/images/基于区块链的电子病历安全管理系统/1620214701.jpg" width="70%" height="70%">
+
+<p>整个项目以现有的哈希技术、签名技术、加密技术为安全技术基础，以P2P网络和节点通信为通信技术基础，构建区块链系统，也就是核心层，核心层包括区块链数据结构的部分、签名拜占庭共识协议和优化存储控制部分，三部分形成区块链医疗平台的技术支持，在此基础上对医疗机构分级，并利用秘钥的分配和管理进行权限控制，利用现有CDA电子病历统一健康记录的格式，使得信息相容性大大提高，医疗数据查询和身份卡简化患者的治疗就诊过程，使得医疗机构的运作效率得到很大的提高。</p>
+<p>整个项目在实现过程中使用java语言，开发工具为eclipse，系统为Windows系统区块链的数据结构，共识协议，医疗应用模块，以及界面全部独立完成。JDK版本：1.8，Windows系统版本：Windows7，Windows10</p>
+<p>测试节点数量：5；拜占庭节点数量：3；一轮打包的时间：1（分钟）；一个固定高度区块的数量阈值：2；从区块生成到阶段二开始时间长度：3（分钟）；从区块生成到阶段三开始时间长度：8（分钟）；每次删除区块执行时检查的区块数量：50；测试过程：略。</p>
+<h1 id="系统创新"><a href="#系统创新" class="headerlink" title="系统创新"></a>系统创新</h1><p>轻量化和分片技术相结合的存储方案：针对医疗病历内容较多，区块链的体积随时间越来越庞大。如何优化区块链的存储方式，同时又不影响区块链原有的安全性。我们结合区块链“轻量化”和“分片”存储的思想，设计一套新的存储算法。</p>
+<p>让区块随着时间的流逝和访问的减少，逐渐减少存储备份，直至一个安全阈值。若干节点进行交互之后可以恢复一条完整的区块链。这样，较久远的“老区块”不易被篡改，较新的“新区块”由于备份很多也不易篡改。同时对区块的访问大多集中在较新的区块中，访问效率也得到保证。</p>
+<p>间隔区块打包优化算法：拜占庭共识算法要求参与共识的节点数量不能太多，否则会导致共识效率极低。这就需要从所有可信节点中随机选出拜占庭节点。我们利用区块hash值这一不可预测的变量作为选择的依据，但直接利用前一区块的hash值会导致整个网络暂停接收数据一段时间，所以我们利用间隔一个区块的区块hash值，这样每一轮的协商和打包时间不会造成整个区块链网络的等待，网络可以边共识，边收集新区块的数据。提高工作效率。</p>
+<p>区块多方签名安全机制：由于本项目使用的是联盟链，其本质是将对原先集中式中单一主体的信任修改为对某一主体集合的信任，在此基础上有由该主体集合维护区块链的运行。我们为了提高每个区块的可信度，防止在区块生成过程中出现篡改行为，在区块打包过程中加入多方签名，为每一个区块加上其打包者（该轮拜占庭节点）的多方签名，使每一个区块的打包者和认证者都有据可查。</p>
+<p>基于区块链的电子病历安全管理：通过利用区块链的可信存储方式，有效保证病历信息的真实性。可以促进医疗信息的规范统一和共享，节约医疗资源，方便患者，同时也可对病历信息进行有效地保护。将患者的医疗数据和对数据的查看记录放在区块链中，患者既可以查阅自己的病史，还可以查看谁曾经查看了自己的病史，对非法访问做到有据可查。可有效保护患者医疗数据的隐私安全。患者使用医院由主密钥和自身信息产生的二级密钥加密病历，这样医院和患者均可以解密自己管理的病历数据。患者即使丢失了自己的密钥也可以从医院方恢复，不会造成自己病历的无法解密。方便患者查阅病历，也有利于医疗机构间医疗数据的共享和分析。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本项目针对医疗信息缺乏整合和共享、技术漏洞和篡改风险、医疗信息不准确、医疗信息缺乏标准四个问题提出了基于区块链的电子病历的安全管理方案，区块链技术不可篡改、去中心化的特点可以解决大部分技术漏洞和篡改风险问题，而且基于区块链实现了医疗信息的共享，在共享的基础上，规范了医疗共享信息的格式，使得各个医疗机构使用一个相同的标准，提高了信息的开放性和共享性。以区块链技术为基础构建医疗平台，通过分级可以对医疗机构评估，通过秘钥的分配和身份卡管理可以对医生和用户两大角色进行权限控制，不仅可以提高医生诊断的效率和准确性，而且让患者参与对健康记录的保护，增强了人们的信息安全意识。</p>
+<p>本项目实现了基于区块链的电子病历安全管理，基本实现了共享和保护两大功能，然而，在考虑实际应用的情形，功能模块还可以继续扩展：引入智能合约：在病历的查看上可以由用户自由设置权限，控制不想被查询到的隐私信息，以智能合约的方式融入区块链中。开放移动用户接口，让患者随时掌控自己病历信息。大数据分析：通过对加密的控制可以实现在用户身份信息不暴露的情况下提取医疗大数据进行分析，对于研究人员更加便捷，能够很直观的分析现代社会的医疗发展情况和人类疾病的发展状况。</p>
+]]></content>
+      <categories>
+        <category>本科项目</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>区块链</tag>
+        <tag>电子病历</tag>
+      </tags>
+  </entry>
+</search>

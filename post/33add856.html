@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="基于密文图像可逆水印和区块链的版权保护系统，2017安徽省信息安全作品赛三等奖，版权：陈伟、孟宪栋、肖扬、李金川。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于密文图像可逆水印和区块链的版权保护系统">
+<meta property="og:url" content="http://example.com/post/33add856.html">
+<meta property="og:site_name" content="1129ljc">
+<meta property="og:description" content="基于密文图像可逆水印和区块链的版权保护系统，2017安徽省信息安全作品赛三等奖，版权：陈伟、孟宪栋、肖扬、李金川。">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/69aaa12819b70cf76b95dfbabbeace7d.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/51bb25a09d2d0ccf5bd5eb6a199be90b.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/8b4a4fa645e61b3ef1a7a293843f902b.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/99ee7dce922952b47cfd15ffdded2ad5.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/e1471d7397cb1ae99e502547f3f3b643.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/2644955045be82f27130c8657fa96633.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/3bb82b6690b52148dcd677b6e5d8ecf2.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/111.jpeg">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/f4679f324566f06e0b2452944bf9957b.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/5a74454ca4f244f50122adbe12544c29.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/8ed7882fe745c35e84eb7372b0704ad0.jpeg">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/e483d01b21fbb72dda40752087c22783.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/b59d1bf93b5b81af9437a08f07f749a1.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/d61cc68dd8411ca6896909511f4c3caf.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/602340dc7af92bd879cd2a02bd60af91.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/735b0255c98f1b50c837f85a967094df.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/7fd158d91b1d370d32f8d8d6f61e34f5.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/e90620f8bde0dbc74a6ccfca9448d807.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/c7061c7dd731067ea792f7ce4d0932e5.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/889b1235a46d29102653e8319d085c33.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/a761f80e3cd6e97d32988655a73c980f.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/c381a39c7c4e9ea186b03e94f963238e.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/63b4bfb8ef58b227a380433aa45743a5.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/e01c546203c698b96484be75ae4e6b41.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/17e357f7b6ed054749a34e6e0551caad.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/46c57589a81c2ad26bce6732a04f4d91.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/90938c4128e6f70aa67bc3a3e039ee6c.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/c70e1847c7abbeaff6a22fd21209d1ab.png">
+<meta property="og:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/4b02af938bd7330f77ae088b392ea170.png">
+<meta property="article:published_time" content="2021-05-16T06:32:02.000Z">
+<meta property="article:modified_time" content="2021-05-17T13:30:30.490Z">
+<meta property="article:author" content="1129ljc">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="同态加密">
+<meta property="article:tag" content="可逆水印">
+<meta property="article:tag" content="区块链">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/基于密文图像可逆水印和区块链的版权保护系统/69aaa12819b70cf76b95dfbabbeace7d.png">
+
+<link rel="canonical" href="http://example.com/post/33add856.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>基于密文图像可逆水印和区块链的版权保护系统 | 1129ljc</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">1129ljc</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">高效学习工作</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">10</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">7</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/1129ljc" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/post/33add856.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="1129ljc">
+      <meta itemprop="description" content="技术、生活、吐槽">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="1129ljc">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于密文图像可逆水印和区块链的版权保护系统
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-16 14:32:02" itemprop="dateCreated datePublished" datetime="2021-05-16T14:32:02+08:00">2021-05-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-17 21:30:30" itemprop="dateModified" datetime="2021-05-17T21:30:30+08:00">2021-05-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%AC%E7%A7%91%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">本科项目</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>9.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+            <div class="post-description">基于密文图像可逆水印和区块链的版权保护系统，2017安徽省信息安全作品赛三等奖，版权：陈伟、孟宪栋、肖扬、李金川。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>随着互联网技术及云计算技术的快速发展,人们将更多的资料和数据上传到远程服务器或者云端进行存储。用户可随时随地通过联网下载已上传的资料、利用网络中的其他资源以及享受第三方提供的数据处理等服务。这些技术在方便人们生活的同时,也引发了数据安全和隐私保护的问题。上传的数据可能涉及用户的隐私内容,如个人照片、企业的用户资料、电子票据等,用户应先对数据进行加密后再上传,以降低内容泄露的风险。然而,数据在加密后失去了许多的特性。另外,由于存在安全漏洞或内部人员的非法操作,密文被非法访问后会受到篡改、替换等攻击,用户加密数据的完整性、可靠性保护尤为重要。加密域中的可逆信息隐藏技术是在不知道明文内容的情况下,直接将额外信息嵌入到密文载体中,并在解密及信息提取后能够百分之百地恢复出原始载体的技术。该技术有着很好的应用前景，比如可以应用于数字图像的版权保护。我们通过研究同态加密，可逆数字水印，区块链与云计算技术，使作品可以借助云计算的计算资源，利用同态加密域上的可逆水印技术，实现对图像的版权保护；利用区块链技术，实现对图像的版权溯源。本作品将国内外一些可用于同态加密域上的可逆水印算法与同态加密算法进行改进，将理论转化为实际应用，实现了云端图像的可逆水印嵌入，本地明文图像可逆水印提取与图像恢复，实现了对图像的版权保护；同时借助区块链技术，实现了对图像的版权溯源。本作品的图像嵌入信息后的PSNR（峰值信噪比）较高，肉眼极难识别原图像与嵌入后图像的差别。加密算法加密强度较高，能较好保护用户云端信息的安全性。嵌入算法效率较高，嵌入信息不易被破坏，可以较好实现版权保护。同时通过引入区块链技术，用户对图像操作的记录被完整记录，实现版权溯源的功能。</p>
+<p><strong>关键词：</strong>可逆数字水印，同态加密，区块链，云计算。</p>
+<h1 id="作品概述"><a href="#作品概述" class="headerlink" title="作品概述"></a>作品概述</h1><h2 id="技术介绍"><a href="#技术介绍" class="headerlink" title="技术介绍"></a>技术介绍</h2><p>所谓数字水印技术就是将数字、序列号、文字、图像标志等版权信息嵌入到多媒体数据中，以起到版权保护、秘密通信、数据文件的真伪鉴别和产品标志等作用。可逆水印技术是一种能够在提取水印信息后无失真地恢复出原始载体内容的信息隐藏技术，这保证了作品可被无损恢复。广义来讲，区块链技术是利用块链式数据结构来验证与存储数据、利用分布式节点共识算法来生成和更新数据、利用密码学的方式保证数据传输和访问的安全、利用由自动化脚本代码组成的智能合约来编程和操作数据的一种全新的分布式基础架构与计算范式。区块链技术由于其具有分布式去中心化、不可篡改和加密安全性、数据透明和审查便利的特点。可有效实现对图像版权的溯源，追查出图像的每一次操作。云计算是一种按使用量付费的模式，这种模式提供可用的、便捷的、按需的网络访问，进入可配置的计算资源共享池（资源包括网络，服务器，存储，应用软件，服务），这些资源能够被快速提供，只需投入很少的管理工作，或与服务供应商进行很少的交互。借助云计算的计算资源，可有效地处理大批量的图像版权保护操作。由于图像的处理在云端实现，为了保证用户的隐私，我们通过同态加密来实现。同态加密可以做到当数据被上传到云端时，数据信息不被云服务商知道的基础上帮助用户处理数据。相当于加密算法实现了一种从明文到密文的映射，使云端对密文的一些操作可以直接映射到对明文的相应操作，使云端可以对用户的数据进行有效操作。当用户把处理好的加密数据下载到本地并且解密时，就可以得到已经处理好的数据。</p>
+<h2 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h2><p>目前国内外有一些对于同态加密域可逆水印的研究，但大多停留在研究阶段，没有真正实现的应用。我们对同态加密域可逆水印算法研究后，发现以下几个问题：①加密后的密文数据扩展大；②有些算法的PSNR（峰值信噪比）过低，[1]文献中的算法的嵌入容量虽然很高但嵌入后明文图像完全无法识别，图像失真严重；③嵌入操作的运算复杂度较高。我们经过总结和研究，对经典的DE（差值扩展）算法进行改进，结合Paillier加密算法的同态特性，实现了密文域的信息嵌入和明文域的信息提取。对于区块链技术，我们在参考大量资料后，决定主要利用区块链的不可篡改性，实现对用户操作的记录，使用户对图像的每一步操作都有据可查。区块链就像是一个“账本”，每个区块相当是账本的一页，前后页之间都相互联系，一旦对前一页作出修改，后面的信息就需要全部改变，而这在实际中几乎不可行。也就保证了区块链无法被篡改，记录的信息是真实可信的。我们将用户的操作记录于这个“账本”中，当用户查找时可以完整地找出该图像的每一次操作，且都是可信的，这就实现了对图像的版权溯源。为了解决大批量图像操作的运算负担较大，我们采用在云端为用户计算的策略；同时为了更好地实现区块链技术，使区块可信度较高，我们打算在以后作品的改进中使用更契合本应用的雾计算技术，使计算资源分布式配置，能够更好契合区块链的应用特点。</p>
+<h2 id="特色描述"><a href="#特色描述" class="headerlink" title="特色描述"></a>特色描述</h2><p>本作品通过同态加密算法，实现了图像在云端的安全操作，云端始终接触不到明文，也就大大减小了明文图像被泄露或窃取的可能性。对于嵌入的信息，我们可以选择生成一张含有用户信息的二值图，将二值图嵌入图像，而不是直接嵌入用户信息，这样图像即使经过一定的破坏，也可以提取出可以辨认的二值图，从而提高了水印的鲁棒性。在图像的操作过程中，用户持有图像的私钥和嵌入密钥，云端只有在嵌入操作时才需要用户提交嵌入密钥，云端并不保存用户的嵌入密钥。同时客户端与云端完全通过SSL加密信道交互信息，降低了信息在传输过程中被泄露的风险。通过以上做法，保证了只有用户才可以将加密的图像解密，只有用户才能从嵌入信息的图像中提取出水印，从而完成图像的版权认证。为了加强版权保护的强度，我们还引入区块链技术，通过在云端记录用户对图像的操作，将其加入区块链中，利用区块链的不可篡改性，达到对图像的版权溯源功能。</p>
+<h2 id="应用前景"><a href="#应用前景" class="headerlink" title="应用前景"></a>应用前景</h2><p>面对当下数字作品版权保护的现状，盗版与未经授权的非法复制盛行，又很难追责；常规保护方式耗时长、费用高，很多数字图像作品并未采取有效的保护措施。导致著作权人难以拿出有力的证据证明作品的归属。本作品实现了密文域的可逆水印技术，能够很好地迎合当前云计算越来越盛行的趋势，既利用了云计算的计算资源，又实现了用户图像的保密性，实现对图像的版权保护。且区块链技术的结合使本作品的功能更丰富，版权保护的功能更强大。</p>
+<h1 id="作品设计与实现"><a href="#作品设计与实现" class="headerlink" title="作品设计与实现"></a>作品设计与实现</h1><h2 id="系统设计"><a href="#系统设计" class="headerlink" title="系统设计"></a>系统设计</h2><p>我们的软件是为了实现在云端的图像版权保护功能。图像版权保护主要通过区块链和密文域可逆水印两种方式实现。可逆水印从图像自身入手，在图像中嵌入可逆的数字水印，这样既可以解决版权保护的问题，又可以不破坏图像自身；区块链则是在服务器记录图片信息并链接成链，然后广播到每个节点，云端上有大量节点，如果篡改则要对半数以上的节点进行修改，而且区块链自身修改难度很大，从而保证节点记录信息的可靠性。这两种版权保护相结合，可以从多方面解决图像的版权保护问题。并且用户上传的是图像密文，服务端无法获得图像过多信息，从而解决了云计算的安全性问题。水印嵌入步骤：图像加密，水印嵌入，图像解密，水印提取；区块链版权保护步骤：图像hash上传，生成区块。</p>
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/69aaa12819b70cf76b95dfbabbeace7d.png">
+
+<h2 id="同态加密与解密"><a href="#同态加密与解密" class="headerlink" title="同态加密与解密"></a>同态加密与解密</h2><h3 id="密钥生成"><a href="#密钥生成" class="headerlink" title="密钥生成"></a>密钥生成</h3><p>随机和独立地选择两个大素数$p$和$q$，使得$gcd(pq,(p−1)(q−1))=1$，要求两个素数的长度相等。计算$n=pq$和$λ=lcm(p−1,q−1)$。选择随机整数$g$满足$Z \in {Z^*}_{n^2}$，确保模块逆元的存在$gcd(L(g^{λ} \bmod n^2),n)=1$。公式$L(x)=\frac{x−1}{n}$，公钥$(n,g)$私钥$(λ)$。<strong>加密：</strong>$c=g^m×r^n \bmod n^2$，$0≤m&lt;n$，随机数$r:0≤r&lt;n$。<strong>解密：</strong>$m=\frac{L(c^λ \bmod n^2)}{L(g^λ \bmod n^2)} \bmod n$。</p>
+<h3 id="Paillier同态性质"><a href="#Paillier同态性质" class="headerlink" title="Paillier同态性质"></a>Paillier同态性质</h3><p>加同态:<br>$$<br>D(E(m_1,r_1)×E(m_2,r_2) \bmod n^2) \bmod n = m_1 + m_2 \bmod n<br>$$</p>
+<p>减同态:<br>$$<br>D(E(m_1,r_1)×((E(m_2,r_2))^{−1} \bmod n^2) \bmod n^2) \bmod n =m_1 −m_2 \bmod n<br>$$</p>
+<p>乘同态:<br>$$<br>D(E(m_1,r_1)^k \bmod n^2)=km_1 \bmod n<br>$$</p>
+<p>除同态(当能整除成立):<br>$$<br>D((E(m_1)×E(m_1))^{k^{−1} \bmod n} \bmod n^2)= \frac{m_1+m_2}{k}<br>$$<br>注：除法同态当不能整除时右式为$(m_1+m_2+d×n)/k$，$d$取刚好被整除时的最小值。</p>
+<h3 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h3><p>因为直接对每个像素进行加密，密文会扩充很大，从每个像素8bit(256)扩充到256bit(选取n为128bit)，扩大了32倍，如果n选取过小，会导致加密安全性减低。因此我们把8个像素首位相连进行加密，这样每组64bit(8*8bit)，扩充到256bit，仅仅扩大了4倍，这样既保证了加密的安全性，又对密文扩充进行了有效的限制。</p>
+<h2 id="密文域可逆水印嵌入"><a href="#密文域可逆水印嵌入" class="headerlink" title="密文域可逆水印嵌入"></a>密文域可逆水印嵌入</h2><h3 id="传统DE算法"><a href="#传统DE算法" class="headerlink" title="传统DE算法"></a>传统DE算法</h3><p>x、y是图像中任意相邻两个像素值，$x、y \in [0,255]$，像素的平均值$I$，差值$d$为:<br>$$<br> l=(x+y)/2<br>$$</p>
+<p>$$<br>h=x−y<br>$$</p>
+<p>相应的逆变换公式为：<br>$$<br>x=l+\lfloor\frac{h+l}{2}\rfloor,y=l−\lfloor\frac{h}{2}\rfloor,h&gt;0<br>$$</p>
+<p>$$<br>x=l+\lfloor\frac{h}{2}\rfloor,y=l−\lfloor\frac{h-l}{2}\rfloor,h&lt;0<br>$$<br>假设待嵌入的隐秘信息为$i \in [0,1]$，对差值进行扩展嵌入一位信息，$h^\prime =2h + i$。</p>
+<h3 id="改进DE算法"><a href="#改进DE算法" class="headerlink" title="改进DE算法"></a>改进DE算法</h3><p>可逆水印一般鲁棒性较差，因此嵌入信息是一张二值图，如果图像一些像素被破坏，仍然可以提取图像进行辨识；要把明文域上DE算法改进为密文域上可逆水印算法，需要进行一些额外的操作。不仅需要利用同态性质把密文域上操作映射到明文域上，而且每个密文值是8个像素连接后加密得到的，因此不能对单个像素进行嵌入，需要每组同时嵌入，假设某组需要嵌入01011010(8bit)信息，原公式的ii即为01011010；密文状态下无法获知x、y大小，无法知道使用哪个公式，而且一组中不能同时用2个嵌入公式，因此我们把$x&lt;y$的像素颠倒，保证每组像素都是$x&gt;y$，因此需要辅助信息记录颠倒的位置以便恢复。</p>
+<h2 id="水印嵌入提取及验证"><a href="#水印嵌入提取及验证" class="headerlink" title="水印嵌入提取及验证"></a>水印嵌入提取及验证</h2><h3 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h3><p>对图像进行预处理，相邻一组像素如果$x&lt;y$，则x、y颠倒（x、y均为像素值），并且得到三张表map1、map2、map3。map1记录了像素是否可嵌入（越界问题）,map2记录像素是否颠倒，map3记录$x+y$的奇偶性（paillier同态除法需要）。</p>
+<h3 id="嵌入密钥生成"><a href="#嵌入密钥生成" class="headerlink" title="嵌入密钥生成"></a>嵌入密钥生成</h3><p>利用随机数得到一组不重复的数组，数组里的元素即代表在哪个像素嵌入信息，这样即可做到把嵌入信息随机分散地嵌入到图像中。嵌入密钥即为用户给定的随机数种子。</p>
+<h3 id="嵌入"><a href="#嵌入" class="headerlink" title="嵌入"></a>嵌入</h3><p>利用paillier同态的性质，计算密文域上的$h$和$l$，计算$I$时，要利用map3把$x+y$变成偶数（奇数则减一），才能使用同态除法。<br>$$<br>E(l)=(E(x)×E(y))^{2^{−1} \bmod n} \bmod n^2 → l=(x+y)/2<br>$$</p>
+<p>$$<br>E(h)=(E(x)×(E(y)^{−1} \bmod n^2) \bmod n^2→h=x-y<br>$$</p>
+<p>然后利用密钥把分散好的嵌入信息$I$嵌入到密文中。此密文域嵌入容量和原始DE嵌入容量几乎一致。<br>$$<br>E(2h+i)=(E(h)×E(h)×E(i)) \bmod n^2→h^\prime=2h+i<br>$$<br>因为当$x&gt;y$时$x^\prime=l+\lfloor \frac{h^\prime+l}{2}\rfloor=l+h+i$，$y^\prime=l−\lfloor\frac{h^\prime}{2}\rfloor=l−h$，所以<br>$$<br>E(x^\prime)=(E(l)×E(h)×E(i)) \bmod n^2→x^\prime=l+h+i<br>$$</p>
+<p>$$<br>E(y^\prime)=(E(l)×(E(h)^{−1} \bmod n^2) \bmod n^2→y^\prime=l−h<br>$$</p>
+<p>注：解密后要利用map2把颠倒的像素还原。</p>
+<h3 id="提取"><a href="#提取" class="headerlink" title="提取"></a>提取</h3><p>同DE算法，利用map1和嵌入密钥（随机数种子）得到嵌入顺序，然后计算h的奇偶性得到ii，从而得到嵌入信息。</p>
+<h3 id="还原"><a href="#还原" class="headerlink" title="还原"></a>还原</h3><p>$h_{初始}=h/2$，$l_{初始}=l$，然后利用逆变换公式得到初始像素值，从而还原。</p>
+<h2 id="区块链"><a href="#区块链" class="headerlink" title="区块链"></a>区块链</h2><h3 id="区块链介绍"><a href="#区块链介绍" class="headerlink" title="区块链介绍"></a>区块链介绍</h3><p>为了达到版权保护和版权溯源的目的，我们采用了区块链这一技术，我们首先解释一下传统区块链技术为何具有不易篡改的性质。由于区块头里面包含“父区块哈希值”字段，所以当前区块的哈希值也受到该字段的影响。如果父区块的身份标识发生变化，子区块的身份标识也会跟着变化。当父区块有任何改动时，父区块的哈希值也发生变化。一旦一个区块有很多代以后，这种瀑布效应将保证该区块不会被改变，除非强制重新计算该区块所有后续的区块。正是因为这样的重新计算需要耗费巨大的计算量，所以一个长区块链的存在可以让区块链的历史不可改变，这也是区块链安全性的一个关键特征。传统的区块链技术主要用于比特币交易，而我们的应用场景略有不同，因此我们针对我们的需求对区块链技术进行了合理取舍并添加了一些我们自己的想法。</p>
+<h3 id="实现的区块链结构"><a href="#实现的区块链结构" class="headerlink" title="实现的区块链结构"></a>实现的区块链结构</h3><h4 id="区块"><a href="#区块" class="headerlink" title="区块"></a>区块</h4><table>
+<thead>
+<tr>
+<th align="left">大小</th>
+<th align="left">字段</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">4字节</td>
+<td align="left">区块高度</td>
+<td align="left">用字节表示的该区块所在高度</td>
+</tr>
+<tr>
+<td align="left">72字节</td>
+<td align="left">区块头</td>
+<td align="left">组成区块头的几个字段</td>
+</tr>
+<tr>
+<td align="left">1-9(可变整数)(字节)</td>
+<td align="left">计数器</td>
+<td align="left">图像变动的数量</td>
+</tr>
+<tr>
+<td align="left">可变</td>
+<td align="left">图像变动信息</td>
+<td align="left">记录在区块里的图像变动信息</td>
+</tr>
+</tbody></table>
+<h4 id="区块头"><a href="#区块头" class="headerlink" title="区块头"></a>区块头</h4><p>区块头由三组区块元数据组成。首先是一组引用父区块头哈希值的数据，这组元数据用于将该区块与区块链中前一区块相连接。第二组元数据是Merkle树根（一种用来有效地总结区块中所有变动信息的数据结构）。第三组元数据，即时间戳。下表描述了区块头的数据结构。</p>
+<table>
+<thead>
+<tr>
+<th align="left">大小</th>
+<th align="left">字段</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">4字节</td>
+<td align="left">版本</td>
+<td align="left">版本号，用于跟踪软件/协议的更新</td>
+</tr>
+<tr>
+<td align="left">32字节</td>
+<td align="left">父区块哈希值</td>
+<td align="left">引用区块链中父区块的哈希值</td>
+</tr>
+<tr>
+<td align="left">32字节</td>
+<td align="left">Merkle根</td>
+<td align="left">该区块中变动的Merkle树根的哈希值</td>
+</tr>
+<tr>
+<td align="left">4字节</td>
+<td align="left">时间戳</td>
+<td align="left">该区块产生的近似时间（精确到秒的时间戳）</td>
+</tr>
+</tbody></table>
+<p>当节点接收来自其他节点的区块时，会动态地识别该区块在区块链里的位置（区块高度）。我们把区块高度作为元数据存储在一个索引数据库表中以便快速检索。每个节点保存了区块链从创世区块起的一个本地副本。随着新的区块的产生，该区块链的本地副本会不断地更新用于扩展这个链。当一个节点从网络接收传入的区块时，它会验证这些区块，然后链接到现有的区块链上。为建立一个连接，一个节点将检查传入的区块头并寻找该区块的“父区块哈希值”。</p>
+<h4 id="Merkle树"><a href="#Merkle树" class="headerlink" title="Merkle树"></a>Merkle树</h4><p>区块链中的每个区块都包含了产生于该区块的所有图像变动信息，包括图像，且以Merkle树表示。Merkle树是一种哈希二叉树，它是一种用作快速归纳和校验大规模数据完整性的数据结构。这种二叉树包含加密哈希值。</p>
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/51bb25a09d2d0ccf5bd5eb6a199be90b.png" width="70%" height="70%">
+
+<p>因为Merkle树是二叉树，所以它需要偶数个叶子节点。如果仅有奇数个图像变动需要归纳，那最后的变动就会被复制一份以构成偶数个叶子节点。为了证明区块中存在某个特定的图像变动信息，一个节点只需要计算个32字节的哈希值，形成一条从特定交易到树根的认证路径或者Merkle路径即可。随着图像变动数量的急剧增加，这样的计算量就显得异常重要，因为相对于图像变动数量的增长，以基底为2的交易数量的对数的增长会缓慢许多。</p>
+<h3 id="应用结构"><a href="#应用结构" class="headerlink" title="应用结构"></a>应用结构</h3><p>图像变动信息包括图像版权保护的记录，被版权保护图像被自己（或其他用户）上传与下载的记录。当用户进行和图像变动有关的操作时，被服务器记录，服务器把一段时间内记录的信息构成Merkle树，然后构成一个新区块，与区块链相连。区块的Merkle树通过计算得出Merkle根，区块头部中记录Merkle根的值。所以Merkle根的值直接影响了区块头的hash值，也就决定了子区块头部的“父区块hash值”，这一设定赋予了区块链的不可篡改的特性。形成新区块链后，广播到其他节点，其他节点接收到新区块后验证区块链的正确性（区块链hash特性），然后更新自身的区块链。当发现区块链分叉时，服从多数原则，说明少数一方区块链被篡改（区块链节点很多并且篡改难度大，篡改半数以上节点几乎不可能）。</p>
+<p>当用户需要证明一张图像是自己的，只需提交图像的hash值，就能从区块链中找到这个图像版权保护的区块，从中可以得到自身信息（如用户名，时间等）。这里图像的hash值不是简单地将图像hash而是利用DE嵌入算法的特性，即嵌入前后处理区块的均值不变，将此均值通过普通hash算法得到一个摘要。这样，保证了图像嵌入前后的摘要相同。如果要版权溯源，也只需图像的摘要，从索引表中找到这个图像最新一次所在高度，从区块中的图像变动信息可以知道操作的用户、方式（上传或下载）、时间，还有上一次操作的高度，然后可以得到上一次操作的信息，如此反复，可得到最初始版权保护相关的信息。</p>
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/8b4a4fa645e61b3ef1a7a293843f902b.png" width="70%" height="70%">
+
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>各个模块间的联结关系如下：paillier加密算法为云计算提供安全保障，而paillier的同态性质为可逆水印的嵌入提供了基础。云计算的多节点特性保证了区块链的不可篡改性，区块链又为图像的版权溯源提供支持。</p>
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/99ee7dce922952b47cfd15ffdded2ad5.png" width="50%" height="50%">
+
+<h1 id="软件操作"><a href="#软件操作" class="headerlink" title="软件操作"></a>软件操作</h1><h2 id="软件流程"><a href="#软件流程" class="headerlink" title="软件流程"></a>软件流程</h2><p>介绍下本软件的工作流程：打开软件，进入登陆界面，在这里可以登陆账号，也可以选择注册，我们采用的是邮箱注册，一个邮箱只能注册一个账号。登陆后在主界面中，选择、上传图像，后台会自动加密图像，上传。然后，在列表里选择要操作的图像，可以选择嵌入、下载、删除。选择嵌入会打开一个界面，输入嵌入密钥，即可选择嵌入类型进行嵌入，嵌入类型有两类，一类是版权保护：嵌入含用户信息的二值图，同时把图像相关添加入区块链中；第二类是自定义：嵌入用户自己输入的字符。下载、删除是操作用户选择的密文。下载完即可进行解密操作，选择图像密文，输入密钥、解密图像存放位置，即可进行解密操作。用户可以点击版权溯源按钮，并选择一张上传过云端的图像，云端会给出该图像在云端经历过的所有操作的信息。本地端还可以进行提取水印和恢复水印的操作。只要用户选择含水印的图片，输入嵌入密钥，辅助信息，即可进行水印的提取和图像的复原。</p>
+<h2 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h2><p>客户端环境为 Windows7 系统，开发语言为Java，服务端环境为 Ubuntu系统，数据库为MySQL。</p>
+<h2 id="操作界面演示"><a href="#操作界面演示" class="headerlink" title="操作界面演示"></a>操作界面演示</h2><img src="/images/基于密文图像可逆水印和区块链的版权保护系统/e1471d7397cb1ae99e502547f3f3b643.png" width="30%" height="30%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/2644955045be82f27130c8657fa96633.png" width="30%" height="30%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/3bb82b6690b52148dcd677b6e5d8ecf2.png" width="30%" height="30%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/111.jpeg" width="70%" height="70%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/f4679f324566f06e0b2452944bf9957b.png" width="20%" height="20%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/5a74454ca4f244f50122adbe12544c29.png" width="70%" height="70%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/8ed7882fe745c35e84eb7372b0704ad0.jpeg" width="70%" height="70%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/e483d01b21fbb72dda40752087c22783.png" width="30%" height="30%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/b59d1bf93b5b81af9437a08f07f749a1.png" width="20%" height="20%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/d61cc68dd8411ca6896909511f4c3caf.png" width="30%" height="30%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/602340dc7af92bd879cd2a02bd60af91.png" width="30%" height="30%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/735b0255c98f1b50c837f85a967094df.png" width="30%" height="30%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/7fd158d91b1d370d32f8d8d6f61e34f5.png" width="30%" height="30%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/e90620f8bde0dbc74a6ccfca9448d807.png" width="30%" height="30%">
+
+<h1 id="作品测评"><a href="#作品测评" class="headerlink" title="作品测评"></a>作品测评</h1><h2 id="测试图像信息"><a href="#测试图像信息" class="headerlink" title="测试图像信息"></a>测试图像信息</h2><table>
+<thead>
+<tr>
+<th align="left">序号</th>
+<th align="left">名称</th>
+<th align="left">样式</th>
+<th align="left">大小</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">000.bmp</td>
+<td align="left"><img src="/images/基于密文图像可逆水印和区块链的版权保护系统/c7061c7dd731067ea792f7ce4d0932e5.png" width="30%" height="30%"></td>
+<td align="left">2.28MB 1000*800</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">ASTRO2.bmp</td>
+<td align="left"><img src="/images/基于密文图像可逆水印和区块链的版权保护系统/889b1235a46d29102653e8319d085c33.png" width="30%" height="30%"></td>
+<td align="left">384KB 1024*768</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">lena24.bmp</td>
+<td align="left"><img src="/images/基于密文图像可逆水印和区块链的版权保护系统/a761f80e3cd6e97d32988655a73c980f.png" width="30%" height="30%"></td>
+<td align="left">768KB 512*512</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">Cameraman.bmp</td>
+<td align="left"><img src="/images/基于密文图像可逆水印和区块链的版权保护系统/c381a39c7c4e9ea186b03e94f963238e.png" width="30%" height="30%"></td>
+<td align="left">65KB 256*256</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">Baboon.bmp</td>
+<td align="left"><img src="/images/基于密文图像可逆水印和区块链的版权保护系统/63b4bfb8ef58b227a380433aa45743a5.png" width="30%" height="30%"></td>
+<td align="left">257KB 512*512</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">Couple.bmp</td>
+<td align="left"><img src="/images/基于密文图像可逆水印和区块链的版权保护系统/e01c546203c698b96484be75ae4e6b41.png" width="30%" height="30%"></td>
+<td align="left">257KB 512*512</td>
+</tr>
+<tr>
+<td align="left">7</td>
+<td align="left">Man.bmp</td>
+<td align="left"><img src="/images/基于密文图像可逆水印和区块链的版权保护系统/17e357f7b6ed054749a34e6e0551caad.png" width="30%" height="30%"></td>
+<td align="left">1MB 1024*1024</td>
+</tr>
+<tr>
+<td align="left">8</td>
+<td align="left">Lena.bmp</td>
+<td align="left"><img src="/images/基于密文图像可逆水印和区块链的版权保护系统/46c57589a81c2ad26bce6732a04f4d91.png" width="30%" height="30%"></td>
+<td align="left">257KB 512*512</td>
+</tr>
+</tbody></table>
+<h2 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h2><p>测试图像嵌入信息之前和嵌入信息之后的对比（数据效果）：峰值信噪比（PNSR）是一个表示信号最大可能功率和影响它的表示精度的破坏性噪声功率的比值，是最广泛使用的评价图像质量的客观标准。PSNR越大表示失真越小。当PSNR大于35时，肉眼很难察觉。SSIM，结构相似性，是一种衡量两幅图像相似度的指标。结构相似性的范围为-1到1，当两张图像一模一样时，SSIM的值等于1。</p>
+<table>
+<thead>
+<tr>
+<th align="left">序号</th>
+<th align="left">PNSR峰值信噪比</th>
+<th align="left">SSIM结构相似性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">55.8477</td>
+<td align="left">0.999707</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">49.7065</td>
+<td align="left">0.996341</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">47.025</td>
+<td align="left">0.997039</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">35.0214</td>
+<td align="left">0.976803</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">33.8448</td>
+<td align="left">0.983162</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">40.7279</td>
+<td align="left">0.990984</td>
+</tr>
+<tr>
+<td align="left">7</td>
+<td align="left">47.4504</td>
+<td align="left">0.997502</td>
+</tr>
+<tr>
+<td align="left">8</td>
+<td align="left">43.7878</td>
+<td align="left">0.993876</td>
+</tr>
+</tbody></table>
+<p>测试图像随嵌入信息量的增加峰值信噪比和结构相似性的变化：</p>
+<p>测试图像为以下三张原图：000.bmp，houses.bmp，lena24.bmp；图像信息：512<em>512像素，768KB；512</em>512像素，257KB；512*512像素，768KB。</p>
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/90938c4128e6f70aa67bc3a3e039ee6c.png" width="30%" height="30%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/c70e1847c7abbeaff6a22fd21209d1ab.png" width="30%" height="30%">
+
+<img src="/images/基于密文图像可逆水印和区块链的版权保护系统/4b02af938bd7330f77ae088b392ea170.png" width="30%" height="30%">
+
+<table>
+<thead>
+<tr>
+<th align="left">嵌入信息量（字节）</th>
+<th align="left">000.bmp</th>
+<th align="left"></th>
+<th align="left">houses.bmp</th>
+<th align="left"></th>
+<th align="left">lena24.bmp</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"></td>
+<td align="left">PNSR</td>
+<td align="left">SSIM</td>
+<td align="left">PNSR</td>
+<td align="left">SSIM</td>
+<td align="left">PNSR</td>
+<td align="left">SSIM</td>
+</tr>
+<tr>
+<td align="left">100</td>
+<td align="left">53.8828</td>
+<td align="left">0.999586</td>
+<td align="left">41.3154</td>
+<td align="left">0.99614</td>
+<td align="left">51.5621</td>
+<td align="left">0.999032</td>
+</tr>
+<tr>
+<td align="left">200</td>
+<td align="left">50.5246</td>
+<td align="left">0.999144</td>
+<td align="left">38.4231</td>
+<td align="left">0.992799</td>
+<td align="left">48.5811</td>
+<td align="left">0.99809</td>
+</tr>
+<tr>
+<td align="left">300</td>
+<td align="left">48.6287</td>
+<td align="left">0.998698</td>
+<td align="left">36.774</td>
+<td align="left">0.989756</td>
+<td align="left">46.9138</td>
+<td align="left">0.997173</td>
+</tr>
+<tr>
+<td align="left">400</td>
+<td align="left">47.0636</td>
+<td align="left">0.998245</td>
+<td align="left">35.6291</td>
+<td align="left">0.986809</td>
+<td align="left">45.7424</td>
+<td align="left">0.996291</td>
+</tr>
+<tr>
+<td align="left">500</td>
+<td align="left">46.1354</td>
+<td align="left">0.997812</td>
+<td align="left">34.8528</td>
+<td align="left">0.984361</td>
+<td align="left">44.8672</td>
+<td align="left">0.99545</td>
+</tr>
+<tr>
+<td align="left">600</td>
+<td align="left">45.4045</td>
+<td align="left">0.997409</td>
+<td align="left">34.1305</td>
+<td align="left">0.981667</td>
+<td align="left">44.2069</td>
+<td align="left">0.994633</td>
+</tr>
+<tr>
+<td align="left">700</td>
+<td align="left">44.8971</td>
+<td align="left">0.997051</td>
+<td align="left">33.5283</td>
+<td align="left">0.979248</td>
+<td align="left">43.6333</td>
+<td align="left">0.993804</td>
+</tr>
+<tr>
+<td align="left">800</td>
+<td align="left">44.2466</td>
+<td align="left">0.99664</td>
+<td align="left">33.0508</td>
+<td align="left">0.977073</td>
+<td align="left">43.0274</td>
+<td align="left">0.992978</td>
+</tr>
+<tr>
+<td align="left">900</td>
+<td align="left">43.7272</td>
+<td align="left">0.996238</td>
+<td align="left">32.6421</td>
+<td align="left">0.975097</td>
+<td align="left">42.6076</td>
+<td align="left">0.992194</td>
+</tr>
+<tr>
+<td align="left">1000</td>
+<td align="left">43.3391</td>
+<td align="left">0.995867</td>
+<td align="left">32.2591</td>
+<td align="left">0.973171</td>
+<td align="left">42.2107</td>
+<td align="left">0.991378</td>
+</tr>
+</tbody></table>
+<p>测试总结：本作品的嵌入算法性能较好，被嵌入图像的PSNR较高，结构相似性也很好，能够保证图像在嵌入数据后不影响图像的视觉品质。对于512*512的bmp图像，24位真彩色图像，嵌入信息量达到8000bit,图像质量仍然较好。即使是8位的灰度图像，在嵌入3200bit后PSNR也仍然在35以上。在不改变嵌入后图像的情况下，经比较嵌入水印与提取水印完全一致没有任何出入。</p>
+<h1 id="创新性总结"><a href="#创新性总结" class="headerlink" title="创新性总结"></a>创新性总结</h1><p>将同态加密算法与可逆水印相结合。本项目在多次实验和对比之后采用对经典的DE（差值扩展）算法进行改进，结合Paillier加密算法的同态特性，实现了密文域的信息嵌入和明文域的信息提取。在算法中我们采用将8个像素并行结合处理的方式，在保证性能良好的范围之内将算法中的模N提高到128比特，大大提高了算法的安全性。两者的改进结合即解决了图像的安全存储问题，又能提高图片处理时的稳定性。在图片处理时同态加密算法能确保图片的安全性，而可逆水印嵌入又能带来优秀的信息隐藏效果和版权保护效果。两者的结合为图片的保护与安全带来了可靠结实的基础。</p>
+<p>创新性的将区块链技术引入图片的版权保护中，通过区块链技术的密码学方法来保证已有数据不可能被篡改从而达到版权溯源和版权保护的目的。区块链技术是比特币的底层技术和基础架构，而将区块链技术与图片的版权保护相联系的想法却很少有人能够提出和想到。我们通过比特币的安全性和不可篡改性得到启发将区块链技术引入图片保护中，随后项目的测试也证明了区块链技术在的版权保护和溯源方面具有很好的效果。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>您的钱钱支持将鼓励我继续创作!</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="1129ljc 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="1129ljc 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>1129ljc
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/post/33add856.html" title="基于密文图像可逆水印和区块链的版权保护系统">http://example.com/post/33add856.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-Hans" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+              <a href="/tags/%E5%90%8C%E6%80%81%E5%8A%A0%E5%AF%86/" rel="tag"><i class="fa fa-tag"></i> 同态加密</a>
+              <a href="/tags/%E5%8F%AF%E9%80%86%E6%B0%B4%E5%8D%B0/" rel="tag"><i class="fa fa-tag"></i> 可逆水印</a>
+              <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag"><i class="fa fa-tag"></i> 区块链</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/post/4098c766.html" rel="next" title="基于区块链的电子病历安全管理系统">
+      基于区块链的电子病历安全管理系统 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 allowTransparency="true" src="//music.163.com/outchain/player?type=2&id=405389051&auto=0&height=32">
+      </iframe>
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%9C%E5%93%81%E6%A6%82%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text">作品概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.1.</span> <span class="nav-text">技术介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.2.</span> <span class="nav-text">相关工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E8%89%B2%E6%8F%8F%E8%BF%B0"><span class="nav-number">2.3.</span> <span class="nav-text">特色描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%89%8D%E6%99%AF"><span class="nav-number">2.4.</span> <span class="nav-text">应用前景</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%9C%E5%93%81%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">作品设计与实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.1.</span> <span class="nav-text">系统设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8C%E6%80%81%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86"><span class="nav-number">3.2.</span> <span class="nav-text">同态加密与解密</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90"><span class="nav-number">3.2.1.</span> <span class="nav-text">密钥生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Paillier%E5%90%8C%E6%80%81%E6%80%A7%E8%B4%A8"><span class="nav-number">3.2.2.</span> <span class="nav-text">Paillier同态性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B9%E8%BF%9B"><span class="nav-number">3.2.3.</span> <span class="nav-text">改进</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%86%E6%96%87%E5%9F%9F%E5%8F%AF%E9%80%86%E6%B0%B4%E5%8D%B0%E5%B5%8C%E5%85%A5"><span class="nav-number">3.3.</span> <span class="nav-text">密文域可逆水印嵌入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E7%BB%9FDE%E7%AE%97%E6%B3%95"><span class="nav-number">3.3.1.</span> <span class="nav-text">传统DE算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B9%E8%BF%9BDE%E7%AE%97%E6%B3%95"><span class="nav-number">3.3.2.</span> <span class="nav-text">改进DE算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B0%B4%E5%8D%B0%E5%B5%8C%E5%85%A5%E6%8F%90%E5%8F%96%E5%8F%8A%E9%AA%8C%E8%AF%81"><span class="nav-number">3.4.</span> <span class="nav-text">水印嵌入提取及验证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E5%A4%84%E7%90%86"><span class="nav-number">3.4.1.</span> <span class="nav-text">预处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90"><span class="nav-number">3.4.2.</span> <span class="nav-text">嵌入密钥生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5"><span class="nav-number">3.4.3.</span> <span class="nav-text">嵌入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E5%8F%96"><span class="nav-number">3.4.4.</span> <span class="nav-text">提取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%98%E5%8E%9F"><span class="nav-number">3.4.5.</span> <span class="nav-text">还原</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%BA%E5%9D%97%E9%93%BE"><span class="nav-number">3.5.</span> <span class="nav-text">区块链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E5%9D%97%E9%93%BE%E4%BB%8B%E7%BB%8D"><span class="nav-number">3.5.1.</span> <span class="nav-text">区块链介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E7%BB%93%E6%9E%84"><span class="nav-number">3.5.2.</span> <span class="nav-text">实现的区块链结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8C%BA%E5%9D%97"><span class="nav-number">3.5.2.1.</span> <span class="nav-text">区块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8C%BA%E5%9D%97%E5%A4%B4"><span class="nav-number">3.5.2.2.</span> <span class="nav-text">区块头</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Merkle%E6%A0%91"><span class="nav-number">3.5.2.3.</span> <span class="nav-text">Merkle树</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E7%BB%93%E6%9E%84"><span class="nav-number">3.5.3.</span> <span class="nav-text">应用结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">3.6.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text">软件操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E6%B5%81%E7%A8%8B"><span class="nav-number">4.1.</span> <span class="nav-text">软件流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83"><span class="nav-number">4.2.</span> <span class="nav-text">测试环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%95%8C%E9%9D%A2%E6%BC%94%E7%A4%BA"><span class="nav-number">4.3.</span> <span class="nav-text">操作界面演示</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%9C%E5%93%81%E6%B5%8B%E8%AF%84"><span class="nav-number">5.</span> <span class="nav-text">作品测评</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%9B%BE%E5%83%8F%E4%BF%A1%E6%81%AF"><span class="nav-number">5.1.</span> <span class="nav-text">测试图像信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C"><span class="nav-number">5.2.</span> <span class="nav-text">测试结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E6%96%B0%E6%80%A7%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">创新性总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="1129ljc"
+      src="/images/touxiang.jpg">
+  <p class="site-author-name" itemprop="name">1129ljc</p>
+  <div class="site-description" itemprop="description">技术、生活、吐槽</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/1129ljc?tab=repositories" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;1129ljc?tab&#x3D;repositories" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:lijinchuan@iie.ac.cn" title="E-Mail → mailto:lijinchuan@iie.ac.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-Hans" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">1129ljc</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">38k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">34 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo:5.4.0</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces:7.8.0</a> 强力驱动
+      <img src="/images/beian.png" style="display: inline-block;"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备2020046711号</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  <script src="//code.tidio.co/hq0p9xqkkvnqnwn40ubqtbm1nmy45ods.js"></script>
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'dark',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'http://example.com/post/33add856.html',]
+      });
+      });
+  </script>
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api       : 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey    : 'zag5eGQlwyurNgELavtE4nRcG7vUcWvHuyCVWO3dgJFRJqXJpvO4L9UbZ2mqAWq6',
+      shortname : '1129ljc-top',
+      url       : "http://example.com/post/33add856.html",
+      identifier: "post/33add856.html",
+      title     : "基于密文图像可逆水印和区块链的版权保护系统",
+    });
+  }, window.DisqusJS);
+});
+</script>
+
+</body>
+</html>

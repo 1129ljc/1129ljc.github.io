@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="基于区块链的电子病历安全管理系统，2018全国信息安全作品赛三等奖，版权：陈伟、孟宪栋、肖扬、李金川。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于区块链的电子病历安全管理系统">
+<meta property="og:url" content="http://example.com/post/4098c766.html">
+<meta property="og:site_name" content="1129ljc">
+<meta property="og:description" content="基于区块链的电子病历安全管理系统，2018全国信息安全作品赛三等奖，版权：陈伟、孟宪栋、肖扬、李金川。">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/1620209276.jpg">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/1620209830.jpg">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/839415b4da7afea79f20157180647a0d.jpeg">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/1620211137.jpg">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/1620211496.jpg">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/1620211768.jpg">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/1620211912.jpg">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/1620212209.jpg">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/cac1ce89fad81afdeab26776a5aea4b6.png">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/f030d7e1fb6ef7360f8c3edaba0795e5.png">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/de87d014a4b38e07dc00291ce1935eed.png">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/1620212586.jpg">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/1620212990.jpg">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/1620213079.jpg">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/1620213254.jpg">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/1620213334.jpg">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/1620213415.jpg">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/1620213506.jpg">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/1620213565.jpg">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/1620213625.jpg">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/1620213938.jpg">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/1620214047.jpg">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/1620214147.jpg">
+<meta property="og:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/1620214701.jpg">
+<meta property="article:published_time" content="2021-05-16T15:04:46.000Z">
+<meta property="article:modified_time" content="2021-05-17T11:45:05.119Z">
+<meta property="article:author" content="1129ljc">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="区块链">
+<meta property="article:tag" content="电子病历">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/基于区块链的电子病历安全管理系统/1620209276.jpg">
+
+<link rel="canonical" href="http://example.com/post/4098c766.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>基于区块链的电子病历安全管理系统 | 1129ljc</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">1129ljc</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">高效学习工作</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">10</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">7</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/1129ljc" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/post/4098c766.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="1129ljc">
+      <meta itemprop="description" content="技术、生活、吐槽">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="1129ljc">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于区块链的电子病历安全管理系统
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-16 23:04:46" itemprop="dateCreated datePublished" datetime="2021-05-16T23:04:46+08:00">2021-05-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-17 19:45:05" itemprop="dateModified" datetime="2021-05-17T19:45:05+08:00">2021-05-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%AC%E7%A7%91%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">本科项目</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>20k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>18 分钟</span>
+            </span>
+            <div class="post-description">基于区块链的电子病历安全管理系统，2018全国信息安全作品赛三等奖，版权：陈伟、孟宪栋、肖扬、李金川。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>在医疗信息化蓬勃发展的今天，“互联网+医疗”盛极一时，但是在其背后仍然有不可忽视的缺陷，医疗机构存在工作效率低下的问题，医疗信息利用率不高，信息冗余问题非常严重，医疗机构之间缺乏医疗信息的交互，部分医疗机构虽然实现了小范围的信息共享，但是人们对于共享信息的安全性问题有着很深的顾虑。区块链作为一种全新的分布式存储方案，成为解决医疗信息的共享和安全问题的最佳方案。该项目主要围绕医疗信息的共享和保护两个方面，同时兼顾备受争议的区块链存储冗余的问题，设计了一个基于区块链的电子病历安全管理平台，该平台采用基于签名的拜占庭协议，提高了共识机制的容错率；采用对称加密方式，对电子病历进行对称加密；将医疗机构分层，可信度较高的医疗机构是用来维护和存储区块链的节点，普通医疗机构作为区块链电子病历管理系统服务代理；将文本信息和访问记录存储于区块链，多媒体数据存储在本地；通过轻量化和分片技术相结合，解决区块链的存储冗余问题。基于该电子病历安全管理系统，医疗机构可以实现医疗信息共享，对患者的病情诊断更加准确，同时提高了医疗机构的工作效率，而患者也可以在保护隐私的前提下对自己的病史进行查阅，对非法访问进行追踪，有利于促进医疗信息服务的智能化和个性化。</p>
+<p><strong>关键词：</strong>电子病历安全管理，区块链，签名拜占庭协议，权限分级，改进分片技术。</p>
+<h1 id="作品概述"><a href="#作品概述" class="headerlink" title="作品概述"></a>作品概述</h1><h2 id="背景分析"><a href="#背景分析" class="headerlink" title="背景分析"></a>背景分析</h2><p>随着互联网企业对传统医疗产业的融合渗透不断加快，在互联网重构医疗行业的过程中，仍然有不少难题需要破解，需要国家相关部门完善行业标准和监管措施，需要在线医疗企业等进一步提升产品技术水平、大数据分析能力和营销管理水平，需要医疗机构积极配合医疗信息化建设。目前互联网医疗面临信息不能共享、国家监管政策缺失、费用报销不能与医保接口、数据挖掘困难、盈利模式不清晰等问题，尚处在摸索阶段。“互联网+医疗”是一个任重而道远的过程，其中信息的共享和安全是发展过程中两个不可回避的问题，在目前的互联网发展状况之中，我们可以很清晰的总结出现代医疗信息化仍然存在的问题。</p>
+<h3 id="医疗信息缺乏整合和共享"><a href="#医疗信息缺乏整合和共享" class="headerlink" title="医疗信息缺乏整合和共享"></a>医疗信息缺乏整合和共享</h3><p>医疗信息缺乏整合和共享，导致医疗资源分布和发展水平极其不均。近年来，大医院“看病难、看病贵、看病烦”问题成为中国社会关注的焦点，大医院与广大群众存在严重的医疗信息不对称，且大医院基本上为独立运作，医疗信息分散，难以互通，求医群众和医护人员均无法通过网络实时了解多家大医院的医疗信息动态和实现医疗信息的共享。大规模医疗数据已经实现数字化，但未能得到共享，原因在于数据共享相关法律众多，且存在诸多风险。</p>
+<h3 id="技术漏洞和篡改风险"><a href="#技术漏洞和篡改风险" class="headerlink" title="技术漏洞和篡改风险"></a>技术漏洞和篡改风险</h3><p>完整的个人健康历史记录对于一个人是非常重要的，每个生命体征得到记录，并且可以高效准确地记录与所用药物、每位医生诊断、患者疾病和手术相关的信息以及其他信息，这些信息一旦泄露，个人安全将受到严重威胁。2017年，暗网黑客组织通过三次非法侵入，盗取并公布了18万份患者病历。在暗网上有超过50万份儿童病历可供人下载，这些病历包含了儿童及其父母的姓名、社会保险号、电话号码以及住址。2016年，国内某部委医疗服务信息系统遭到攻击，7亿条公民隐私信息被泄露，8000余万条公民信息被贩卖。这些事件的发生正是由于技术漏洞和缺乏安全的医疗信息管理体系。</p>
+<h3 id="医疗信息不准确"><a href="#医疗信息不准确" class="headerlink" title="医疗信息不准确"></a>医疗信息不准确</h3><p>不准确，误导性或不完整的信息对决策的正确性和造成负面影响。随着医疗技术的不断发展，医学上的病情分类非常细致，在医生诊断的过程中由于交流不到位，医生对病人以往病情不了解而导致诊断不准确，后续的治疗过程出现医疗事故的事件举不胜举。30多位临床医生对1990年以来国内公开发行的医学期刊进行调查，涉及医学期刊近700种共300多万篇文献，其中检索出误诊文献10万余篇。据统计显示，20年来年度误诊率波动在26%~31%之间。误诊问题有很多负面影响，不仅患者的病症无法得到正确的治疗，而且使医患关系更加紧张。</p>
+<h3 id="医疗信息缺乏标准"><a href="#医疗信息缺乏标准" class="headerlink" title="医疗信息缺乏标准"></a>医疗信息缺乏标准</h3><p>如果没有标准的健康档案，医生对于患者的了解将每次都要从“零”开始，档案的积累让信息得以连接成连续的“健康线”。有关部门对于医疗信息化没有制定一个统一的信息存储标准，共享困难。现有医院信息标准不能满足医改后的医保中心和医院联动的模式，统计指标、医学术语缺乏科学规范的定义，医疗数据的相容性成为数据共享的一大难题。区块链技术的产生，使得上述问题有了解决的希望。首先区块链是一种分布式的存储方案，由参与的所有服务节点共同维护，并且去中心化去信任，可以在无中心化的状态下对数据进行安全存储和查询。数据打包形成区块，前一个区块的哈希值保存在后一个区块之中，攻击者想要篡改其中的数据时必须同时更改超过一半的节点保存的数据，这几乎是不可能完成的。作为一个重大的行业应用场景，各国企业、投资机构、政府部门已经开始迅速布局区块链技术在医疗行业的应用。例如，2017年8月，阿里健康宣布与常州市合作医联体+区块链试点项目。据阿里健康区块链技术负责人刘铁介绍：“常州市医联体区块链试点，是中国第一个基于医疗场景实施的区块链应用。”而就在9月，IBM Watson与美国食品与药物管理局(FDA)签署了一项为期两年的协议，以探索区块链技术在安全共享病人数据方面的应用，这些数据来自医疗记录、临床试验、基因检测和移动设备等资源。作为行业创新与颠覆的先锋，众多创业公司自然不会缺席这一新的蓝海。这些公司聚焦医疗产业链，在电子医疗记录互操作、保险索赔、医疗数据安全、供应链管理等各方面，试图向该行业的老问题、大问题发起冲击，诸如医疗记录的信息不对称、数据共享的安全性、保险索赔的低效、供应链管理的漏洞等，而他们手里的武器正是区块链技术。用区块链建立一个电子病历管理系统，在技术上可以增强防篡改性，对信息进行加密，增强了信息的保密性，解决了技术漏洞和篡改风险，基于区块链制定一个医疗信息存储的标准，使得各个医疗机构的信息相容性大大提高，从而实现医疗信息的共享，可以解决信息不相容、不能共享的问题。通过医疗机构信息共享平台，诊治医生可以了解患者患病经历和对病情的诊治方案，从而更准确的了解患者的患病情况，根据患病情况得到最佳的治疗方案，提高了诊断的准确性和效率，从患者角度，可以避免在不同的医院重复进行检查，减轻了患者的负担。基于上述分析，我们在所有医疗机构上构建区块链平台，关键医疗数据通过加密保存在区块链上，既实现了医疗信息的共享，又能对患者的医疗信息进行有效的保护。</p>
+<h2 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h2><h3 id="电子病历CDA标准"><a href="#电子病历CDA标准" class="headerlink" title="电子病历CDA标准"></a>电子病历CDA标准</h3><p>电子病历作为医院信息化建设的核心，为实现电子病历的安全共享，世界很多国家都投入大量人力、物力研究，并成立相关标准化组织。例如，美国卫生信息传输标准HL7；欧洲标准化委员会的两个技术委员会：TC251(医学信息）和TC224WG12(病人数据卡）；澳大利亚欧洲健康记录项目等。其中最具影响力的是美国的HL7，HL7成立于1987年，基于ISO的OSI标准的第7层，因此故名HL7，HL7上升为真正的国际标准还有一些距离，因为地区文化、编码语言等不同，但该标准已经被很多国家本地化改造，比如我国2006年5月成立的ChinaHL7，HL7某种程度上已经成为事实上的国际标准。我国的电子病历发展比较缓慢，1994年在第六届医药信息大会上，卫生部才首次提出了电子病历系统的建设目标和要求。随后受信息技术的制约和没有相关标准，电子病历系统一直依附于医院信息管理系统（HIS)，在以“管理”为中心的医院信息管理系统中，电子病历的格式，书写规范等一直未得到业内的统一，也就是说没有一个工业统一的电子病历系统。直到2009年12月，卫生部颁布《电子病历基本架构与数据标准（试行)》，该标准中规定了电子病历的基本概念、系统架构基本内容、信息来源、电子病历数据结构、电子病历临床文档信息模型、电子病历临床文档数据组与数据元标准和电子病历临床文档基础模板与数据集标准。2011年3月卫生部又颁布《基于电子病历的医院信息平台建设技术解决方案》。这些国家标准中对电子病历和电子病历系统的建设给出了相关规范，其中规定电子病历文档格式遵循HL7标准中临床文档结构（Clinical Document Architecture，CDA), CDA 文档格式是XML(Extensible Markup Language)，但是对XML中的元素的定义有相关规定，例如CDA—共有27个根节点，但其中只有9个为必填，其余可根据情况填写数据。根据CDA的规则，根节点拥有下级子节点等，这些规定限制了XML语言的一定灵活性，为了医学相关系统处理。可以理解为电子病历CDA文档是一种特殊的XML格式，CDA文档是XML文档子集。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620209276.jpg" width="30%" height="30%">
+
+<p>CDA文档包括文档头(Header)和文档体(Body)。CDA文档头共有四个部分构成：文档信息、服务提供者、服务对象和受访数据，如图1.1所示。文档信息包括文档ID、文档标题、有效时间和机密性状态等文档相关信息；服务提供者这部分包括这个文档是谁生成的，是谁录入的，谁审核了这个文档，谁获取这个文档副本和谁是参与健康医疗的提供者等相关人员信息；服务接受者包括患者，其它有意义的参与者(如家人)，和那些可能产生部分内容的设备；资料数据描述了文档受访数据。CDA文档体中所包括详细的临床报告，这些报告可以由结构化体组成，也可以是一个非结构化的大型二进制对象BLOB。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620209830.jpg" width="70%" height="70%">
+
+<h3 id="区块链技术"><a href="#区块链技术" class="headerlink" title="区块链技术"></a>区块链技术</h3><p>通常根据区块链应用的规模将其分为公有链，联盟链和私有链。对于公有链，各个节点可以自由加入和退出网络，其特点是完全去中心化，不受任何机构控制；联盟链则是各个节点通常都有与之对应的实体机构组织，通过授权后才能加入与退出网络；私有链则是各个节点的写入权限收归内部控制，而读取权限可视需求有选择性地对外开放。区块链的基础技术体系包括四个部分，分别是通信基础、存储部分、安全机制、共识机制，在这四个部分的基础上可搭建一个区块链应用平台，以下将在P2P网络，数据结构，共识机制三个方面阐述区块链的基础技术，并总结区块链技术的特点。</p>
+<p><strong>P2P网络：</strong>对等网络，即对等计算机网络（Peer-to-peer networking）在P2P网络环境中，彼此连接的多台计算机之间都处于对等的地位，各台计算机有相同的功能，无主从之分，一台计算机既可作为服务器，设定共享资源供网络中其他计算机所使用，又可以作为工作站，整个网络一般来说不依赖专用的集中服务器，也没有专用的工作站。网络中的每一台计算机既能充当网络服务的请求者，又对其它计算机的请求做出响应，提供资源、服务和内容。由于P2P网络和区块链都存在一种去中心化的概念，P2P网络作为一种基础的节点通信技术广泛应用于区块链之中。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/839415b4da7afea79f20157180647a0d.jpeg" width="30%" height="30%">
+
+<p><strong>区块链数据结构：</strong>区块链的存储结构如上图所示，数据形成之后，以区块的形式进行存储，每个区块里的数据格式都是相同的，块高度标识区块在区块链的位置，随时间的延长数值增大；父区块哈希值引用的区块链中父区块头的哈希值，通过这个值每个区块才首尾相连组成了区块链，并且这个值对区块链的安全性起到了至关重要的作用，正是前后关联的验证关系，才保证了区块链的不可篡改性；Merkle根，这个值是由区块主体中所有交易的哈希值再逐级两两哈希计算出来的一个数值，主要用于检验一笔交易是否在这个区块中存在；时间戳，记录该区块产生的时间，精确到秒；难度值，该区块相关数学题的难度目标；随机数(Nonce)，记录解密该区块相关数学题的答案的值。在实际应用中我们可以根据实际情况进行取舍，使区块链技术可以应用到医疗领域。</p>
+<p><strong>共识协议：</strong>共识协议是一种无中心化的情况下所有节点进行协商从而达到一致性意见的协议，由于共识协议只应用于无中心化的结构中，而区块链正好也是无中心化服务，所以为了保证所有节点在信息交互的过程中打成一致性意见，区块链才引入了共识协议，以下描述了现有的应用在区块链上的共识协议。</p>
+<p><strong>工作量证明机制（PoW：Proof of Work）：</strong>工作量证明机制即对于工作量的证明，是生成要加入到区块链中的一笔新的交易信息(即新区块)时必须满足的要求。在基于工作量证明机制构建的区块链网络中，节点通过计算随机哈希散列的数值解争夺记账权，求得正确的数值解以生成区块的能力是节点算力的具体表现。</p>
+<p><strong>权益证明机制(PoS：Proof of Stake)：</strong>2012年，化名Sunny King的网友推出了Peer coin，该加密电子货币采用工作量证明机制发行新币，采用权益证明机制，这是权益证明机制在加密电子货币中的首次应用。与要求证明人执行一定量的计算工作不同，权益证明要求证明人提供一定数量加密货币的所有权即可。换句话说，节点通过证明在以往的时间里承担打包的情况来证明在接下来的工作中是否更适合打包。</p>
+<p><strong>股份授权证明机制（DPoS：Delegate Proof of Stake）：</strong>股份授权证明机制与董事会投票类似，该机制拥有一个内置的实时股权人投票系统，就像系统随时都在召开一个永不散场的股东大会，所有股东都在这里投票决定公司决策。有谁来承担打包工作，决定于所有投票节点的投票情况。</p>
+<p><strong>拜占庭容错（BFT ： Byzantine Fault Tolerance）：</strong>BFT的结论是在 N ≥ 3F + 1的情况下一致性是可能解决。其中，N为计算机总数，F为有出现问题计算机总数。信息在计算机间互相交换后，各计算机列出所有得到的信息，以大多数的结果作为解决办法。拜占庭容错从规模上可以分为实用拜占庭容错和授权拜占庭容错，从消息传输上可以分为口头拜占庭容错（消息无签名）和书面拜占庭容错（消息包含签名）。</p>
+<p><strong>区块链技术特点：</strong>区块链技术主要有去中心化、去信任，开放、共识，公开透明，不可篡改可追溯的特点。开放，共识：任何人都可以参与到区块链网络，每一台设备都能作为一个节点，每个节点都允许获得一份完整的数据库拷贝。节点间基于一套共识机制，通过竞争计算共同维护整个区块链。任一节点失效，其余节点仍能正常工作。去中心，去信任：区块链由众多节点共同组成一个端到端的网络，不存在中心化的设备和管理机构。节点之间数据交换通过数字签名技术进行验证，无需互相信任，只要按照系统既定的规则进行，节点之间不能也无法欺骗其它节点。交易透明，双方匿名：区块链的运行规则是公开透明的，所有的数据信息也是公开的，因此每一笔交易都对所有节点可见。由于节点与节点之间是去信任的，因此节点之间无需公开身份，每个参与的节点都是匿名的。不可篡改，可追溯：单个甚至多个节点对数据库的修改无法影响其他节点的数据库，除非能控制整个网络中超过51%的节点同时修改，这几乎不可能发生。区块链中的每一笔交易都通过密码学方法与相邻两个区块串联，因此可以追溯到任何一笔交易的前世今生。</p>
+<h3 id="拜占庭共识协议"><a href="#拜占庭共识协议" class="headerlink" title="拜占庭共识协议"></a>拜占庭共识协议</h3><p>拜占庭将军问题实际上是如何让一个分布式系统的保持一致性和在特定条件下保持正确性的问题。分为口头协议和书面协议两种。</p>
+<p>口头协议：口头协议可抽象为满足以下2个条件的算法：条件1，所有忠诚的将军得出相同的作战指令，并且按指令执行（即一致性）；条件2，如果作战指令是忠诚的将军发出的，所有忠诚的将军会遵循这个将军发出的作战指令（特定条件下的正确性）。注意：如果发出作战指令的是叛军，所有忠诚的将军只能保证执行相同的作战指令，不保证作战指令是正确的。</p>
+<p>结论是，如果有m个叛军，必须至少有3m+1位将军（包括背叛和忠诚的将军）才能保证口头协议算法（以下简称OM算法）能解“拜占庭将军问题”。口头协议算法有下面几个假设：军队中的通讯兵完全可以相信，所有的消息都能被正确的发送；收到消息的人知道消息是谁发出来的；缺少的消息能被察觉出来（消息未收到则使用默认值）。接下来，具体看下算法如何处理：</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620211137.jpg" width="70%" height="70%">
+
+<p>OM算法里面有个$Majority()$函数，用来判断忠诚的将军最终应该是执行什么指令，逻辑为：在输入的一系列$V1,V2,V3,…,Vn$中，找到最多相同数量的值作为输出，如果找不到，用默认值替代。比如：$V1=进攻$，$V2=进攻$，$V3=撤退$，$Majority(V1,V2,V3)=进攻$。由于司令官也有可能是叛军，所以单纯的把司令官的指令当做最终指令肯定是不行的。代表从其他将军那里获得的关于司令官的指令，假设司令官告诉将军B的指令是”进攻”，如果将军B是忠诚的话，将军B会如实通知将军A“司令官告诉我的指令是进攻”，如果将军B是叛军的话，将军B可能会说“司令官告诉我的指令是撤退”或者干脆不发信息。通过$Majority()$函数，在忠诚的将军多于叛军$(n&gt;=3m+1)$的情况下，可以保证忠诚的将军得到相同的结论。</p>
+<p>书面协议：书面协议又称签名协议，这个算法可以在不管有多少叛军的情况下，都能让忠诚的将军们保持一致的行动，没有口头协议算法那个$n&gt;3m+1$的限制。相比较于口头协议，书面协议增加了两条假设：忠诚的将军的签名不能被篡改，签名的内容一旦有人篡改了就能被发现；任何人都能验证将军签名的可靠性。$SM(m)$算法的一个表达特点：比如$X:i$指值x是被将军i签名过的，$V:j:i$意味着值V被将军j签名过，然后将军i再签名一次$V:j$，同时约定$V:0$即来自司令官的命令。算法具体如下$SM(m)$：</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620211496.jpg" width="70%" height="70%">
+
+<p>这个算法要求m+1轮信息互换；在第2步中，如果将军i收到的与已经在集合中的相同，自动忽略；$Choice()$函数即每个忠诚的将军都知道规则的函数，由于$SM(m)$算法完成后每个将军获得的{V}都是相同的，所以每个忠诚的将军都能根据同样的规则计算出函数值。口头协议中的叛军在每一轮共识发送的消息可以任意做假，因为消息并没有添加签名，无法确认消息来源的正确性，与书面协议相比，这是其最大的缺陷。口头协议的缺点是只能保证1/3的容错率，而书面协议的优点是引入了签名机制，作恶节点无法伪造正常节点的消息，相比较于口头协议，容错率大大提高。</p>
+<h3 id="区块链存储技术"><a href="#区块链存储技术" class="headerlink" title="区块链存储技术"></a>区块链存储技术</h3><p>区块链技术显著提高了数据的安全性与可靠性，但是目前区块链技术的储存扩展性较差。以比特币为例，截至2017年5 月8 日，共产生465402 个区块，总容量为107.89GB，链上已认证地址9,892,723个。由于区块链技术要求比特币的网络中每个完全节点都保存着完整的区块链信息，所以目前有近1000万个节点贡献了100GB以上的磁盘空间来储存区块链数据。也就是说，目前的比特币的系统用了近1000PB的存储空间仅保存了100GB左右的数据，这极大地浪费了存储空间。并且，比特币的容量和参与的节点数量会随着时间的推移迅猛增加，区块链技术就会越来越多地占用海量节点的大量存储空间。这也极大地限制了以区块链技术为基础的数据库系统的发展与应用。如果将区块链技术应用到医疗信息化的领域，搭建一个基于区块链的医疗数据共享平台，如果不考虑多媒体信息，只考虑文本信息，同一段时间段产生的医疗数据总量将会比特币产生交易数据总量的几百倍，区块链的数据存储总容量将会达到一个难以想象的数字，为了提高存储效率，同时维护正常的区块链系统的正常的运行，我们必须优化存储方案，节省空间，提高效率。目前区块链的优化存储思想主要有两种，一种是轻量化，另一种是对区块链进行分片，两者都可以达到优化存储的目的，各有优劣。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620211768.jpg" width="70%" height="70%">
+
+<p>区块链的轻量化技术，区块链的轻量化如上图所示，在一个区块链网络中，正常的区块链的存储方案是所有节点的存储数据都是相同的，在上图的轻量化思想中，部署一个中心化节点存储从搭建区块链开始到现在时间存储的所有区块，而其他节点则是存储最近一段时间的区块链新产生的区块，当需要获取生成时间比较长的区块（节点没有存储的区块）中的数据时需要向中心化节点发出获取数据的请求。轻量化优点是让一个节点承担大部分的存储任务，其他节点可以节省存储空间，减轻维护区块链的压力，新区块所有节点都会存储，与分片技术相比，不可篡改性会更高；缺点是中心化的节点概念与区块链的去中心化的思想相违背，而且中心化节点更容易遭受不可预知的攻击。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620211912.jpg" width="70%" height="70%">
+
+<p>区块链的分片技术：区块链的分片技术如上图，基本思想是将新生成的区块随机存储在一定比例的节点中，这样本节点进行数据查询时如果本地区块有保存目标信息，则直接在本地提取，如果本地存储的区块并没有目标信息，则会向其他节点发起查询请求。现阶段的分片技术是将所有节点划分成存储节点，验证节点和用户节点，但是这样做的维护成本将会很高，所以将三者结合，节点同时进行存储，验证和提供服务。分片技术的优点是在保证区块链去中心化的前提下，在完整区块链之中挑选若干区块保存，并且若干节点通过协商可以恢复完整的区块链，存储区块链得到优化，降低了维护的成本；缺点是所有区块中生成时间较长的和新生成的区块的处理方式相同，新生成的区块存放的节点数量不足可能会导致新生成的区块被篡改。</p>
+<h2 id="特色描述"><a href="#特色描述" class="headerlink" title="特色描述"></a>特色描述</h2><p>医疗信息处理具有实时性高，吞吐量大，响应时间短的特点。我们根据该场景设计了一个基于签名拜占庭的区块链电子病历管理平台，采用医疗机构分级的思想，去除了“币”与“挖矿”的概念，并对数据的共识过程进行优化，提高了效率，同时考虑到医疗数据的庞大信息量，提出并实现了将轻量化和分片技术相结合的优化存储方案，以下是该项目的特色。</p>
+<p>采用签名拜占庭协议：在共识协议上，我们采用签名拜占庭共识协议。共识过程中，拜占庭节点接收数据，本节点将数据签名之后再转发给其他节点，同时将本节点收到其的他节点的数据也签名转发，所以共识协议抗攻击的能力大大提高，共识协议运行的结果可靠性会提高。</p>
+<p>优化区块生成过程：在区块生成过程中，我们采用间隔区块的方法根据“老区块”信息提前计算出参与共识的拜占庭节点。通过区块的hash值得出拜占庭节点的好处是使得提前预测拜占庭节点很困难，缺点是必须等待本轮区块形成后才能计算下一轮拜占庭节点，而数据是无时无刻产生的，这样节点在本轮数据接收结束——共识协商完成——区块生成并广播到全网的这段时间内不知道该向谁发送数据。必须等到获取新区块的hash值后才能向新的拜占庭节点发送数据。通过间隔区块提前计算hash值，从区块链角度保证数据随时接收随时处理，提高了实用性和运行效率，同时也保证了对拜占庭节点的不可预测性。</p>
+<p>轻量化和分片存储的优化存储方案：在区块链的存储上我们吸收轻量化和分片技术的优点。由于“老区块”的安全性要比“新区块”的安全性更高，更不易篡改，所以我们建立一个随时间流逝的区块删除机制，保证老区块的存储的节点数量较少，新区块存储的节点数量较多，最“老”的区块的存储节点数量会达到我们设定的最小阈值，并且若干节点进行交互之后可以恢复一条完整的区块链。</p>
+<p>医疗机构分级：设计基于区块链的医疗数据平台，我们将医疗机构划分为上层可信机构可下层不可信的医疗机构，其中上层医疗机构是存储区块链的节点，共识打包过程从上层医疗机构挑选拜占庭节点进行，优化存储也是在上层可信节点上进行，上层机构承担区块链的维护工作，下层机构只有向区块链提交数据和请求数据的权利。</p>
+<p>引入二级密钥作为用户秘钥：每家医疗机构都会有主密钥，由主密钥和用户身份信息生成患者的二级密钥，并将其保存在用户的身份卡或者医保卡中，每次患者每次医院只需要提供医保卡或者身份卡。这样医院和患者都可以独立解密自己拥有的病历，既方便患者解密，又利于医疗机构之间医疗信息的共享。即使患者丢失了自己的密钥，也可以通过医院来恢复，不会造成自己医疗数据的丢失。</p>
+<p>个人医疗信息的访问追踪：由于区块链是一种共享资源，所以保护区块链中存储的内容十分有必要。将患者的医疗数据和对数据的查看记录放在区块链中，患者既可以查阅自己的病史，还可以查看谁在什么时间查看了我的病史，对非法访问做到有据可查。可有效保护患者医疗数据的隐私安全。</p>
+<h2 id="应用前景分析"><a href="#应用前景分析" class="headerlink" title="应用前景分析"></a>应用前景分析</h2><p>通过我们的平台，各个医院之间的医疗数据会统一规范和格式，有利于医疗信息的整合和共享，可以间接达到各医疗机构间共享医疗资源的效果。提升医疗效率。将对患者的加密医疗数据的操作存储在区块链中，可有效保证数据禁止非授权的访问，保护数据的不可篡改性。即使发生了非预期的访问，我们也可以追溯出源头。在维护患者医疗信息隐私的同时也为患者提供了更为便捷和安全的数据存储服务。医疗数据的不可篡改为其真实性做出了保证，这一点在医疗数据的后续利用过程中非常重要。不仅医院可以信任该医疗数据的准确性，从而为患者的诊断提供便利；医疗研究机构也可从这些可信的数据中挖掘出宝贵的资源，促进了医学研究的发展。</p>
+<h1 id="系统设计与实现"><a href="#系统设计与实现" class="headerlink" title="系统设计与实现"></a>系统设计与实现</h1><h2 id="总体架构概述"><a href="#总体架构概述" class="headerlink" title="总体架构概述"></a>总体架构概述</h2><p>基于区块链医疗平台的拓扑网络结构如下图所示，中心圆圈之内代表高层医院，也是可信节点，从中产生拜占庭节点，存储区块链。外部是不可信的底层医院，可以向中心递交数据或提出查阅请求。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620212209.jpg">
+
+<h2 id="功能模块设计"><a href="#功能模块设计" class="headerlink" title="功能模块设计"></a>功能模块设计</h2><h3 id="创建新病历"><a href="#创建新病历" class="headerlink" title="创建新病历"></a>创建新病历</h3><p>患者第一次在医院下进行就诊时，要初始化秘钥信息，身份卡是一种标识患者的方式，在具体的实现上可以将其与个人的医保卡相结合，用户持有身份卡就可以享受区块链医疗服务，患者第一次就诊需要初始化身份卡。首先患者将自己的身份信息提交给医院方，由医院方生成患者的二级密钥，二级密钥用于加密患者的病历信息，这时患者就可以持身份卡进行挂号就诊，在就诊的过程中，会有基本的病情描述和相关检查的多媒体数据，病情描述处理成.xml格式形成文本病历信息经过患者的二级密钥加密之后上传至区块链，区块链经过一段时间的打包之后会向医院返回一个区块高度，该区块高度表示患者最近一次就诊记录所在的区块高度，用于查阅患者的病史，具体的查询过程会在2.4描述，最后将患者的数据量较大的多媒体数据保存在本地医院的多媒体数据存储点。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/cac1ce89fad81afdeab26776a5aea4b6.png" width="70%" height="70%">
+
+<h3 id="查询病历信息"><a href="#查询病历信息" class="headerlink" title="查询病历信息"></a>查询病历信息</h3><p>如果患者已经参与区块链医疗，医院可以向区块链请求患者的医疗信息，患者持身份卡用秘钥对医疗信息进行解密，授权医生读取患者的病史信息。如果医生只查阅文本信息，可能对患者病情认识不够，有时还要查询患者的多媒体信息，对病情有更加清晰的认识。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/f030d7e1fb6ef7360f8c3edaba0795e5.png" width="70%" height="70%">
+
+<h3 id="请求区块链文本信息"><a href="#请求区块链文本信息" class="headerlink" title="请求区块链文本信息"></a>请求区块链文本信息</h3><p>如果患者第二次到院就诊，直接出示身份卡解密从区块链上调取的患者的文本病历信息，医生经过分析之后结合当前病人的身体状况得出目前病人的患病情况得到病历信息并写入区块链。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/de87d014a4b38e07dc00291ce1935eed.png" width="70%" height="70%">
+
+<p>请求区块链文本信息和多媒体信息：当文本信息不能准确细致的描述患者的病情时，可以在文本信息中获取患者的多媒体信息的URL，由URL访问目标医院的多媒体数据存储点，下载之后进行更加仔细的分析诊断。</p>
+<h2 id="区块链"><a href="#区块链" class="headerlink" title="区块链"></a>区块链</h2><p>区块链实现包括五个模块，分别是区块链数据结构、签名拜占庭共识过程、区块的打包过程、区块生成过程和区块添加多方签名。区块数据结构模块对区块的数据组成进行描述；签名拜占庭共识过程是对签名拜占庭共识协议对一系列数据进行共识，从实际角度描述共识的过程，并对共识结果进行分析；区块的打包过程描述了各节点从各自收集数据到完整区块形成并广播的过程；区块的生成过程描述了一系列区块的生成过程，描述了不同区块生成过程中的区块与区块之间的联系。</p>
+<h3 id="区块数据结构"><a href="#区块数据结构" class="headerlink" title="区块数据结构"></a>区块数据结构</h3><p>如下图所示，是区块的数据结构的设计，区块的数据结构包括区块高度、区块头、计数器、病历信息、区块签名五个部分，区块高度是区块的唯一标识，是查询区块的关键字；区块头包含四个部分，版本号代表当前区块链使用的版本，父hash是上一个区块的hash值，Merkle树结构根节点，这个值是由区块主体中所有医疗数据的哈希值再逐级两两哈希计算出来的一个数值，主要用于检验病历信息是否在这个区块中存在，时间戳是本区块生成的时间，精确到秒；计数器是指保存数据的个数，包括病历信息和查询操作信息；打包节点的签名是利用了多方签名机制，所有参与该区块打包的节点都必须在区块中加入自己的签名。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620212586.jpg" width="30%" height="30%">
+
+<h3 id="签名拜占庭共识"><a href="#签名拜占庭共识" class="headerlink" title="签名拜占庭共识"></a>签名拜占庭共识</h3><p>签名拜占庭共识机制是指在拜占庭容错的基础上为共识的每个数据项添加自己的签名，假设，有六个上层节点用来存储区块链，每次打包都在六个节点中挑选三个节点用来充当拜占庭节点，节点标号是1~6号，取2、4、6号节点为当前拜占庭共识节点，2、4、6号节点当前记录的数据分别是ABD、AC、BC，每一个大写字母都是一条记录，取每条数据的hash值作为共识的数据，在数据的hash值后面追加节点的签名，共识过程是相互发送带签名的数据记录的hash值。</p>
+<p>举例分析，假设拜占庭节点有三个标号分别为2、4、6，共识的数据如下表，a、b、c、d分别是A、B、C、D的哈希值。</p>
+<center>表2.1 共识数据</center>
+
+<table>
+<thead>
+<tr>
+<th align="left">2节点</th>
+<th align="left">a、b、d</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">4节点</td>
+<td align="left">a、c</td>
+</tr>
+<tr>
+<td align="left">6节点</td>
+<td align="left">b、c</td>
+</tr>
+</tbody></table>
+<p>三个节点，最多处理一个出现问题节点，一个节点出错，需要两轮拜占庭共识才能解决出错的问题，我们用“a:2”代表“对于a哈希值，2节点对其签名”，“a:2:4”代表“对于a哈希值，2对其一重签名，4对其两重签名，对于a:2;4,持有者可以得出结论：2节点拥有的数据a,传递到4节点，又发送到本节点”，以此类推，下面是拜占庭核心内容：</p>
+<p>第一轮拜占庭：所有拜占庭节点将数据hash结果签名后发送给其他的拜占庭节点，节点发送内容如下图，最后各个拜占庭拥有的数据情况如表2.2所示。</p>
+<center>表2.2 第一轮共识结果</center>
+
+<table>
+<thead>
+<tr>
+<th align="left">发送节点 接收节点</th>
+<th align="left">2节点</th>
+<th align="left">4节点</th>
+<th align="left">6节点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">2节点</td>
+<td align="left">a,b,d</td>
+<td align="left">a:4,c:4</td>
+<td align="left">b:6,c:6</td>
+</tr>
+<tr>
+<td align="left">4节点</td>
+<td align="left">a:2,b:2,d:2</td>
+<td align="left">a,c</td>
+<td align="left">b:6,c:6</td>
+</tr>
+<tr>
+<td align="left">6节点</td>
+<td align="left">a:2,b:2,d:2</td>
+<td align="left">a:4,c:4</td>
+<td align="left">b,c</td>
+</tr>
+</tbody></table>
+<img src="/images/基于区块链的电子病历安全管理系统/1620212990.jpg" width="30%" height="30%">
+
+<p>第二轮拜占庭：每个节点将接收到的数据加上自己的签名发送到每个街拜占庭节点。</p>
+<p>如下图，经过第二轮之后的数据如表2.3。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620213079.jpg" width="30%" height="30%">
+
+<center>表2.3 第二轮共识结果</center>
+
+<table>
+<thead>
+<tr>
+<th align="left">发送节点 接收节点</th>
+<th align="left">2节点</th>
+<th align="left">4节点</th>
+<th align="left">6节点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">2节点</td>
+<td align="left">a,b,d</td>
+<td align="left">b:6:4,c:6:4</td>
+<td align="left">a:4:6,c:4:6</td>
+</tr>
+<tr>
+<td align="left">4节点</td>
+<td align="left">b:6:2,c:6:2</td>
+<td align="left">a,c</td>
+<td align="left">A:2:6,b:2:6,d:2:6</td>
+</tr>
+<tr>
+<td align="left">6节点</td>
+<td align="left">a:4:2,c:4:2</td>
+<td align="left">a:2:4,b:2:4,d:2:4</td>
+<td align="left">b,c</td>
+</tr>
+</tbody></table>
+<center>表2.4 共识完成之后每个节点的数据</center>
+
+<table>
+<thead>
+<tr>
+<th align="left">拜占庭节点 两轮共识</th>
+<th align="left">2节点</th>
+<th align="left">4节点</th>
+<th align="left">6节点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">本节点数据</td>
+<td align="left">a,b,d</td>
+<td align="left">a,c</td>
+<td align="left">b,c</td>
+</tr>
+<tr>
+<td align="left">第一轮共识</td>
+<td align="left">a:4,c:4 b:6,c:6</td>
+<td align="left">a:2,b:2,d:2 b:6,c:6</td>
+<td align="left">a:2,b:2,d:2 a:4,c:4</td>
+</tr>
+<tr>
+<td align="left">第二轮共识</td>
+<td align="left">a:4:6,c:4:6 b:6:4,c:6:4</td>
+<td align="left">a:2:4,b:2:4,d:2:4 b:6:2,c:6:2</td>
+<td align="left">a:2:4,b:2:4,d:2:4 a:4:2,c:4:2</td>
+</tr>
+</tbody></table>
+<p>将数据进行整理之后如表2.4之后，通过第一轮共识，每个拜占庭节点都可以统计其他拜占庭节点所接收的数据，进行整理，统计可知拜占庭节点内接收数据A的有两个，接收数据B的有两个，接收数据C的有两个，而接收数据D的只有一个，一共有三个拜占庭节点，根据少数从多数原则，A,B,C被保留，D被丢弃，最后打包的数据只有A,B,C。第二轮共识主要是由其他节点验证第一轮发送数据的节点发送数据是否是可信的，如果存在一个作恶节点，利用上述的两轮拜占庭共识就可以检测，但是如果存在两个作恶节点，不论拜占庭节点的数量有多少，需要三轮以上的共识才可以找出作恶节点。对于拜占庭节点数量为M时，作恶节点不超过⌈M/2⌉-1时，经过⌈M/2⌉+1轮共识就可以揪出作恶节点，这里的作恶节点是相互通信，干扰共识结果，也可以称之为“共谋”。</p>
+<p>大部分研究表明实用拜占庭容错的容错大小为1/3，实用拜占庭容错并没有在共识中引入签名，对于共谋节点来说是很容易作恶的，但是引入签名之后，共谋难度大大增加，签名无法伪造，只要保证数据源（数据一重签名节点）发送的数据没有问题，共识过程出现错误的概率是极低的。</p>
+<h3 id="区块打包"><a href="#区块打包" class="headerlink" title="区块打包"></a>区块打包</h3><p>当数据收集到一定程度（指定时间长度），应该将数据打包形成区块。所有拜占庭节点将一项项数据共识，去除差异，所有拜占庭的数据都相同，最后区块形成，下面举例分析一个区块的形成过程。</p>
+<h4 id="第一步：挑选拜占庭节点"><a href="#第一步：挑选拜占庭节点" class="headerlink" title="第一步：挑选拜占庭节点"></a>第一步：挑选拜占庭节点</h4><img src="/images/基于区块链的电子病历安全管理系统/1620213254.jpg" width="70%" height="70%">
+
+<center>表2.5 IP列表</center>
+
+<table>
+<thead>
+<tr>
+<th align="left">2节点</th>
+<th align="left">IP地址</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">4节点</td>
+<td align="left">IP地址</td>
+</tr>
+<tr>
+<td align="left">6节点</td>
+<td align="left">IP地址</td>
+</tr>
+</tbody></table>
+<p>产生拜占庭节点之后，如上图，在六个节点中产生了2、4、6三个拜占庭节点，所有节点存储一个关于拜占庭节点的IP地址列表，如表2.5，用来指向发送数据，2、4、6节点被选中接收数据，三个节点执行共识打包操作。</p>
+<p>第二步：所有节点向拜占庭节点发送数据</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620213334.jpg" width="70%" height="70%">
+
+<p>上图为一段时间内产生的A,B,C,D四个数据项各节点的接收情况,每个节点接收的结果是不一样的，原因是由于网络延迟或者时间截止等等原因，真实的网络环境中接收的结果要比上图的结果更具有一致性，完美的结果是三个节点都接收到了四个数据项。</p>
+<p>第三步：拜占庭节点共识</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620213415.jpg" width="70%" height="70%">
+
+<p>所有的拜占庭节点进行共识，发送的共识信息是指数据项的hash值，如图2.10，所有节点计算数据项的hash值进行共识。a,b,c,d分别是数据项A,B,C,D的hash值，a=hash(A),b=hash(B)，c=hash(C),d=hash(D)。</p>
+<p>第四步：数据汇总IP列表第一个拜占庭节点</p>
+<center>表2.6 2节点接收数据</center>
+
+<table>
+<thead>
+<tr>
+<th align="left">本节点拥有</th>
+<th align="left">A,B,D</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">来自4节点</td>
+<td align="left">A,C</td>
+</tr>
+<tr>
+<td align="left">来自6节点</td>
+<td align="left">B,C</td>
+</tr>
+<tr>
+<td align="left">汇总数据</td>
+<td align="left">A,B,C,D</td>
+</tr>
+</tbody></table>
+<img src="/images/基于区块链的电子病历安全管理系统/1620213506.jpg" width="30%" height="30%">
+
+<p>所有拜占庭节点将这一段时间收到的数据发送到IP列表中的第一个IP对应的节点。2节点是IP列表中的第一项，所有拜占庭节点将接收的数据项发送到2节点，如图2节点接收的数据如表2.6所示，2节点经过整理之后，接收的数据为A,B,C,D。</p>
+<p>第五步：首节点打包成区块</p>
+<p>2、4、6节点达成共识意见，将A、B、C保留并打包，D丢弃，由2节点将数据打包形成区块。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620213565.jpg" width="60%" height="60%">
+
+<p>第六步：依次签名并共享</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620213625.jpg" width="60%" height="60%">
+
+<p>拜占庭节点按IP列表顺序依次进行签名，最后签名的拜占庭节点将打包的区块上传到p2p网络。</p>
+<h2 id="区块链生成"><a href="#区块链生成" class="headerlink" title="区块链生成"></a>区块链生成</h2><p>挑选拜占庭节点的基本原则是，在存储区块链的所有节点中挑选拜占庭节点，使用已经打包成功区块数据的哈希值作为随机算法的随机种子，经过随机算法在存储区块链的节点中挑选拜占庭节点，所以最后挑选的结果具有随机性。为了保证数据处理的实时性，我们使用间隔区块提前计算拜占庭节点的方法，下面举例分析。</p>
+<p>将时间设定在12是0分到12时30分，假设10分钟生成一个区块，存储区块链的节点共有六个，分别为1-6号节点，每次挑选拜占庭节点的数量为4，将时间点分别定位在12时5分（A点），12时10分（B点），12时11分（C点），12时20分（D点），A、B、C、D四个时间点的变化过程描述了随时间变化过程中节点存储区块的情况和拜占庭节点的分布情况。</p>
+<p>A.将时间定位在12时5分，表示第五轮打包的数据收集时间，此时所有节点同时拥有区块1到4，第五轮打包的节点是1、4、6，所有节点产生的数据都向1、4、6节点发送。</p>
+<p>B.将时间点定位在上午12时10分，这时第五轮数据收集结束，打包开始，第六轮数据收集开始，第六轮的拜占庭节点1、2、5是由区块4的数据经过计算生成的：<br>$$<br>(1、2、5)&lt;=random(hash(Block4))<br>$$<br>由公式可知，第六轮拜占庭节点是由区块4进行hash操作，hash结果作为随机种子，经过随机算法计算出，这就是我们的提前计算拜占庭节点的方案。可以看到上一轮的拜占庭节点和下一轮的拜占庭节点可能会重合，例如图中1节点被再次选中，所以一个节点可能重复被选中充当拜占庭节点。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620213938.jpg" width="80%" height="80%">
+
+<p>C.将时间点定位在上午12时11分，第五轮数据打包结束，第六轮数据收集正在进行，所有节点保存区块5，第六轮拜占庭节点为1、2、5。</p>
+<p>D.将时间点定位在12时20分，第六轮数据收集结束，开始共识打包，第七轮数据收集开始，2节点是第六轮和第七轮的拜占庭节点，第七轮的拜占庭节点由区块5计算生成：<br>$$<br>(2、3、6)&lt;=random(hash(Block5))<br>$$<br>总结挑选拜占庭节点的方式，第M轮拜占庭节点由第M-2区块数据经过计算得到，计算公式：<br>$$<br>Ф_m=random(hash(λ_{m−2}))(M \in Z,M&gt;1)<br>$$<br>其中$Ф_m$为第M轮拜占庭节点计算结果，$λ_{m-2}$为高度为M-2的区块数据，第一，二号区块采用给定的参数生成指定的拜占庭节点。</p>
+<p>区块多方签名：由区块数据结构和区块的打包过程可知，在区块中添加多方签名的是共识该区块数据的拜占庭节点，区块中添加了多方签名，信息查询时，通过验证区块的hash指和签名结果，确定区块是否可信，与比特币hash链的单hash值的验证相比更加安全，可信，防篡改性增强。</p>
+<h2 id="区块链优化存储"><a href="#区块链优化存储" class="headerlink" title="区块链优化存储"></a>区块链优化存储</h2><p>采用区块链的轻量化和分片技术相结合，以老区块的安全性要比新区块的安全性更高为基础，提出了一个随时间变化的区块删除方案。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620214047.jpg" width="60%" height="60%">
+
+<p>区块生成之后定义三个阶段，经过三个阶段之后，区块定义为老区块，区块分别在阶段一，阶段二，阶段三定义不同的删除方式，以便减轻单节点的存储整个区块链的压力，如上图。</p>
+<p>区块生成：区块生成之后被上传到P2P网络，所有节点都将存储新生成的区块。</p>
+<p>阶段一是区块生成之后的一段时间，由于区块链的新区块遭到篡改的可能性要比老区块大，所以为了保证安全性，我们在阶段一对新生成的区块不足任何删除处理，保持所有节点都存储的状态。</p>
+<p>阶段二是经过一段时间之后的一段时间，在该阶段区块之后已经有一系列区块生成，虽然有新的区块生成，但是也不能删除区块太多，所以，我们制定一种在该阶段删除区块的规则，以删除概率P删除在时间段二的区块。</p>
+<p>对于一个处于时间段二的区块M删除概率P的计算方法：</p>
+<p>其中，γ：当前存储区块M的节点数；α：存储区块链的节点总数；σ:阶段二已逝去的时间长度；β：阶段二总时间长度；μ：对于一个指定高度的区块，存储该区块的节点的数量的最小值。</p>
+<p>当前存储区块M的节点数需要通过请求所有节点是否存储了区块M，并对M区块的数量进行统计，如果区块M的数量大于区块数量阈值μ，表示允许以概率P删除该区块，否则不能删除。</p>
+<img src="/images/基于区块链的电子病历安全管理系统/1620214147.jpg" width="60%" height="60%">
+
+<p>阶段二已逝去的时间长度是指当前时间点在阶段二所指定的时间段内，并且当前时间点与阶段二开始时间的差值，如图2.16所示，假设阶段二指定为2018年4月12日到2018年6月12日，阶段二的时间长度为60天，假定今天为5月12日，则阶段二已经逝去的时间为30天。</p>
+<p>阶段三的区块时间已经比较长，首先询问其他节点统计区块M存在的节点的数量，并与区块数量阈值进行比较，如果前者大于后者，则进行删除，如果等于，则放弃删除。</p>
+<p>老区块是不再进行删除操作的区块，通过对区块数量阈值的设定，必须保证若干节点协商之后能够用各自的区块与其他节点区块组合恢复出一条完整区块链。</p>
+<h2 id="电子病历安全管理系统"><a href="#电子病历安全管理系统" class="headerlink" title="电子病历安全管理系统"></a>电子病历安全管理系统</h2><h3 id="医疗机构分级"><a href="#医疗机构分级" class="headerlink" title="医疗机构分级"></a>医疗机构分级</h3><p>区块链采用的是联盟链，所以要将参与区块链系统的节点进行分级，而且必须对分级之后的医疗机构赋予不同的权限，以保障联盟链系统的安全性。按医疗技术水平划分，三级医院，主要指全国、省、市直属的市级大医院及医学院校的附属医院；二级医院，主要指一般市、县医院及省辖市的区级医院，以及相当规模的工矿、企事业单位的职工医院；一级医院，主要指农村乡、镇卫生和城市街道医院。将医疗机构进行分级，一共分成两级，上级是医疗机构中的三级甲等医院，下级是非三级甲等医院、二级医院、以及一级医院和其他独立的医疗机构。上级医疗机构服务器是存储区块链的节点，拥有的权限有存储并维护区块链，随机获得参与区块打包的权利，同时为区块链医疗服务代理点提供服务，一方面充当“记账”节点，收集一段时间内所有节点产生的医疗数据，另一方面提供查询接口，可以查询区块链上的医疗数据，此外上级医疗机构是区块链医疗服务代理点，为医护人员和患者提供服务。下级医疗机构是区块链医疗服务的代理点，可以为下级医疗机构的医护人员和患者提供服务，通过上级节点服务器，可以上传患者的病历信息，同时也可以查询患者的病史信息。</p>
+<h3 id="秘钥产生和分配"><a href="#秘钥产生和分配" class="headerlink" title="秘钥产生和分配"></a>秘钥产生和分配</h3><p>首先由医院产生主密钥，不论是上级医疗机构还是下级医疗机构，患者第一次在该医院就诊时需要患者出示身份卡，医院方面根据患者的身份信息由己方主密钥生成患者的二级密钥，将二级密钥写入身份卡，如果患者再次来到该医院就诊，直接出示身份卡就可以加密或解密数据。患者如果经常变更居住地，就诊的医院也会发生变化，所以患者的身份卡里会存储多个二级密钥，每次到医院就诊时使用的加密秘钥是由该医院和患者身份信息生成的二级密钥，患者每次就诊结束之后会更新最新的病历信息存储的区块高度，所以该信息只有一条记录。</p>
+<h3 id="电子病历的格式和存储"><a href="#电子病历的格式和存储" class="headerlink" title="电子病历的格式和存储"></a>电子病历的格式和存储</h3><p>电子病历的格式参照CDA电子病历文档格式，将文本信息和多媒体数据分离，患者在就诊过程中产生病历信息，病历信息包括文本信息和若干多媒体信息，医生按照CDA电子病历文档的格式进行填写，保存为Xml格式，Xml中的结尾保存多媒体信息的URL，最后上传到区块链中，而多媒体数据则保存在本地，提供下载服务。加密时将文本信息和多媒体信息同时加密，这样不仅保护文本信息，更对多媒体信息进行保护。</p>
+<h3 id="患者身份卡"><a href="#患者身份卡" class="headerlink" title="患者身份卡"></a>患者身份卡</h3><p>患者身份卡是一种医疗用户专用卡，身份卡记录了四种信息，包括患者的身份信息，患者在医院就诊的二级密钥，患者下次病历产生的序号和患者最近一次就诊记录所在的区块链高度，身份卡是一种参与区块链医疗的凭证卡。患者的身份信息是患者身份的标识，包括患者的ID和患者的姓名等等，用来标识一个患者的身份。患者在各个医院的秘钥表示对应身份的患者曾经在哪家医疗机构就诊，就保存在对应医疗机构产生的该患者的二级密钥，所以身份卡里保存的二级密钥不止一个，而是若干个二级密钥。患者下次要产生的的病历的序号，该序号表示当患者下次就诊时，新病历在患者所有病历中的编号，该序号减一表示患者在区块链上所保存的病历信息的数量。患者就诊最近一次就诊记录所在的区块高度是一个查询索引，通过该索引可以查询患者保存于区块链上的所有病历。</p>
+<h3 id="病历安全管理"><a href="#病历安全管理" class="headerlink" title="病历安全管理"></a>病历安全管理</h3><p><strong>病历溯源：</strong></p>
+<p>在查询优化上我们采用的是在病历信息之后添加上一次的病历信息位置信息（区块高度），在查询时直接搜索到指定的区块，遍历区块的病历信息就可以直接查询到指定患者的病历，这样由患者的病历信息构成了一条区块编号路径，直接沿该路径查询，每次查询到一条病历信息就确定了上一次的就诊记录所在的区块。我们将最近一次的就诊记录所在的高度记录到患者的身份卡里，这样查询时依次向上跳跃，就可以查询到一个患者的所有就诊记录。患者在对自己的病历信息进行查询时，每次都是在诊治医生和患者都在场的情况下，所以，在身份卡中会写入一个患者最近一次的就诊信息所在的区块高度，并且在一个患者的所有就诊记录（第一条就诊记录除外）的结尾添加一个标识符，该标识符是一个整形，存储一个编号，这个编号代表一个高度，指的是该患者上一次的就诊记录所保存的区块高度。如图所示，在图中可以看到，对于同一个患者的就诊记录，在其后都会保存一个编号，在高度为P的区块里面存储了姓名为“李四”患者的病历信息，在高度为N的区块里存储了“李四”的病历信息，那么在区块P保存的“李四”的一条病历信息的结尾就保存一个编号N，并且在N和P之间的任何一个高度的区块没有保存姓名为“李四”患者的就诊信息，同理，在高度为N的区块中，在就诊记录为患者“李四”的结尾，保存编号M,以此类推。将一个患者的病历形成一条链结构，可以快速查询患者以往的患病情况，以少量的存储空间为代价，利用了区块链的不可篡改性，使得以用户为单位形成一条查链结构，显著提高了查询信息的效率。</p>
+<p><strong>病历监控：</strong></p>
+<p>当患者的病历信息被查询时，系统自动生成一条查询记录，记录这一次查询操作，包括查询主体（信息查询者的身份），查询客体（病历信息所属患者的身份），查询时间，查询病历信息的编号（患者的病例序号）等信息。操作记录信息形成之后会发被送到拜占庭节点，拜占庭节点将其与病历信息打包形成区块。患者可以查询关于自己的病历的日志记录，如果有第三方下载过病历，在区块链中会生成日志信息，患者可以随时查询区块链来监控自己的健康记录。在之后的工作中可以在区块链中引入智能合约，为患者对自己的病历查看权限控制提供接口，这样患者可以在移动终端自由控制自己的病历查看权限。</p>
+<p><strong>病历安全保护机制：</strong></p>
+<p>病历的安全管理分为两个方面，一方面区块链存储的病历信息的密文，另一方面是对区块链数据查询的验证机制。病历密文存储：病历使用AES对称加密方式加密以密文存储在区块链上，如果有恶意查询操作，也只能获取病历的密文，没有秘钥无法获得明文信息，实现了医疗信息的保密性。验证查询内容：在查询时根据本节点存储或P2P网络获取指定高度的区块，验证该区块的hash值和区块中的签名值。在验证区块的hash值时，获取该区块的前后两个区块，验证计算前一个区块的hash值是否与该区块保存的父区块的hash值相等，即验证父区块hash值；计算该区块的hash值是否与下一个区块保存的父hash值相等。即验证该区块在区块链中是否是合法的。在验证区块的签名值时，使用公钥验证打包该区块的拜占庭节点，确认该区块的产生过程是合法的。验证查询内容的目的是确保查询到的区块是未被篡改的区块，如果本节点的区块遭到篡改，则向其他节点发送请求，恢复完整区块链。</p>
+<h1 id="系统测试"><a href="#系统测试" class="headerlink" title="系统测试"></a>系统测试</h1><img src="/images/基于区块链的电子病历安全管理系统/1620214701.jpg" width="70%" height="70%">
+
+<p>整个项目以现有的哈希技术、签名技术、加密技术为安全技术基础，以P2P网络和节点通信为通信技术基础，构建区块链系统，也就是核心层，核心层包括区块链数据结构的部分、签名拜占庭共识协议和优化存储控制部分，三部分形成区块链医疗平台的技术支持，在此基础上对医疗机构分级，并利用秘钥的分配和管理进行权限控制，利用现有CDA电子病历统一健康记录的格式，使得信息相容性大大提高，医疗数据查询和身份卡简化患者的治疗就诊过程，使得医疗机构的运作效率得到很大的提高。</p>
+<p>整个项目在实现过程中使用java语言，开发工具为eclipse，系统为Windows系统区块链的数据结构，共识协议，医疗应用模块，以及界面全部独立完成。JDK版本：1.8，Windows系统版本：Windows7，Windows10</p>
+<p>测试节点数量：5；拜占庭节点数量：3；一轮打包的时间：1（分钟）；一个固定高度区块的数量阈值：2；从区块生成到阶段二开始时间长度：3（分钟）；从区块生成到阶段三开始时间长度：8（分钟）；每次删除区块执行时检查的区块数量：50；测试过程：略。</p>
+<h1 id="系统创新"><a href="#系统创新" class="headerlink" title="系统创新"></a>系统创新</h1><p>轻量化和分片技术相结合的存储方案：针对医疗病历内容较多，区块链的体积随时间越来越庞大。如何优化区块链的存储方式，同时又不影响区块链原有的安全性。我们结合区块链“轻量化”和“分片”存储的思想，设计一套新的存储算法。</p>
+<p>让区块随着时间的流逝和访问的减少，逐渐减少存储备份，直至一个安全阈值。若干节点进行交互之后可以恢复一条完整的区块链。这样，较久远的“老区块”不易被篡改，较新的“新区块”由于备份很多也不易篡改。同时对区块的访问大多集中在较新的区块中，访问效率也得到保证。</p>
+<p>间隔区块打包优化算法：拜占庭共识算法要求参与共识的节点数量不能太多，否则会导致共识效率极低。这就需要从所有可信节点中随机选出拜占庭节点。我们利用区块hash值这一不可预测的变量作为选择的依据，但直接利用前一区块的hash值会导致整个网络暂停接收数据一段时间，所以我们利用间隔一个区块的区块hash值，这样每一轮的协商和打包时间不会造成整个区块链网络的等待，网络可以边共识，边收集新区块的数据。提高工作效率。</p>
+<p>区块多方签名安全机制：由于本项目使用的是联盟链，其本质是将对原先集中式中单一主体的信任修改为对某一主体集合的信任，在此基础上有由该主体集合维护区块链的运行。我们为了提高每个区块的可信度，防止在区块生成过程中出现篡改行为，在区块打包过程中加入多方签名，为每一个区块加上其打包者（该轮拜占庭节点）的多方签名，使每一个区块的打包者和认证者都有据可查。</p>
+<p>基于区块链的电子病历安全管理：通过利用区块链的可信存储方式，有效保证病历信息的真实性。可以促进医疗信息的规范统一和共享，节约医疗资源，方便患者，同时也可对病历信息进行有效地保护。将患者的医疗数据和对数据的查看记录放在区块链中，患者既可以查阅自己的病史，还可以查看谁曾经查看了自己的病史，对非法访问做到有据可查。可有效保护患者医疗数据的隐私安全。患者使用医院由主密钥和自身信息产生的二级密钥加密病历，这样医院和患者均可以解密自己管理的病历数据。患者即使丢失了自己的密钥也可以从医院方恢复，不会造成自己病历的无法解密。方便患者查阅病历，也有利于医疗机构间医疗数据的共享和分析。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本项目针对医疗信息缺乏整合和共享、技术漏洞和篡改风险、医疗信息不准确、医疗信息缺乏标准四个问题提出了基于区块链的电子病历的安全管理方案，区块链技术不可篡改、去中心化的特点可以解决大部分技术漏洞和篡改风险问题，而且基于区块链实现了医疗信息的共享，在共享的基础上，规范了医疗共享信息的格式，使得各个医疗机构使用一个相同的标准，提高了信息的开放性和共享性。以区块链技术为基础构建医疗平台，通过分级可以对医疗机构评估，通过秘钥的分配和身份卡管理可以对医生和用户两大角色进行权限控制，不仅可以提高医生诊断的效率和准确性，而且让患者参与对健康记录的保护，增强了人们的信息安全意识。</p>
+<p>本项目实现了基于区块链的电子病历安全管理，基本实现了共享和保护两大功能，然而，在考虑实际应用的情形，功能模块还可以继续扩展：引入智能合约：在病历的查看上可以由用户自由设置权限，控制不想被查询到的隐私信息，以智能合约的方式融入区块链中。开放移动用户接口，让患者随时掌控自己病历信息。大数据分析：通过对加密的控制可以实现在用户身份信息不暴露的情况下提取医疗大数据进行分析，对于研究人员更加便捷，能够很直观的分析现代社会的医疗发展情况和人类疾病的发展状况。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>您的钱钱支持将鼓励我继续创作!</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="1129ljc 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="1129ljc 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>1129ljc
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/post/4098c766.html" title="基于区块链的电子病历安全管理系统">http://example.com/post/4098c766.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-Hans" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+              <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag"><i class="fa fa-tag"></i> 区块链</a>
+              <a href="/tags/%E7%94%B5%E5%AD%90%E7%97%85%E5%8E%86/" rel="tag"><i class="fa fa-tag"></i> 电子病历</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/post/33add856.html" rel="prev" title="基于密文图像可逆水印和区块链的版权保护系统">
+      <i class="fa fa-chevron-left"></i> 基于密文图像可逆水印和区块链的版权保护系统
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/post/aed3dd41.html" rel="next" title="hexo配置">
+      hexo配置 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 allowTransparency="true" src="//music.163.com/outchain/player?type=2&id=405389051&auto=0&height=32">
+      </iframe>
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%9C%E5%93%81%E6%A6%82%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text">作品概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E5%88%86%E6%9E%90"><span class="nav-number">2.1.</span> <span class="nav-text">背景分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF%E7%BC%BA%E4%B9%8F%E6%95%B4%E5%90%88%E5%92%8C%E5%85%B1%E4%BA%AB"><span class="nav-number">2.1.1.</span> <span class="nav-text">医疗信息缺乏整合和共享</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E6%BC%8F%E6%B4%9E%E5%92%8C%E7%AF%A1%E6%94%B9%E9%A3%8E%E9%99%A9"><span class="nav-number">2.1.2.</span> <span class="nav-text">技术漏洞和篡改风险</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF%E4%B8%8D%E5%87%86%E7%A1%AE"><span class="nav-number">2.1.3.</span> <span class="nav-text">医疗信息不准确</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BB%E7%96%97%E4%BF%A1%E6%81%AF%E7%BC%BA%E4%B9%8F%E6%A0%87%E5%87%86"><span class="nav-number">2.1.4.</span> <span class="nav-text">医疗信息缺乏标准</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.2.</span> <span class="nav-text">相关工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E7%97%85%E5%8E%86CDA%E6%A0%87%E5%87%86"><span class="nav-number">2.2.1.</span> <span class="nav-text">电子病历CDA标准</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF"><span class="nav-number">2.2.2.</span> <span class="nav-text">区块链技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%9C%E5%8D%A0%E5%BA%AD%E5%85%B1%E8%AF%86%E5%8D%8F%E8%AE%AE"><span class="nav-number">2.2.3.</span> <span class="nav-text">拜占庭共识协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%98%E5%82%A8%E6%8A%80%E6%9C%AF"><span class="nav-number">2.2.4.</span> <span class="nav-text">区块链存储技术</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E8%89%B2%E6%8F%8F%E8%BF%B0"><span class="nav-number">2.3.</span> <span class="nav-text">特色描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%89%8D%E6%99%AF%E5%88%86%E6%9E%90"><span class="nav-number">2.4.</span> <span class="nav-text">应用前景分析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">系统设计与实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E4%BD%93%E6%9E%B6%E6%9E%84%E6%A6%82%E8%BF%B0"><span class="nav-number">3.1.</span> <span class="nav-text">总体架构概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.2.</span> <span class="nav-text">功能模块设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0%E7%97%85%E5%8E%86"><span class="nav-number">3.2.1.</span> <span class="nav-text">创建新病历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E7%97%85%E5%8E%86%E4%BF%A1%E6%81%AF"><span class="nav-number">3.2.2.</span> <span class="nav-text">查询病历信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E5%8C%BA%E5%9D%97%E9%93%BE%E6%96%87%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="nav-number">3.2.3.</span> <span class="nav-text">请求区块链文本信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%BA%E5%9D%97%E9%93%BE"><span class="nav-number">3.3.</span> <span class="nav-text">区块链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E5%9D%97%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">3.3.1.</span> <span class="nav-text">区块数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%BE%E5%90%8D%E6%8B%9C%E5%8D%A0%E5%BA%AD%E5%85%B1%E8%AF%86"><span class="nav-number">3.3.2.</span> <span class="nav-text">签名拜占庭共识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E5%9D%97%E6%89%93%E5%8C%85"><span class="nav-number">3.3.3.</span> <span class="nav-text">区块打包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E6%8C%91%E9%80%89%E6%8B%9C%E5%8D%A0%E5%BA%AD%E8%8A%82%E7%82%B9"><span class="nav-number">3.3.3.1.</span> <span class="nav-text">第一步：挑选拜占庭节点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%BA%E5%9D%97%E9%93%BE%E7%94%9F%E6%88%90"><span class="nav-number">3.4.</span> <span class="nav-text">区块链生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%BA%E5%9D%97%E9%93%BE%E4%BC%98%E5%8C%96%E5%AD%98%E5%82%A8"><span class="nav-number">3.5.</span> <span class="nav-text">区块链优化存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E7%97%85%E5%8E%86%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="nav-number">3.6.</span> <span class="nav-text">电子病历安全管理系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BB%E7%96%97%E6%9C%BA%E6%9E%84%E5%88%86%E7%BA%A7"><span class="nav-number">3.6.1.</span> <span class="nav-text">医疗机构分级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%98%E9%92%A5%E4%BA%A7%E7%94%9F%E5%92%8C%E5%88%86%E9%85%8D"><span class="nav-number">3.6.2.</span> <span class="nav-text">秘钥产生和分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E7%97%85%E5%8E%86%E7%9A%84%E6%A0%BC%E5%BC%8F%E5%92%8C%E5%AD%98%E5%82%A8"><span class="nav-number">3.6.3.</span> <span class="nav-text">电子病历的格式和存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%82%A3%E8%80%85%E8%BA%AB%E4%BB%BD%E5%8D%A1"><span class="nav-number">3.6.4.</span> <span class="nav-text">患者身份卡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%97%85%E5%8E%86%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86"><span class="nav-number">3.6.5.</span> <span class="nav-text">病历安全管理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95"><span class="nav-number">4.</span> <span class="nav-text">系统测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%88%9B%E6%96%B0"><span class="nav-number">5.</span> <span class="nav-text">系统创新</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="1129ljc"
+      src="/images/touxiang.jpg">
+  <p class="site-author-name" itemprop="name">1129ljc</p>
+  <div class="site-description" itemprop="description">技术、生活、吐槽</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/1129ljc?tab=repositories" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;1129ljc?tab&#x3D;repositories" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:lijinchuan@iie.ac.cn" title="E-Mail → mailto:lijinchuan@iie.ac.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-Hans" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">1129ljc</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">38k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">34 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo:5.4.0</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces:7.8.0</a> 强力驱动
+      <img src="/images/beian.png" style="display: inline-block;"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">鲁ICP备2020046711号</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  <script src="//code.tidio.co/hq0p9xqkkvnqnwn40ubqtbm1nmy45ods.js"></script>
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'dark',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'http://example.com/post/4098c766.html',]
+      });
+      });
+  </script>
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', () => {
+    window.dsqjs = new DisqusJS({
+      api       : 'https://disqus.skk.moe/disqus/' || 'https://disqus.com/api/',
+      apikey    : 'zag5eGQlwyurNgELavtE4nRcG7vUcWvHuyCVWO3dgJFRJqXJpvO4L9UbZ2mqAWq6',
+      shortname : '1129ljc-top',
+      url       : "http://example.com/post/4098c766.html",
+      identifier: "post/4098c766.html",
+      title     : "基于区块链的电子病历安全管理系统",
+    });
+  }, window.DisqusJS);
+});
+</script>
+
+</body>
+</html>
